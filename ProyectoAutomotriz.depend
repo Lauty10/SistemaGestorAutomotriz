@@ -1,0 +1,28 @@
+# depslib dependency file v1.0
+1731798351 source:c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\funcionesdevendedor.cpp
+	<iostream>
+	"ClassVendedor.h"
+
+1731898785 source:c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\funcionesgestoras.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+
+1731882550 source:c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\main.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+
+1731894307 c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\funcionesdeclaraciones.h
+	"ClassVendedor.h"
+	"ClassClientes.h"
+
+1731902991 c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\classvendedor.h
+	<cstring>
+	<string.h>
+
+1731797984 c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\funcionesdevendedor.cpp
+	<iostream>
+	"ClassVendedor.h"
+
+1731906619 c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\classclientes.h
+	<string.h>
+
