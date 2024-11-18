@@ -69,6 +69,7 @@ public:
     bool getEstado(){
     return estado;
     }
+
 //Funciones
     void cargarVendedor(){
     cout << "Ingrese el nombre del vendedor: ";
@@ -98,7 +99,7 @@ public:
  int generarIdVendedor() {
    FILE *generar;
    int dato=0;
-   generar=fopen("Vendedores","rb");
+   generar=fopen("Vendedores.dat","rb");
    if(generar==NULL){
     dato=1;
     return dato;
@@ -158,6 +159,93 @@ bool iniciarSesion() {
     return false;
     }
 }
+
+void funcionalidadesVendedor(){
+Vendedores obj;
+int opcion;
+cout<<"Usted esta gestionando los vendedores..."<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-1)Dar de alta nuevo vendedor"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-2)Listar vendedores"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-3)Buscar un vendedor"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"Ingrese la opcion que desee:";
+cin>>opcion;
+switch(opcion){
+case 1:
+    system("cls");
+    obj.cargarVendedor();
+    obj.registrarVendedor(obj);
+    system("cls");
+    break;
+case 2:
+    system("cls");
+    obj.listarVendedores();
+    break;
+case 3:
+    system("cls");
+    obj.buscarVendedor();
+    break;
+default:
+    cout<<"Opcion incorrecta..."<<endl;
+}
+}
+
+void listarVendedores(){
+FILE *listaV;
+listaV=fopen("Vendedores.dat","rb");
+if(listaV==NULL){
+    cout<<"Error al listar vendedores..."<<endl;
+}
+Vendedores objV;
+while(fread(&objV,sizeof(Vendedores),1,listaV)!=0){
+    if(objV.getEstado()==true){
+    cout<<"Nombre:"<<objV.getNombre()<<endl;
+    cout<<"Correo:"<<objV.getCorreo()<<endl;
+    cout<<"Dni:"<<objV.getDni()<<endl;
+    cout<<"Rol:"<<objV.getRol()<<endl;
+    cout<<"Estado:"<<objV.getEstado()<<endl;
+    cout<<"ID:"<<objV.getIdVendedor()<<endl;
+    cout<<"------------------------------------------------------------"<<endl;
+    }
+
+}
+fclose(listaV);
+system("pause");
+system("cls");
+}
+
+void buscarVendedor(){
+FILE *buscarV;
+buscarV=fopen("Vendedores.dat","rb");
+if(buscarV==NULL){
+    cout<<"Error al buscar vendedor..."<<endl;
+}
+Vendedores listaV;
+int idBuscado;
+cout<<"Ingrese el id del vendedor que esta buscando:";
+cin>>idBuscado;
+bool buscado=false;
+while(fread(&listaV,sizeof(Vendedores),1,buscarV)!=0){
+    if(idBuscado==listaV.getIdVendedor()){
+    buscado=true;
+    cout<<"Vendedor encontrado:"<<endl;
+    cout<<"Nombre:"<<listaV.getNombre()<<endl;
+    cout<<"Correo:"<<listaV.getCorreo()<<endl;
+    cout<<"Dni:"<<listaV.getDni()<<endl;
+    cout<<"ID:"<<listaV.getIdVendedor()<<endl;
+    cout<<"------------------------------------------------------------"<<endl;
+    system("pause");
+    }
+}
+if(!buscado){
+    cout<<"El id del vendedor no pudo ser encontrado..."<<endl;
+}
+system("cls");
+}
+
 
 };
 
