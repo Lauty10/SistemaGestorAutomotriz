@@ -406,6 +406,7 @@ fclose(editar);
 system("cls");
 }
 
+
 void editarDni(){
 FILE *editar;
 editar=fopen("Clientes","rb+");

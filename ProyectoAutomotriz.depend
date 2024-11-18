@@ -45,3 +45,26 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
+1731956218 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+	"ClassAuto.h"
+
+1731951484 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+	"ClassVendedor.h"
+	"ClassClientes.h"
+
+1731951484 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+	<cstring>
+	<string.h>
+
+1731955339 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+	<string.h>
+
+1731951484 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\main.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+
+1731956274 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+	<string.h>
+

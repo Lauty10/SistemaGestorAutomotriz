@@ -1,6 +1,6 @@
 #include <iostream>
 #include "FuncionesDeclaraciones.h"
-
+#include "ClassAuto.h"
 using namespace std;
 
 //FUNCIONES EJECUTADAS
@@ -49,6 +49,7 @@ default:
 void menuDeVendedores(){
 Clientes objCliente;
 Vendedores objVendedores;
+Auto objAuto;
 int opcion;
 while(true){
     cout<<"Bienvenido al menu de vendedores.........."<<endl;
@@ -79,6 +80,8 @@ while(true){
         objVendedores.funcionalidadesVendedor();
         break;
     case 3:
+        system("cls");
+        objAuto.menuAutos();
         break;
     case 4:
         break;
