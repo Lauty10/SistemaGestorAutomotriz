@@ -48,6 +48,7 @@ default:
 //MENU DE VENDEDORES
 void menuDeVendedores(){
 Clientes objCliente;
+Vendedores objVendedores;
 int opcion;
 while(true){
     cout<<"Bienvenido al menu de vendedores.........."<<endl;
@@ -74,6 +75,8 @@ while(true){
         objCliente.menuClientes();
         break;
     case 2:
+        system("cls");
+        objVendedores.funcionalidadesVendedor();
         break;
     case 3:
         break;
