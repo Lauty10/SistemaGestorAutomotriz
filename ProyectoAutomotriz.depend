@@ -26,19 +26,20 @@
 1731906619 c:\users\lauty\onedrive\escritorio\c++\proyectoautomotriz\classclientes.h
 	<string.h>
 
-1731948808 source:c:\users\lauty\onedrive\escritorio\proyectoautomotriz\funcionesgestoras.cpp
+1731974729 source:c:\users\lauty\onedrive\escritorio\proyectoautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
+	"ClassAuto.h"
 
-1731894307 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\funcionesdeclaraciones.h
+1731974729 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 
-1731949629 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classvendedor.h
+1731976140 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 
-1731906619 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classclientes.h
+1731974596 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classclientes.h
 	<string.h>
 
 1731882550 source:c:\users\lauty\onedrive\escritorio\proyectoautomotriz\main.cpp
@@ -66,5 +67,8 @@
 	"FuncionesDeclaraciones.h"
 
 1731956274 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+	<string.h>
+
+1731974729 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
 	<string.h>
 

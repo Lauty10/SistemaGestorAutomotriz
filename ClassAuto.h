@@ -8,18 +8,16 @@ class Auto{
 private:
 int idDelAuto;
 char nombreAuto[20];
-char modeloAuto[20];
 char marcaAuto[20];
-int anioAuto;
+char anioAuto[10];
 float precioAuto;
 
 public:
-Auto(int id=0, const char* nombreA="XXX", const char* modeloA="XXX", const char* marcaA="XXX", int anioA=0, float precioA=0.0){
+Auto(int id=0, const char* nombreA="XXX", const char* marcaA="XXX", const char* anioA="19/07/2000", float precioA=0.0){
 this->idDelAuto=id;
 strcpy(this->nombreAuto,nombreA);
-strcpy(this->modeloAuto,modeloA);
 strcpy(this->marcaAuto,marcaA);
-this->anioAuto=anioA;
+strcpy(this->anioAuto,anioA);
 this->precioAuto=precioA;
  }
 void setIdAuto(int id){
@@ -28,14 +26,12 @@ this->idDelAuto=id;
 void setNombreAuto(char nombreA[20]){
 strcpy(this->nombreAuto,nombreA);
  }
-void setModeloAuto(char modeloA[20]){
-strcpy(this->modeloAuto,modeloA);
- }
+
 void setMarcaAuto(char marcaA[20]){
 strcpy(this->marcaAuto,marcaA);
  }
-void setAnio(int anioA){
-this->anioAuto=anioA;
+void setAnio(char anioA[10]){
+strcpy(this->anioAuto,anioA);
  }
 void setPrecioAuto(float precioA){
 this->precioAuto=precioA;
@@ -46,13 +42,10 @@ return idDelAuto;
 const char* getNombreAuto(){
 return nombreAuto;
  }
-const char* getModeloAuto(){
-return modeloAuto;
- }
 const char* getMarcaAuto(){
 return marcaAuto;
  }
-int getAnioAuto(){
+const char* getAnioAuto(){
 return anioAuto;
  }
 float getPrecioAuto(){
@@ -65,18 +58,18 @@ return precioAuto;
  void menuAutos(){
  int opcion;
  while(true){
-
-cout<<"Autos"<<endl;
+cout<<"Ustes se encuentra en el menu de autos..."<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"1)Dar de alta nuevo vehiculo"<<endl;
+cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"2)Modificar vehiculo"<<endl;
+cout<<"2-)Modificar vehiculo"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"3)Dar de baja vehiculo"<<endl;
+cout<<"3-)Dar de baja vehiculo"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"4)Salir"<<endl;
+cout<<"0-)Salir"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
-
 switch(opcion){
 case 1:
 system("cls");
@@ -90,9 +83,9 @@ system("cls");
 case 3:
     break;
 
-case 4:
+case 0:
 system("cls");
-menuAutos();
+menuDeVendedores();
     break;
 }
 }
@@ -100,10 +93,9 @@ menuAutos();
 
 
 //FUNCION PARA DAR DE ALTA UN NUEVO VEHICULO
-
 void altaAuto(){
 FILE *vehiculo;
-vehiculo=fopen("vehiculo.dat","ab");
+vehiculo=fopen("Vehiculo.dat","wb");
 if(vehiculo== NULL){
 cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
@@ -112,11 +104,10 @@ return;
 Auto obj;
 int idUnico;
 char nombreAuto[20];
-char modeloAuto[20];
 char marcaAuto[20];
-int anioAuto;
+char anioVehiculo[10];
 float precioAuto;
-idUnico=generadorId();
+idUnico=generarIdAuto();
 obj.setIdAuto(idUnico);
 
 cout<<"Ingrese el nombre del auto:";
@@ -124,17 +115,13 @@ cin.ignore();
 cin.getline(nombreAuto,20,'\n');
 obj.setNombreAuto(nombreAuto);
 
-cout<<"Ingrese el modelo del auto:";
-cin.getline(modeloAuto,20,'\n');
-obj.setModeloAuto(modeloAuto);
-
 cout<<"Ingrese la marca del auto:";
 cin.getline(marcaAuto,20,'\n');
 obj.setMarcaAuto(marcaAuto);
 
-cout<<"Ingrese el anio de fabricacion del auto:";
-cin>>anioAuto;
-obj.setAnio(anioAuto);
+cout<<"Ingrese la fecha de fabricacion del auto:";
+cin.getline(anioVehiculo,10,'\n');
+obj.setAnio(anioVehiculo);
 
 cout<<"Ingrese el precio del auto:";
 cin>>precioAuto;
@@ -150,81 +137,69 @@ fclose(vehiculo);
 
 
 //GENERADOR DE ID PARA NUEVOS AUTOS
-int generadorId(){
-int nuevoDato=0;
-FILE *dato;
-dato=fopen("vehiculos.dat","rb");
-if(dato==NULL){
-cout<<"Error al generar nuevo id";
-}
-Auto objId;
-while(fread(&objId,sizeof(Auto),1,dato)!=0){
-nuevoDato++;
-}
-fclose(dato);
-return nuevoDato+1;
- }
+ int generarIdAuto() {
+   FILE *generar;
+   int dato=0;
+   generar=fopen("Vehiculo.dat","rb");
+   if(generar==NULL){
+    dato=1;
+    return dato;
+   }
+   Auto obj;
+   while(fread(&obj,sizeof(Auto),1,generar)!=0){
+    dato++;
+   }
+   return dato+1;
+   fclose(generar);
+    }
 
 
 //MODIFICAR DATOS
-
 void modificarAutos(){
 int opcion;
 while(true){
-cout<<"1)Modificar nombre"<<endl;
+cout<<"-1)Modificar nombre"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"2)Modificar modelo"<<endl;
+cout<<"-2)Modificar marca"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"3)Modificar marca"<<endl;
+cout<<"-3)Modificar fecha de fabricacion"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"4)Modificar anio"<<endl;
+cout<<"-4)Modificar precio"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"5)Modificar precio"<<endl;
+cout<<"-0)Salir"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"6)salir"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+cout<<"Eliga la opcion que desee:";
 cin>>opcion;
-
 switch(opcion){
 case 1:
 system("cls");
 modificarNombre();
     break;
-
 case 2:
-system("cls");
-modificarModelo();
-    break;
-
-case 3:
 system("cls");
 modificarMarca();
     break;
-
-case 4:
+case 3:
 system("cls");
 modificarAnio();
     break;
-
-case 5:
+case 4:
 system ("cls");
 modificarPrecio();
     break;
-
-case 6:
-system("csl");
+case 0:
+system("cls");
 menuAutos();
     break;
 }
 }
-
 }
 
 //FUNCION PARA MODIFICAR NOMBRE
 
 void modificarNombre(){
 FILE *nombre;
-nombre=fopen("vehiculos.dat","rb+");
+nombre=fopen("Vehiculos.dat","rb+");
 
 if(nombre==NULL){
 cout<<"Error al editar nombre..."<<endl;
@@ -243,7 +218,6 @@ if(idBuscado==obj.getId()){
 cout<<"Auto encontrado correctamente"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
-
 long longitud=ftell(nombre)-sizeof(Auto);
 char nuevoNombre[20];
 cout<<"Ingresa el nombre:";
@@ -266,57 +240,11 @@ system("cls");
 }
 
 
-//MODIFICAR MODELO
-
-void modificarModelo(){
-FILE *modelo;
-modelo=fopen("vehiculos.dat","rb+");
-
-if(modelo==NULL){
-cout<<"Error al editar modelo..."<<endl;
-fclose(modelo);
-}
-
-Auto obj;
-bool encontrado=false;
-int idBuscado;
-
-cout<<"Ingrese el id del auto a modificar:";
-cin>>idBuscado;
-
-while(fread(&obj,sizeof(Auto),1,modelo)!=0){
-if(idBuscado==obj.getId()){
-cout<<"Auto encontrado correctamente"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-encontrado=true;
-
-long longitud=ftell(modelo)-sizeof(Auto);
-char nuevoModelo[20];
-cout<<"Ingresa el modelo:";
-cin.ignore();
-cin.getline(nuevoModelo,20,'\n');
-obj.setModeloAuto(nuevoModelo);
-fseek(modelo,longitud,SEEK_SET);
-fwrite(&obj,sizeof(Auto),1,modelo);
-cout<<"Modelo editado correctamente..."<<endl;
-system("pause");
-break;
-}
-}
-if(!encontrado){
-cout<<"No se encontro el id correspondiente"<<endl;
-system("pause");
-}
-fclose(modelo);
-system("cls");
-}
-
-
 //MODIFICAR MARCA
 
 void modificarMarca(){
 FILE *marca;
-marca=fopen("vehiculos.dat","rb+");
+marca=fopen("Vehiculos.dat","rb+");
 
 if(marca==NULL){
 cout<<"Error al editar marca..."<<endl;
@@ -361,7 +289,7 @@ system("cls");
 //MODIFICAR ANIO
 void modificarAnio(){
 FILE *anio;
-anio=fopen("vehiculos.dat","rb+");
+anio=fopen("Vehiculos.dat","rb+");
 
 if(anio==NULL){
 cout<<"Error al editar el anio..."<<endl;
@@ -382,9 +310,9 @@ cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
 
 long longitud=ftell(anio)-sizeof(Auto);
-int nuevoAnio;
+char nuevoAnio[10];
 cout<<"Ingresa el anio:";
-cin>>nuevoAnio;
+cin.getline(nuevoAnio,10,'\n');
 obj.setAnio(nuevoAnio);
 fseek(anio,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,anio);
@@ -405,7 +333,7 @@ system("cls");
 
 void modificarPrecio(){
 FILE *precio;
-precio=fopen("vehiculos.dat","rb+");
+precio=fopen("Vehiculos.dat","rb+");
 
 if(precio==NULL){
 cout<<"Error al editar el precio..."<<endl;

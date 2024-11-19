@@ -8,6 +8,7 @@ void menu(){
 int opcion;
 bool logeo;
 Vendedores obj;
+int idLogeado;
 while(true){
     cout<<"BIENVENIDO AL MENU PRINCIPAL...."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -62,7 +63,9 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"4-)Facturaciones"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"5-)Mi cuenta"<<endl;
+    cout<<"5-)Realizar Venta"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
+    cout<<"6-)Mi cuenta"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir..."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -70,6 +73,7 @@ while(true){
     cin>>opcion;
     switch(opcion){
     case 0:
+        menu();
         break;
     case 1:
         system("cls");
@@ -87,9 +91,60 @@ while(true){
         break;
     case 5:
         break;
+    case 6:
+        system("cls");
+        editarMiCuenta();
+        break;
     default:
         cout<<"Opcion incorrecta"<<endl;
     }
 }
 }
+
+//Editar mi cuenta
+void editarMiCuenta(){
+char correoBuscado[35];
+char claveBuscado[20];
+int DniBuscado;
+cout<<"Por favor ingrese los datos solicitados para validar su identidad..."<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"Ingrese su correo:";
+cin.ignore();
+cin.getline(correoBuscado,35,'\n');
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"Ingrese su clave:";
+cin.getline(claveBuscado,20,'\n');
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"Ingrese su DNI:";
+cin>>DniBuscado;
+cout<<"-----------------------------------------------------"<<endl;
+FILE *buscar;
+buscar=fopen("Vendedores.dat","rb");
+if(buscar==NULL){
+    cout<<"Error al entrar al archivo de Vendedores"<<endl;
+}
+Vendedores objV;
+while(fread(&objV,sizeof(Vendedores),1,buscar)!=0){
+    if(strcmp(objV.getCorreo(),correoBuscado)==0 && strcmp(objV.getClave(),claveBuscado)==0 && objV.getDni()==DniBuscado){
+        if(objV.getEstado()==true){
+                fclose(buscar);
+                int idDelVendedor;
+                char nombreObtenido[30];
+                idDelVendedor=objV.getIdVendedor();
+                const char *nombre=objV.getNombre();
+                strcpy(nombreObtenido,nombre);
+                system("cls");
+                objV.menuMiCuenta(idDelVendedor,nombreObtenido);
+        }else{
+        cout<<"El vendedor se encuentra dado de baja en el sistema..."<<endl;
+        system("pause");
+        system("cls");
+        break;
+        }
+    }
+}
+fclose(buscar);
+}
+
+
 

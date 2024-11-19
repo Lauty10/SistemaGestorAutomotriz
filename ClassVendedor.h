@@ -5,6 +5,10 @@
 
 using namespace std;
 
+//Volver a los menus
+void menuDeVendedores();
+void menu();
+
 class Vendedores{
 private:
     int idVendedor;
@@ -243,6 +247,175 @@ while(fread(&listaV,sizeof(Vendedores),1,buscarV)!=0){
 if(!buscado){
     cout<<"El id del vendedor no pudo ser encontrado..."<<endl;
 }
+system("cls");
+}
+
+void menuMiCuenta(int idDelVendedor, char nombre[30]){
+Vendedores obj;
+int opcion;
+cout<<"Bienvenido "<<nombre<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"Aqui podra editar sus datos"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-1)Editar nombre"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-2)Editar correo"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"-3)Editar clave"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"4-)Editar dni"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"0-)Salir"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"Ingrese la opcion que desee:";
+cin>>opcion;
+switch(opcion){
+case 1:
+    system("cls");
+    obj.editarMiNombre(idDelVendedor);
+    break;
+case 2:
+    system("cls");
+    obj.editarMiCorreo(idDelVendedor);
+    break;
+case 3:
+    system("cls");
+    obj.editarMiClave(idDelVendedor);
+    break;
+case 4:
+    system("cls");
+    obj.editarDni(idDelVendedor);
+    break;
+case 0:
+    menuDeVendedores();
+    break;
+default:
+    cout<<"Opcion incorrecta..."<<endl;
+}
+}
+
+
+
+void editarMiNombre(int id){
+FILE *nombrePersonal;
+nombrePersonal=fopen("Vendedores.dat","rb+");
+if(nombrePersonal==NULL){
+    cout<<"Error al editar nombre..."<<endl;
+}
+Vendedores obj;
+bool encontrado=false;
+char nuevoNombre[30];
+while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
+    if(id==obj.getIdVendedor()){
+        encontrado=true;
+        long posicion=ftell(nombrePersonal)-sizeof(Vendedores);
+        cout<<"Ingresa el nombre:";
+        cin.ignore();
+        cin.getline(nuevoNombre,30,'\n');
+        obj.setNombre(nuevoNombre);
+        fseek(nombrePersonal,posicion,SEEK_SET);
+        fwrite(&obj,sizeof(Vendedores),1,nombrePersonal);
+        cout<<"Nombre actualizado correctamente..."<<endl;
+        system("pause");
+    }
+}
+if(!encontrado){
+    cout<<"Error al encontrar usuario con ese ID"<<endl;
+    system("pause");
+}
+fclose(nombrePersonal);
+system("cls");
+}
+
+void editarMiCorreo(int id){
+FILE *correoPersonal;
+correoPersonal=fopen("Vendedores.dat","rb+");
+if(correoPersonal==NULL){
+    cout<<"Error al editar correo..."<<endl;
+}
+Vendedores obj;
+bool encontrado=false;
+char nuevoCorreo[35];
+while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
+    if(id==obj.getIdVendedor()){
+        encontrado=true;
+        long posicion=ftell(correoPersonal)-sizeof(Vendedores);
+        cout<<"Ingresa el correo:";
+        cin.ignore();
+        cin.getline(nuevoCorreo,35,'\n');
+        obj.setCorreo(nuevoCorreo);
+        fseek(correoPersonal,posicion,SEEK_SET);
+        fwrite(&obj,sizeof(Vendedores),1,correoPersonal);
+        cout<<"Correo actualizado correctamente..."<<endl;
+        system("pause");
+    }
+}
+if(!encontrado){
+    cout<<"Error al encontrar usuario con ese ID"<<endl;
+    system("pause");
+}
+fclose(correoPersonal);
+system("cls");
+}
+
+void editarMiClave(int id){
+FILE *clavePersonal;
+clavePersonal=fopen("Vendedores.dat","rb+");
+if(clavePersonal==NULL){
+    cout<<"Error al editar correo..."<<endl;
+}
+Vendedores obj;
+bool encontrado=false;
+char nuevaCLave[20];
+while(fread(&obj,sizeof(Vendedores),1,clavePersonal)!=0){
+    if(id==obj.getIdVendedor()){
+        encontrado=true;
+        long posicion=ftell(clavePersonal)-sizeof(Vendedores);
+        cout<<"Ingresa la clave:";
+        cin.ignore();
+        cin.getline(nuevaCLave,20,'\n');
+        obj.setClave(nuevaCLave);
+        fseek(clavePersonal,posicion,SEEK_SET);
+        fwrite(&obj,sizeof(Vendedores),1,clavePersonal);
+        cout<<"Clave actualizada correctamente..."<<endl;
+        system("pause");
+    }
+}
+if(!encontrado){
+    cout<<"Error al encontrar usuario con ese ID"<<endl;
+    system("pause");
+}
+fclose(clavePersonal);
+system("cls");
+}
+
+void editarDni(int id){
+FILE *dniPersonal;
+dniPersonal=fopen("Vendedores.dat","rb+");
+if(dniPersonal==NULL){
+    cout<<"Error al editar dni..."<<endl;
+}
+Vendedores obj;
+bool encontrado=false;
+int nuevoDni;
+while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
+    if(id==obj.getIdVendedor()){
+        encontrado=true;
+        long posicion=ftell(dniPersonal)-sizeof(Vendedores);
+        cout<<"Ingresa el dni:";
+        cin>>nuevoDni;
+        obj.setDni(nuevoDni);
+        fseek(dniPersonal,posicion,SEEK_SET);
+        fwrite(&obj,sizeof(Vendedores),1,dniPersonal);
+        cout<<"Dni actualizado correctamente..."<<endl;
+        system("pause");
+    }
+}
+if(!encontrado){
+    cout<<"Error al encontrar usuario con ese ID"<<endl;
+    system("pause");
+}
+fclose(dniPersonal);
 system("cls");
 }
 
