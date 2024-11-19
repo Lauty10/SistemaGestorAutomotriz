@@ -2,6 +2,7 @@
 #define CLASSVENDEDOR_H_INCLUDED
 #include <cstring>
 #include <string.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -83,10 +84,27 @@ public:
     cout << "Ingrese el correo: ";
     cin.getline(correo, 35,'\n');
     setCorreo(correo);
-    cout << "Ingrese la clave: ";
-    cin.getline(clave, 20,'\n');
+    cout << "Ingrese la clave:";
+    char ch;
+    int index = 0;
+    while (true) {
+    ch = _getch();
+    if (ch == 13) {
+     clave[index] = '\0';
+        break;
+    }else if (ch == 8) {
+      if (index > 0) {
+        index--;
+        cout << "\b \b";
+        }
+        } else {
+        clave[index++] = ch;
+     cout << "*";
+        }
+    }
     setClave(clave);
-    cout << "Ingrese el DNI: ";
+    cout << endl;
+    cout << "Ingrese el DNI:";
     cin >> dni;
     setDni(dni);
     idVendedor=generarIdVendedor();
@@ -144,7 +162,24 @@ bool iniciarSesion() {
     cin.ignore();
     cin.getline(correoLogin, 35, '\n');
     cout << "Ingrese su clave: ";
-    cin.getline(claveLogin, 20, '\n');
+    char ch;
+    int index = 0;
+    while (true) {
+        ch = _getch();
+        if (ch == 13) {
+            claveLogin[index] = '\0';
+            break;
+        } else if (ch == 8) {
+            if (index > 0) {
+                index--;
+                cout << "\b \b";
+            }
+        } else {
+            claveLogin[index++] = ch;
+            cout << "*";
+        }
+    }
+   cout << endl;
     while (fread(&obj, sizeof(Vendedores), 1, logeo) != 0) {
         if (strcmp(obj.getCorreo(), correoLogin) == 0 && strcmp(obj.getClave(), claveLogin) == 0) {
             inicio = true;
@@ -175,6 +210,8 @@ cout<<"-2)Listar vendedores"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"-3)Buscar un vendedor"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
+cout<<"0-)Volver atras"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 switch(opcion){
@@ -192,6 +229,9 @@ case 3:
     system("cls");
     obj.buscarVendedor();
     break;
+case 0:
+    system("cls");
+    menuDeVendedores();
 default:
     cout<<"Opcion incorrecta..."<<endl;
 }
@@ -287,6 +327,7 @@ case 4:
     obj.editarDni(idDelVendedor);
     break;
 case 0:
+    system("cls");
     menuDeVendedores();
     break;
 default:

@@ -118,49 +118,42 @@ menuDeVendedores();
 
 //FUNCION PARA DAR DE ALTA UN NUEVO VEHICULO
 void altaAuto(){
-FILE *vehiculo;
-vehiculo=fopen("Vehiculo.dat","wb");
-if(vehiculo== NULL){
-cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
-return;
-}
+    FILE *vehiculo;
+    vehiculo = fopen("Vehiculo.dat", "ab");
+    if (vehiculo == NULL) {
+        cout << "NO SE PUDO ABRIR ESTE ARCHIVO" << endl;
+        return;
+    }
 
-Auto obj;
-int idUnico;
-char nombreAuto[20];
-char marcaAuto[20];
-char anioVehiculo[10];
-float precioAuto;
-bool estadoA=false;
-idUnico=generarIdAuto();
-obj.setIdAuto(idUnico);
-
-cout<<"Ingrese el nombre del auto:";
-cin.ignore();
-cin.getline(nombreAuto,20,'\n');
-obj.setNombreAuto(nombreAuto);
-
-cout<<"Ingrese la marca del auto:";
-cin.getline(marcaAuto,20,'\n');
-obj.setMarcaAuto(marcaAuto);
-
-cout<<"Ingrese la fecha de fabricacion del auto:";
-cin.getline(anioVehiculo,10,'\n');
-obj.setAnio(anioVehiculo);
-
-cout<<"Ingrese el precio del auto:";
-cin>>precioAuto;
-obj.setPrecioAuto(precioAuto);
-
-estadoA=true;
-obj.setEstado(estadoA);
-
-fwrite(&obj,sizeof(Auto),1,vehiculo);
-cout<<"Vehiculo cargado en el sistema"<<endl;
-system("pause");
-system("cls");
-fclose(vehiculo);
-
+    Auto obj;
+    int idUnico;
+    char nombreAuto[20];
+    char marcaAuto[20];
+    char anioVehiculo[10];
+    float precioAuto;
+    bool estadoA = false;
+    idUnico = generarIdAuto();
+    obj.setIdAuto(idUnico);
+    cout << "Ingrese el nombre del auto: ";
+    cin.ignore();
+    cin.getline(nombreAuto, 20, '\n');
+    obj.setNombreAuto(nombreAuto);
+    cout << "Ingrese la marca del auto: ";
+    cin.getline(marcaAuto, 20, '\n');
+    obj.setMarcaAuto(marcaAuto);
+    cout << "Ingrese la fecha de fabricacion del auto: ";
+    cin.getline(anioVehiculo, 10, '\n');
+    obj.setAnio(anioVehiculo);
+    cout << "Ingrese el precio del auto: ";
+    cin >> precioAuto;
+    obj.setPrecioAuto(precioAuto);
+    estadoA = true;
+    obj.setEstado(estadoA);
+    fwrite(&obj, sizeof(Auto), 1, vehiculo);
+    cout << "Vehiculo cargado en el sistema" << endl;
+    system("pause");
+    system("cls");
+    fclose(vehiculo);
 }
 
 
@@ -227,7 +220,7 @@ menuAutos();
 
 void modificarNombre(){
 FILE *nombre;
-nombre=fopen("Vehiculos.dat","rb+");
+nombre=fopen("Vehiculo.dat","rb+");
 
 if(nombre==NULL){
 cout<<"Error al editar nombre..."<<endl;
@@ -272,7 +265,7 @@ system("cls");
 
 void modificarMarca(){
 FILE *marca;
-marca=fopen("Vehiculos.dat","rb+");
+marca=fopen("Vehiculo.dat","rb+");
 
 if(marca==NULL){
 cout<<"Error al editar marca..."<<endl;
@@ -317,7 +310,7 @@ system("cls");
 //MODIFICAR ANIO
 void modificarAnio(){
 FILE *anio;
-anio=fopen("Vehiculos.dat","rb+");
+anio=fopen("Vehiculo.dat","rb+");
 
 if(anio==NULL){
 cout<<"Error al editar el anio..."<<endl;
@@ -336,10 +329,9 @@ if(idBuscado==obj.getId()){
 cout<<"Auto encontrado correctamente"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
-
 long longitud=ftell(anio)-sizeof(Auto);
 char nuevoAnio[10];
-cout<<"Ingresa el anio:";
+cout<<"Ingresa la fecha de fabricacion:";
 cin.getline(nuevoAnio,10,'\n');
 obj.setAnio(nuevoAnio);
 fseek(anio,longitud,SEEK_SET);
@@ -361,7 +353,7 @@ system("cls");
 
 void modificarPrecio(){
 FILE *precio;
-precio=fopen("Vehiculos.dat","rb+");
+precio=fopen("Vehiculo.dat","rb+");
 
 if(precio==NULL){
 cout<<"Error al editar el precio..."<<endl;
@@ -403,18 +395,16 @@ system("cls");
 
 
 //DAR DE BAJA VEHICULOS
-
 void darBaja(){
 int baja;
 cout<<"Ingrese el ID del vehiculo a dar de baja:";
 cin>>baja;
 FILE *bajaV;
-bajaV=fopen("vehiculos.dat","rb+");
+bajaV=fopen("Vehiculo.dat","rb+");
 
 if(bajaV==NULL){
 cout<<"Error al dar de baja vehiculo"<<endl;
 }
-
 Auto obj;
 bool encontrado=false;
 while(fread(&obj,sizeof(Auto),1,bajaV)!=0){
@@ -440,20 +430,22 @@ system("cls");
 //FUNCION PARA LISTAR VEHICULOS
 void listarVehiculos(){
 FILE *listarA;
-listarA=fopen("vehiculos.dat","rb");
+listarA=fopen("Vehiculo.dat","rb");
 
 if(listarA==NULL){
-cout<<"Error al intentar listar los vehiculos";
+cout<<"Error al intentar listar los vehiculos"<<endl;
  }
 
 Auto obj;
 while(fread(&obj,sizeof(Auto),1,listarA)!=0){
+if(obj.getEstado()==true){
 cout<<"EL ID DEL AUTO ES:"<<obj.getId()<<endl;
 cout<<"EL NOMBRE DEL AUTO ES:"<<obj.getNombreAuto()<<endl;
 cout<<"LA MARCA DEL AUTO ES:"<<obj.getMarcaAuto()<<endl;
 cout<<"EL ANIO DE FABRICACION ES:"<<obj.getAnioAuto()<<endl;
 cout<<"EL PRECIO DEL AUTO ES:"<<obj.getPrecioAuto()<<endl;
 cout<<"----------------------------------------------------------------------------------------"<<endl;
+}
 }
 fclose(listarA);
 cout<<"Estos son los autos disponibles actualmente"<<endl;
@@ -465,7 +457,7 @@ system("cls");
 //FUNCION PARA BUSCAR VEHICULO
 void buscarVehiculo(){
 FILE *buscarV;
-buscarV=fopen("Vehiculos.dat","rb");
+buscarV=fopen("Vehiculo.dat","rb");
 
 if(buscarV==NULL){
 cout<<"Error al buscar vehiculo..."<<endl;
@@ -482,7 +474,7 @@ buscado=true;
 cout<<"Vehiculo encontrado :"<<endl;
 cout<<"Nombre :"<<obj.getNombreAuto()<<endl;
 cout<<"Marca :"<<obj.getMarcaAuto()<<endl;
-cout<<"Anio de fabricacion :"<<obj.getAnioAuto()<<endl;
+cout<<"La fecha de fabricacion :"<<obj.getAnioAuto()<<endl;
 cout<<"Precio: "<<obj.getPrecioAuto()<<endl;
 cout<<"ID:"<<obj.getId()<<endl;
 cout<<"------------------------------------------------------------"<<endl;

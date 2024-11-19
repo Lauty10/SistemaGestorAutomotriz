@@ -1,6 +1,7 @@
 #include <iostream>
 #include "FuncionesDeclaraciones.h"
 #include "ClassAuto.h"
+#include <conio.h>
 using namespace std;
 
 //FUNCIONES EJECUTADAS
@@ -112,9 +113,26 @@ cout<<"Ingrese su correo:";
 cin.ignore();
 cin.getline(correoBuscado,35,'\n');
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"Ingrese su clave:";
-cin.getline(claveBuscado,20,'\n');
-cout<<"-----------------------------------------------------"<<endl;
+ cout << "Ingrese su clave: ";
+    char ch;
+    int index = 0;
+    while (true) {
+    ch = _getch();
+    if (ch == 13) {
+    claveBuscado[index] = '\0';
+    break;
+    }else if (ch == 8) {
+     if (index > 0) {
+     index--;
+     cout << "\b \b";
+    }
+    }else{
+    claveBuscado[index++] = ch;
+    cout << "*";
+    }
+    }
+cout << endl;
+cout << "-----------------------------------------------------" << endl;
 cout<<"Ingrese su DNI:";
 cin>>DniBuscado;
 cout<<"-----------------------------------------------------"<<endl;
