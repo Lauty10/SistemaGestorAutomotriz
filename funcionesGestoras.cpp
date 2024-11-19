@@ -47,11 +47,13 @@ default:
 }
 }
 
+
 //MENU DE VENDEDORES
 void menuDeVendedores(){
 Clientes objCliente;
 Vendedores objVendedores;
 Auto objAuto;
+float recaudacionTotal=0;
 int opcion;
 while(true){
     cout<<"Bienvenido al menu de vendedores.........."<<endl;
@@ -91,6 +93,8 @@ while(true){
     case 4:
         break;
     case 5:
+        system("cls");
+        realizarVenta(recaudacionTotal);
         break;
     case 6:
         system("cls");
@@ -135,7 +139,7 @@ cout << endl;
 cout << "-----------------------------------------------------" << endl;
 cout<<"Ingrese su DNI:";
 cin>>DniBuscado;
-cout<<"-----------------------------------------------------"<<endl;
+cout<<"-------------------------------------------------------"<<endl;
 FILE *buscar;
 buscar=fopen("Vendedores.dat","rb");
 if(buscar==NULL){
@@ -163,6 +167,117 @@ while(fread(&objV,sizeof(Vendedores),1,buscar)!=0){
 }
 fclose(buscar);
 }
+
+void realizarVenta(float& recaudacionTotal) {
+    int idV, idC, idA;
+    cout << "Bienvenido al sector de ventas..." << endl;
+    cout << "-------------------------------------------------------" << endl;
+    cout << "Por favor ingrese su id de vendedor: ";
+    cin >> idV;
+    cout << "-------------------------------------------------------" << endl;
+    cout << "Por favor ingrese el id del cliente: ";
+    cin >> idC;
+    cout << "-------------------------------------------------------" << endl;
+    cout << "Por favor ingrese el id del vehiculo: ";
+    cin >> idA;
+    cout << "-------------------------------------------------------" << endl;
+    system("cls");
+    cout << "CARGANDO FECHA DE LA VENTA"<<endl;
+    cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+    Fecha objFecha;
+    objFecha.cargarFecha();
+    cout<<"La fecha de venta es:";
+    cout << "CABEZERA"<<endl;
+    cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+    objFecha.mostrarFecha();
+    cout << "Factura tipo: A"<<endl;
+    objFecha.mostrarFecha();
+    FILE* buscarVendedor = fopen("Vendedores.dat", "rb");
+    if (buscarVendedor == NULL) {
+        cout << "Error al buscar id del vendedor..." << endl;
+        fclose(buscarVendedor);
+        return;
+    }
+    Vendedores objVendedor;
+    bool vendedorEncontrado = false;
+    while (fread(&objVendedor, sizeof(Vendedores), 1, buscarVendedor) != 0) {
+        if (idV == objVendedor.getIdVendedor()) {
+            vendedorEncontrado = true;
+    cout << "Vendedor que realizara la venta: " << objVendedor.getNombre() << endl;
+    cout << "Email del vendedor que realizara la venta: " << objVendedor.getCorreo() << endl;
+    cout << "DNI del vendedor que realizara la venta: " << objVendedor.getDni() << endl;
+        break;
+    }
+    }
+    if (!vendedorEncontrado) {
+        cout << "Error al encontrar el vendedor" << endl;
+        system("pause");
+        system("cls");
+        fclose(buscarVendedor);
+        return;
+    }
+    FILE* buscarCliente = fopen("Clientes", "rb");
+    if (buscarCliente == NULL) {
+        cout << "Error al buscar id del cliente..." << endl;
+        fclose(buscarCliente);
+        return;
+    }
+    Clientes objClientes;
+    bool clientesEncontrado = false;
+    while (fread(&objClientes, sizeof(Clientes), 1, buscarCliente) != 0) {
+        if (idC == objClientes.getIdCliente()) {
+            clientesEncontrado = true;
+            cout << "Cliente que realizara la compra: " << objClientes.getNombreCliente() << endl;
+            cout << "Email del cliente que realizara la compra: " << objClientes.getCorreoCliente() << endl;
+            cout << "DNI del cliente que realizara la compra: " << objClientes.getDni() << endl;
+            cout << "Telefono del cliente que realizara la compra: " << objClientes.getTelefono() << endl;
+            break;
+        }
+    }
+    if (!clientesEncontrado) {
+        cout << "Error al encontrar el cliente" << endl;
+        system("pause");
+        system("cls");
+        fclose(buscarCliente);
+        return;
+    }
+    cout << endl;
+    cout << "DETALLE DE LA VENTA" << endl;
+    cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+
+    FILE* buscarVehiculo = fopen("Vehiculo.dat", "rb");
+    if (buscarVehiculo == NULL) {
+        cout << "Error al buscar id del vehiculo..." << endl;
+        fclose(buscarVehiculo);
+        return;
+    }
+    Auto objAuto;
+    bool autoEncontrado = false;
+    while (fread(&objAuto, sizeof(Auto), 1, buscarVehiculo) != 0) {
+        if (idA == objAuto.getId()) {
+            autoEncontrado = true;
+            cout << "Nombre del auto: " << objAuto.getNombreAuto() << endl;
+            cout << "Marca del auto: " << objAuto.getMarcaAuto() << endl;
+            cout << "Precio del auto: " << objAuto.getPrecioAuto() << endl;
+            cout << "Fecha de fabricacion del auto: " << objAuto.getAnioAuto() << endl;
+            break;
+        }
+    }
+    if (!autoEncontrado) {
+        cout << "Error al encontrar el vehiculo" << endl;
+        system("pause");
+        system("cls");
+        fclose(buscarVehiculo);
+        return;
+    }
+    cout << "Factura generada..." << endl;
+    system("pause");
+    fclose(buscarCliente);
+    fclose(buscarVehiculo);
+    fclose(buscarVendedor);
+}
+
+
 
 
 

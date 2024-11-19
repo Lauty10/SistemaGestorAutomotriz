@@ -252,7 +252,6 @@ system("cls");
 }
 
 void modificarCliente(){
-Clientes objModificar;
 int opcion;
 cout<<"Usted esta editando los clientes..."<<endl;
 cout<<"------------------------------------------------------------"<<endl;
@@ -269,19 +268,19 @@ cin>>opcion;
 switch(opcion){
 case 1:
     system("cls");
-    objModificar.editarNombre();
+    editarNombre();
     break;
 case 2:
     system("cls");
-    objModificar.editarCorreo();
+    editarCorreo();
     break;
 case 3:
     system("cls");
-    objModificar.editarTelefono();
+    editarTelefono();
     break;
 case 4:
     system("cls");
-    objModificar.editarDni();
+    editarDni();
     break;
 case 0:
     system("cls");

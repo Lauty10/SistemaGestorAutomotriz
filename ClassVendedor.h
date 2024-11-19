@@ -184,6 +184,7 @@ bool iniciarSesion() {
         if (strcmp(obj.getCorreo(), correoLogin) == 0 && strcmp(obj.getClave(), claveLogin) == 0) {
             inicio = true;
             cout << "Login realizado correctamente" << endl;
+            int idLogeado=obj.getIdVendedor();
             fclose(logeo);
             system("pause");
             system("cls");
@@ -459,8 +460,6 @@ if(!encontrado){
 fclose(dniPersonal);
 system("cls");
 }
-
-
 };
 
 #endif // CLASSVENDEDOR_H_INCLUDED
