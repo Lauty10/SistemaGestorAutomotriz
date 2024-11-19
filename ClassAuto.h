@@ -11,14 +11,16 @@ char nombreAuto[20];
 char marcaAuto[20];
 char anioAuto[10];
 float precioAuto;
+bool estado;
 
 public:
-Auto(int id=0, const char* nombreA="XXX", const char* marcaA="XXX", const char* anioA="19/07/2000", float precioA=0.0){
+Auto(int id=0, const char* nombreA="XXX", const char* marcaA="XXX", const char* anioA="19/07/2000", float precioA=0.0, bool estado=true){
 this->idDelAuto=id;
 strcpy(this->nombreAuto,nombreA);
 strcpy(this->marcaAuto,marcaA);
 strcpy(this->anioAuto,anioA);
 this->precioAuto=precioA;
+this-> estado=estado;
  }
 void setIdAuto(int id){
 this->idDelAuto=id;
@@ -36,6 +38,9 @@ strcpy(this->anioAuto,anioA);
 void setPrecioAuto(float precioA){
 this->precioAuto=precioA;
  }
+void setEstado(bool estadoA=false){
+this->estado=estadoA;
+}
 int getId(){
 return idDelAuto;
  }
@@ -51,7 +56,9 @@ return anioAuto;
 float getPrecioAuto(){
 return precioAuto;
  }
-
+bool getEstado(){
+return estado;
+}
 
  //FUNCIONES
 
@@ -66,6 +73,10 @@ cout<<"2-)Modificar vehiculo"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"3-)Dar de baja vehiculo"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
+cout<<"4-)Listar vehiculo"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+cout<<"5-)Buscar vehiculo"<<endl;
+cout<<"------------------------------------------------------------"<<endl;
 cout<<"0-)Salir"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"Ingrese la opcion que desee:";
@@ -78,9 +89,22 @@ altaAuto();
 
 case 2:
 system("cls");
+modificarAutos();
     break;
 
 case 3:
+system("cls");
+darBaja();
+    break;
+
+case 4:
+system("cls");
+listarVehiculos();
+    break;
+
+case 5:
+system("cls");
+buscarVehiculo();
     break;
 
 case 0:
@@ -107,6 +131,7 @@ char nombreAuto[20];
 char marcaAuto[20];
 char anioVehiculo[10];
 float precioAuto;
+bool estadoA=false;
 idUnico=generarIdAuto();
 obj.setIdAuto(idUnico);
 
@@ -126,6 +151,9 @@ obj.setAnio(anioVehiculo);
 cout<<"Ingrese el precio del auto:";
 cin>>precioAuto;
 obj.setPrecioAuto(precioAuto);
+
+estadoA=true;
+obj.setEstado(estadoA);
 
 fwrite(&obj,sizeof(Auto),1,vehiculo);
 cout<<"Vehiculo cargado en el sistema"<<endl;
@@ -373,6 +401,100 @@ fclose(precio);
 system("cls");
 }
 
+
+//DAR DE BAJA VEHICULOS
+
+void darBaja(){
+int baja;
+cout<<"Ingrese el ID del vehiculo a dar de baja:";
+cin>>baja;
+FILE *bajaV;
+bajaV=fopen("vehiculos.dat","rb+");
+
+if(bajaV==NULL){
+cout<<"Error al dar de baja vehiculo"<<endl;
+}
+
+Auto obj;
+bool encontrado=false;
+while(fread(&obj,sizeof(Auto),1,bajaV)!=0){
+if(baja==obj.getId()){
+encontrado=true;
+long posicion=ftell(bajaV)-sizeof(Auto);
+obj.setEstado(false);
+fseek(bajaV,posicion,SEEK_SET);
+fwrite(&obj,sizeof(Auto),1,bajaV);
+cout<<"Vehiculo dado de baja correctamente..."<<endl;
+system("pause");
+break;
+ }
+}
+if(!encontrado){
+cout<<"ID no encontrado..."<<endl;
+system("pause");
+}
+fclose(bajaV);
+system("cls");
+}
+
+//FUNCION PARA LISTAR VEHICULOS
+void listarVehiculos(){
+FILE *listarA;
+listarA=fopen("vehiculos.dat","rb");
+
+if(listarA==NULL){
+cout<<"Error al intentar listar los vehiculos";
+ }
+
+Auto obj;
+while(fread(&obj,sizeof(Auto),1,listarA)!=0){
+cout<<"EL ID DEL AUTO ES:"<<obj.getId()<<endl;
+cout<<"EL NOMBRE DEL AUTO ES:"<<obj.getNombreAuto()<<endl;
+cout<<"LA MARCA DEL AUTO ES:"<<obj.getMarcaAuto()<<endl;
+cout<<"EL ANIO DE FABRICACION ES:"<<obj.getAnioAuto()<<endl;
+cout<<"EL PRECIO DEL AUTO ES:"<<obj.getPrecioAuto()<<endl;
+cout<<"----------------------------------------------------------------------------------------"<<endl;
+}
+fclose(listarA);
+cout<<"Estos son los autos disponibles actualmente"<<endl;
+system("pause");
+system("cls");
+}
+
+
+//FUNCION PARA BUSCAR VEHICULO
+void buscarVehiculo(){
+FILE *buscarV;
+buscarV=fopen("Vehiculos.dat","rb");
+
+if(buscarV==NULL){
+cout<<"Error al buscar vehiculo..."<<endl;
+}
+
+Auto obj;
+int idBuscado;
+cout<<"Ingrese el id del vehiculo que esta buscando:";
+cin>>idBuscado;
+bool buscado=false;
+while(fread(&obj,sizeof(Auto),1,buscarV)!=0){
+if(idBuscado==obj.getId()){
+buscado=true;
+cout<<"Vehiculo encontrado :"<<endl;
+cout<<"Nombre :"<<obj.getNombreAuto()<<endl;
+cout<<"Marca :"<<obj.getMarcaAuto()<<endl;
+cout<<"Anio de fabricacion :"<<obj.getAnioAuto()<<endl;
+cout<<"Precio: "<<obj.getPrecioAuto()<<endl;
+cout<<"ID:"<<obj.getId()<<endl;
+cout<<"------------------------------------------------------------"<<endl;
+system("pause");
+    }
+}
+if(!buscado){
+    cout<<"El id del vehiculo no pudo ser encontrado..."<<endl;
+}
+system("cls");
+fclose(buscarV);
+}
 };
 
 #endif // CLASSAUTO_H_INCLUDED
