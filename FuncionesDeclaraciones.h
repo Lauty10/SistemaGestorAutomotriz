@@ -5,5 +5,6 @@
 
 void menu();
 void menuDeVendedores();
+void editarMiCuenta();
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED

@@ -86,7 +86,7 @@ public:
     switch(opcion){
 case 0:
     system("cls");
-    menuDeVendedores();
+    //menuDeVendedores();
     break;
 case 1:
     system("cls");
@@ -285,7 +285,6 @@ case 4:
     break;
 case 0:
     system("cls");
-    menuDeVendedores();
 default:
     cout<<"Opcion incorrecta..."<<endl;
 }
