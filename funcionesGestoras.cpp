@@ -98,7 +98,6 @@ void menuDeVendedores(){
 Clientes objCliente;
 Vendedores objVendedores;
 Auto objAuto;
-float recaudacionTotal=0;
 int opcion;
 while(true){
     cout<<"Bienvenido al menu de vendedores.........."<<endl;
@@ -138,20 +137,17 @@ while(true){
         objAuto.menuAutos();
         break;
     case 4:
+        system("cls");
+        recaudaciones();
         break;
     case 5:
         system("cls");
-        realizarVenta(recaudacionTotal);
+        realizarVenta();
         break;
     case 6:
         system("cls");
         editarMiCuenta();
         break;
-    case 7:
-        system("cls");
-        recaudaciones(recaudacionTotal);
-        break;
-
     default:
         cout<<"Opcion incorrecta"<<endl;
     }
@@ -223,7 +219,7 @@ fclose(buscar);
 
 //FUNCION PARA REALIZAR VENTA
 
-void realizarVenta(float& recaudacionTotal) {
+void realizarVenta() {
     int idV, idC, idA;
     cout << "Bienvenido al sector de ventas..." << endl;
     cout << "-------------------------------------------------------" << endl;
@@ -239,8 +235,11 @@ void realizarVenta(float& recaudacionTotal) {
     system("cls");
     cout << "CARGANDO FECHA DE LA VENTA"<<endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+    Recaudacion objRecaudacion;
     Fecha objFecha;
     objFecha.cargarFecha();
+    int fechaAnio=objFecha.getAnio();
+    int fechaMes=objFecha.getMes();
     cout << "CABEZERA"<<endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
     cout<<"La fecha de venta es:";
@@ -256,7 +255,7 @@ void realizarVenta(float& recaudacionTotal) {
     Vendedores objVendedor;
     bool vendedorEncontrado = false;
     while (fread(&objVendedor, sizeof(Vendedores), 1, buscarVendedor) != 0) {
-        if (idV == objVendedor.getIdVendedor()) {
+        if (idV == objVendedor.getIdVendedor() && objVendedor.getEstado()) {
             vendedorEncontrado = true;
     cout << "Vendedor que realizara la venta: " << objVendedor.getNombre() << endl;
     cout << "Email del vendedor que realizara la venta: " << objVendedor.getCorreo() << endl;
@@ -280,7 +279,7 @@ void realizarVenta(float& recaudacionTotal) {
     Clientes objClientes;
     bool clientesEncontrado = false;
     while (fread(&objClientes, sizeof(Clientes), 1, buscarCliente) != 0) {
-        if (idC == objClientes.getIdCliente()) {
+        if (idC == objClientes.getIdCliente() && objClientes.getEstado()==true) {
             clientesEncontrado = true;
             cout << "Cliente que realizara la compra: " << objClientes.getNombreCliente() << endl;
             cout << "Email del cliente que realizara la compra: " << objClientes.getCorreoCliente() << endl;
@@ -300,7 +299,7 @@ void realizarVenta(float& recaudacionTotal) {
     cout << "DETALLE DE LA VENTA" << endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
 
-    FILE* buscarVehiculo = fopen("Vehiculo.dat", "rb");
+    FILE* buscarVehiculo = fopen("Vehiculo.dat", "rb+");
     if (buscarVehiculo == NULL) {
         cout << "Error al buscar id del vehiculo..." << endl;
         fclose(buscarVehiculo);
@@ -309,17 +308,87 @@ void realizarVenta(float& recaudacionTotal) {
     Auto objAuto;
     bool autoEncontrado = false;
     while (fread(&objAuto, sizeof(Auto), 1, buscarVehiculo) != 0) {
-        if (idA == objAuto.getId()) {
+        if (idA == objAuto.getId()){
+            if(objAuto.getEstado()==true){
+            long posicion=ftell(buscarVehiculo)-sizeof(Auto);
             autoEncontrado = true;
+            objAuto.setEstado(false);
+            fseek(buscarVehiculo,posicion,SEEK_SET);
+            fwrite(&objAuto,sizeof(Auto),1,buscarVehiculo);
             cout << "Nombre del auto: " << objAuto.getNombreAuto() << endl;
             cout << "Marca del auto: " << objAuto.getMarcaAuto() << endl;
             cout << "Precio del auto: " << objAuto.getPrecioAuto() << endl;
+            int guardarValor=objAuto.getPrecioAuto();
             cout << "Fecha de fabricacion del auto: " << objAuto.getAnioAuto() << endl;
-    recaudacionTotal+=objAuto.getPrecioAuto();
+            cout<<endl;
+            cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+            int meses[]={0,1,2,3,4,5,6,7,8,9,10,11,12};
+            for(int j=0;j<=12;j++){
+                if(fechaMes==meses[j]){
+                    switch(fechaMes){
+                case 0:
+                cout<<"Error 0..."<<endl;
+                    break;
+                case 1:
+                    cout<<"Esta factura corresponde al mes de "<<"Enero"<<" y al anio "<<fechaAnio<<endl;
+                    objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 2:
+                    cout<<"Esta factura corresponde al mes de "<<"Febrero"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 3:
+                    cout<<"Esta factura corresponde al mes de "<<"Marzo"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 4:
+                    cout<<"Esta factura corresponde al mes de "<<"Abril"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 5:
+                    cout<<"Esta factura corresponde al mes de "<<"Mayo"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 6:
+                    cout<<"Esta factura corresponde al mes de "<<"Junio"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 7:
+                    cout<<"Esta factura corresponde al mes de "<<"Julio"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 8:
+                    cout<<"Esta factura corresponde al mes de "<<"Agosto"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 9:
+                    cout<<"Esta factura corresponde al mes de "<<"Septiembre"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 10:
+                    cout<<"Esta factura corresponde al mes de "<<"Octubre"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 11:
+                    cout<<"Esta factura corresponde al mes de "<<"Noviembre"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                case 12:
+                    cout<<"Esta factura corresponde al mes de "<<"Diciembre"<<" y al anio "<<fechaAnio<<endl;
+                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
+                    break;
+                    }
+                }
+            }
             break;
+            }else{
+            cout<<"El auto seleccionado se encuentra dado baja del sistema, no puede realizarse la venta..."<<endl;
+            system("pause");
+            system("cls");
+            return;
+            }
         }
     }
-
     if (!autoEncontrado) {
         cout << "Error al encontrar el vehiculo" << endl;
         system("pause");
@@ -329,6 +398,7 @@ void realizarVenta(float& recaudacionTotal) {
     }
     cout << "Factura generada..." << endl;
     system("pause");
+    system("cls");
     fclose(buscarCliente);
     fclose(buscarVehiculo);
     fclose(buscarVendedor);
@@ -337,18 +407,18 @@ void realizarVenta(float& recaudacionTotal) {
 
 
 //FUNCION PARA RECAUDACIONES
-
-void recaudaciones(float& recaudacionTotal){
+void recaudaciones(){
 int opcion;
 while(true){
-
-cout<<"Menu de recaudaciones"<<endl;
+cout<<"Menu de recaudaciones..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"1-)Recaudacion total"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"2_)Recaudacion por mes"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"0-)Salir..."<<endl;
+cout<<"0-)Salir"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 
 switch(opcion){
@@ -359,23 +429,14 @@ case 0:
 
 case 1:
     system("cls");
-    recaudacionTotal1(recaudacionTotal);
     break;
 
 case 2:
     system("cls");
     break;
-
 }
 }
 }
 
 //FUNCION ´PARA RECAUDACION TOTAL
 
-void recaudacionTotal1 (float& recaudacionTotal){
-cout<<"Recaudacion total"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"La recaudacion total de todas las ventas es: "<<recaudacionTotal<<endl;
-system("pause");
-system("cls");
-}

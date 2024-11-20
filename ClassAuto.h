@@ -129,7 +129,7 @@ void altaAuto(){
     int idUnico;
     char nombreAuto[20];
     char marcaAuto[20];
-    char anioVehiculo[10];
+    char anioVehiculo[11];
     float precioAuto;
     bool estadoA = false;
     idUnico = generarIdAuto();
@@ -142,7 +142,7 @@ void altaAuto(){
     cin.getline(marcaAuto, 20, '\n');
     obj.setMarcaAuto(marcaAuto);
     cout << "Ingrese la fecha de fabricacion del auto: ";
-    cin.getline(anioVehiculo, 10, '\n');
+    cin.getline(anioVehiculo, 11, '\n');
     obj.setAnio(anioVehiculo);
     cout << "Ingrese el precio del auto: ";
     cin >> precioAuto;

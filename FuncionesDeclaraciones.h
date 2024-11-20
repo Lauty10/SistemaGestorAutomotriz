@@ -3,13 +3,13 @@
 #include "ClassVendedor.h"
 #include "ClassClientes.h"
 #include "ClassFecha.h"
+#include "ClassRecaudaciones.h"
 
 void menu();
 void menuDeVendedores();
 void editarMiCuenta();
-void realizarVenta(float&recaudacionTotal);
-void recaudaciones(float&recaudacionTotal);
-void recaudacionTotal1(float&recaudacionTotal);
+void realizarVenta();
+void recaudaciones();
 void recuperarClave();
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED
