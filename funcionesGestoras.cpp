@@ -43,6 +43,8 @@ case 2:
     break;
 
 case 3:
+    system("cls");
+    recuperarClave();
     break;
 
 default:
@@ -51,6 +53,45 @@ default:
 }
 }
 
+//FUNCION PARA RECUPERAR CLAVE
+void recuperarClave(){
+FILE *clave;
+clave=fopen("Vendedores.dat","rb+");
+if(clave==nullptr){
+cout<<"ERROR AL INTENTAR ABRIR EL ARCHIVO DE REGISTROS"<<endl;
+return; }
+Vendedores objC;
+int dni;
+char correo[30];
+char nuevaClave[30];
+bool encontrado=false;
+cout<<"Ingrese los siguientes datos para recuperar su clave: "<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"D.N.I: ";
+cin>>dni;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(correo,30,'\n');
+while(fread(&objC, sizeof(Vendedores),1,clave)!=0){
+if(strcmp(objC.getCorreo(),correo)==0 && objC.getDni()==dni) {
+cout<<"Ingrese su nueva Clave:";
+cin.ignore();
+cin.getline(nuevaClave,30,'\n');
+objC.setClave(nuevaClave);
+long pos=ftell(clave)-sizeof(Vendedores);
+fseek(clave,pos,SEEK_CUR);
+fwrite(&objC, sizeof(Vendedores), 1, clave);
+cout << "Su nueva clave fue guardada con exito" << endl;
+encontrado=true;
+break; }
+}
+if(!encontrado){
+cout<<"LOS DATOS INGRESADOS NO ESTAN EN LA BASE DE DATOS"<<endl;
+ }
+fclose(clave);
+system("pause");
+system("cls");
+}
 
 //MENU DE VENDEDORES
 void menuDeVendedores(){
