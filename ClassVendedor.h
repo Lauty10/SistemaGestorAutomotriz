@@ -80,10 +80,35 @@ public:
     cout << "Ingrese el nombre del vendedor: ";
     cin.ignore();
     cin.getline(nombre, 30,'\n');
+    if(strlen(nombre) == 0){
+    cout<<"Campo incompleto"<<endl;
+    cout<<"Nombre: ";
+    cin.getline(nombre,30);
+    }
     setNombre(nombre);
+
     cout << "Ingrese el correo: ";
     cin.getline(correo, 35,'\n');
+    if(strlen(correo) == 0){
+    cout<<"Campo incompleto"<<endl;
+    cout<<"Correo: ";
+    cin.getline(correo,35);
+    }
+    FILE *validacion;
+    validacion=fopen("Vendedores.dat","rb");
+    if(validacion==NULL){return;}
+    Vendedores obj;
+    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
+    if(strcmp(obj.getCorreo(),correo)==0){
+    cout<<"Correo ya registrado"<<endl;
+    cout<<"Correo: ";
+    cin.getline(correo,30);
+    }
+    }
+    fclose(validacion);
     setCorreo(correo);
+
+
     cout << "Ingrese la clave:";
     char ch;
     int index = 0;
@@ -104,9 +129,26 @@ public:
     }
     setClave(clave);
     cout << endl;
+
     cout << "Ingrese el DNI:";
     cin >> dni;
+    if(dni==NULL){
+    cout<<"Campo incompleto"<<endl;
+    cout<<"D.N.I: ";
+    cin>>dni;
+    }
+    validacion=fopen("Vendedores.dat","rb");
+    if(validacion==NULL){return;}
+    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
+    if(obj.getDni()==dni){
+    cout<<"D.N.I ya registrado"<<endl;
+    cout<<"D.N.I: ";
+    cin>>dni;
+    }
+    }
     setDni(dni);
+
+
     idVendedor=generarIdVendedor();
     cout<<"------------------------------------------------------------"<<endl;
     cout<<"Vendedor registrado correctamente"<<endl;
