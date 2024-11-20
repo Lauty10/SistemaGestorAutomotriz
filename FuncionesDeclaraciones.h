@@ -8,6 +8,8 @@ void menu();
 void menuDeVendedores();
 void editarMiCuenta();
 void realizarVenta(float&recaudacionTotal);
+void recaudaciones(float&recaudacionTotal);
+void recaudacionTotal1(float&recaudacionTotal);
 
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED
