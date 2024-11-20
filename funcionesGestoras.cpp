@@ -26,11 +26,13 @@ while(true){
     switch(opcion){
 case 0:
     break;
+
 case 1:
     system("cls");
     obj.cargarVendedor();
     obj.registrarVendedor(obj);
     break;
+
 case 2:
     system("cls");
     logeo=obj.iniciarSesion();
@@ -39,8 +41,10 @@ case 2:
         menuDeVendedores();
     }
     break;
+
 case 3:
     break;
+
 default:
     cout<<"Esta opcion no existe"<<endl;
     }
@@ -69,6 +73,8 @@ while(true){
     cout<<"5-)Realizar Venta"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"6-)Mi cuenta"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
+    cout<<"7-)Recaudaciones"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir..."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -100,6 +106,11 @@ while(true){
         system("cls");
         editarMiCuenta();
         break;
+    case 7:
+        system("cls");
+        recaudaciones(recaudacionTotal);
+        break;
+
     default:
         cout<<"Opcion incorrecta"<<endl;
     }
@@ -168,6 +179,9 @@ while(fread(&objV,sizeof(Vendedores),1,buscar)!=0){
 fclose(buscar);
 }
 
+
+//FUNCION PARA REALIZAR VENTA
+
 void realizarVenta(float& recaudacionTotal) {
     int idV, idC, idA;
     cout << "Bienvenido al sector de ventas..." << endl;
@@ -186,9 +200,9 @@ void realizarVenta(float& recaudacionTotal) {
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
     Fecha objFecha;
     objFecha.cargarFecha();
-    cout<<"La fecha de venta es:";
     cout << "CABEZERA"<<endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+    cout<<"La fecha de venta es:";
     objFecha.mostrarFecha();
     cout << "Factura tipo: A"<<endl;
     objFecha.mostrarFecha();
@@ -260,9 +274,11 @@ void realizarVenta(float& recaudacionTotal) {
             cout << "Marca del auto: " << objAuto.getMarcaAuto() << endl;
             cout << "Precio del auto: " << objAuto.getPrecioAuto() << endl;
             cout << "Fecha de fabricacion del auto: " << objAuto.getAnioAuto() << endl;
+    recaudacionTotal+=objAuto.getPrecioAuto();
             break;
         }
     }
+
     if (!autoEncontrado) {
         cout << "Error al encontrar el vehiculo" << endl;
         system("pause");
@@ -279,5 +295,46 @@ void realizarVenta(float& recaudacionTotal) {
 
 
 
+//FUNCION PARA RECAUDACIONES
 
+void recaudaciones(float& recaudacionTotal){
+int opcion;
+while(true){
 
+cout<<"Menu de recaudaciones"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"1-)Recaudacion total"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"2_)Recaudacion por mes"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"0-)Salir..."<<endl;
+cin>>opcion;
+
+switch(opcion){
+case 0:
+    system("cls");
+    menuDeVendedores();
+    break;
+
+case 1:
+    system("cls");
+    recaudacionTotal1(recaudacionTotal);
+    break;
+
+case 2:
+    system("cls");
+    break;
+
+}
+}
+}
+
+//FUNCION ´PARA RECAUDACION TOTAL
+
+void recaudacionTotal1 (float& recaudacionTotal){
+cout<<"Recaudacion total"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"La recaudacion total de todas las ventas es: "<<recaudacionTotal<<endl;
+system("pause");
+system("cls");
+}
