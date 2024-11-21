@@ -32,7 +32,9 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="ClassAuto.h" />
 		<Unit filename="ClassClientes.h" />
+		<Unit filename="ClassRecaudaciones.h" />
 		<Unit filename="ClassVendedor.h" />
 		<Unit filename="FuncionesDeclaraciones.h" />
 		<Unit filename="funcionesGestoras.cpp" />

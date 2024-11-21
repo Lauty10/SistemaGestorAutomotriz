@@ -11,5 +11,6 @@ void editarMiCuenta();
 void realizarVenta();
 void recaudaciones();
 void recuperarClave();
+int numeroDeVenta();
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED

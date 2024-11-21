@@ -232,7 +232,7 @@ void realizarVenta() {
     cout << "Por favor ingrese el id del vehiculo: ";
     cin >> idA;
     cout << "-------------------------------------------------------" << endl;
-    system("cls");
+    cout<<endl;
     cout << "CARGANDO FECHA DE LA VENTA"<<endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
     Recaudacion objRecaudacion;
@@ -245,7 +245,7 @@ void realizarVenta() {
     cout<<"La fecha de venta es:";
     objFecha.mostrarFecha();
     cout << "Factura tipo: A"<<endl;
-    objFecha.mostrarFecha();
+    cout<<"Numero de factura:"<<numeroDeVenta()<<endl;
     FILE* buscarVendedor = fopen("Vendedores.dat", "rb");
     if (buscarVendedor == NULL) {
         cout << "Error al buscar id del vendedor..." << endl;
@@ -253,10 +253,12 @@ void realizarVenta() {
         return;
     }
     Vendedores objVendedor;
+    int idParaRecaudacion;
     bool vendedorEncontrado = false;
     while (fread(&objVendedor, sizeof(Vendedores), 1, buscarVendedor) != 0) {
         if (idV == objVendedor.getIdVendedor() && objVendedor.getEstado()) {
             vendedorEncontrado = true;
+           idParaRecaudacion=objVendedor.getIdVendedor();
     cout << "Vendedor que realizara la venta: " << objVendedor.getNombre() << endl;
     cout << "Email del vendedor que realizara la venta: " << objVendedor.getCorreo() << endl;
     cout << "DNI del vendedor que realizara la venta: " << objVendedor.getDni() << endl;
@@ -318,10 +320,11 @@ void realizarVenta() {
             cout << "Nombre del auto: " << objAuto.getNombreAuto() << endl;
             cout << "Marca del auto: " << objAuto.getMarcaAuto() << endl;
             cout << "Precio del auto: " << objAuto.getPrecioAuto() << endl;
-            int guardarValor=objAuto.getPrecioAuto();
             cout << "Fecha de fabricacion del auto: " << objAuto.getAnioAuto() << endl;
             cout<<endl;
             cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+            int guardarValor=objAuto.getPrecioAuto();
+            objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio,idParaRecaudacion);
             int meses[]={0,1,2,3,4,5,6,7,8,9,10,11,12};
             for(int j=0;j<=12;j++){
                 if(fechaMes==meses[j]){
@@ -331,51 +334,39 @@ void realizarVenta() {
                     break;
                 case 1:
                     cout<<"Esta factura corresponde al mes de "<<"Enero"<<" y al anio "<<fechaAnio<<endl;
-                    objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 2:
                     cout<<"Esta factura corresponde al mes de "<<"Febrero"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 3:
                     cout<<"Esta factura corresponde al mes de "<<"Marzo"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 4:
                     cout<<"Esta factura corresponde al mes de "<<"Abril"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 5:
                     cout<<"Esta factura corresponde al mes de "<<"Mayo"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 6:
                     cout<<"Esta factura corresponde al mes de "<<"Junio"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 7:
                     cout<<"Esta factura corresponde al mes de "<<"Julio"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 8:
                     cout<<"Esta factura corresponde al mes de "<<"Agosto"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 9:
                     cout<<"Esta factura corresponde al mes de "<<"Septiembre"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 10:
                     cout<<"Esta factura corresponde al mes de "<<"Octubre"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 11:
                     cout<<"Esta factura corresponde al mes de "<<"Noviembre"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                 case 12:
                     cout<<"Esta factura corresponde al mes de "<<"Diciembre"<<" y al anio "<<fechaAnio<<endl;
-                       objRecaudacion.cargarRecaudacion(guardarValor,fechaMes,fechaAnio);
                     break;
                     }
                 }
@@ -404,8 +395,6 @@ void realizarVenta() {
     fclose(buscarVendedor);
 }
 
-
-
 //FUNCION PARA RECAUDACIONES
 void recaudaciones(){
 int opcion;
@@ -414,7 +403,13 @@ cout<<"Menu de recaudaciones..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"1-)Recaudacion total"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"2_)Recaudacion por mes"<<endl;
+cout<<"2-)Recaudacion por mes y anio"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"3-)Recaudacion por anio"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"3-)Recaudacion por id de vendedor"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"4-)Vendedores con mas ventas"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"0-)Salir"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
@@ -426,17 +421,42 @@ case 0:
     system("cls");
     menuDeVendedores();
     break;
-
 case 1:
     system("cls");
     break;
-
 case 2:
     system("cls");
     break;
+case 3:
+    system("cls");
+    break;
+case 4:
+    system("cls");
+    break;
+default:
+    cout<<"Esta opcion es incorrecta..."<<endl;
 }
 }
 }
 
-//FUNCION ´PARA RECAUDACION TOTAL
+//Numero de venta
+int numeroDeVenta() {
+    FILE *numeroDeFactura;
+    int venta = 1;
+
+    numeroDeFactura = fopen("Recaudaciones.dat", "rb");
+    if (numeroDeFactura == NULL) {
+        return 1000001;
+    }
+
+    Recaudacion obj;
+    while (fread(&obj, sizeof(Recaudacion), 1, numeroDeFactura) != 0) {
+        venta++;
+    }
+
+    fclose(numeroDeFactura);
+
+    return venta + 1000000;
+}
+
 

@@ -6,11 +6,13 @@ private:
     int ingreso;
     int mesDelIngreso;
     int anioDelIngreso;
+    int idVendedor;
 public:
-    Recaudacion(int i=0,int m=0,int a=0){
+    Recaudacion(int i=0,int m=0,int a=0,int id=0){
     this->ingreso=i;
     this->mesDelIngreso=m;
     this->anioDelIngreso=a;
+    this->idVendedor=id;
     }
     void setIngreso(int i){
     this->ingreso=i;
@@ -20,6 +22,12 @@ public:
     }
     void setAnioIngreso(int i){
     this->anioDelIngreso=i;
+    }
+    void setIdVendedor(int i){
+    this->idVendedor=i;
+    }
+    int getIdVendedor(){
+    return idVendedor;
     }
     int getIngreso(){
     return ingreso;
@@ -31,9 +39,9 @@ public:
     return anioDelIngreso;
     }
 
-    void cargarRecaudacion(int importe, int mes, int anio){
+    void cargarRecaudacion(int importe, int mes, int anio, int idDelVendedor){
     FILE *nuevaRecaudacion;
-    nuevaRecaudacion=fopen("Recaudaciones.dat","ab");
+    nuevaRecaudacion=fopen("Recaudaciones.dat","wb");
     if(nuevaRecaudacion==NULL){
         cout<<"Error al grabar nueva recaudacion"<<endl;
     }
@@ -41,6 +49,7 @@ public:
     objR.setIngreso(importe);
     objR.setMesIngreso(mes);
     objR.setAnioIngreso(anio);
+    objR.setIdVendedor(idDelVendedor);
     fwrite(&objR,sizeof(Recaudacion),1,nuevaRecaudacion);
     cout<<"Venta realizada con exito..."<<endl;
     fclose(nuevaRecaudacion);
