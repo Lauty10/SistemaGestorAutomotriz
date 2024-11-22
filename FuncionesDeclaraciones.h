@@ -12,5 +12,7 @@ void realizarVenta();
 void recaudaciones();
 void recuperarClave();
 int numeroDeVenta();
+void recaudacionTotal();
+void recaudacionMesyAnio();
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED
