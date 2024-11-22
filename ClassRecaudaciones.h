@@ -134,6 +134,29 @@ fclose(anios);
 system("pause");
 system("cls");
 }
+
+void recaudacionPorId(){
+int idV;
+float recaudacion=0;
+cout<<"Ingrese el id del vendedor para saber sus recaudaciones:";
+cin>>idV;
+FILE *informacion;
+informacion=fopen("Recaudaciones.dat","rb");
+if(informacion==NULL){
+    cout<<"Error al obtener la informacion del vendedor..."<<endl;
+}
+Recaudacion obj;
+while(fread(&obj,sizeof(Recaudacion),1,informacion)!=0){
+    if(obj.getIdVendedor()==idV){
+        recaudacion+=obj.getIngreso();
+    }
+}
+cout<<"Las recaudaciones del vendedor son:"<<recaudacion;
+cout<<endl;
+system("pause");
+system("cls");
+fclose(informacion);
+}
 };
 
 #endif // CLASSRECAUDACIONES_H_INCLUDED

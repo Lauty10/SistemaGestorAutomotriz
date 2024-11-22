@@ -432,6 +432,7 @@ case 3:
     obj.recaudacionXanio();
     break;
 case 4:
+    obj.recaudacionPorId();
     system("cls");
     break;
 case 5:
@@ -443,72 +444,20 @@ default:
 }
 }
 
-//Numero de venta
 int numeroDeVenta() {
     FILE *numeroDeFactura;
     int venta = 1;
-
     numeroDeFactura = fopen("Recaudaciones.dat", "rb");
     if (numeroDeFactura == NULL) {
         return 1000001;
     }
-
     Recaudacion obj;
     while (fread(&obj, sizeof(Recaudacion), 1, numeroDeFactura) != 0) {
         venta++;
     }
-
     fclose(numeroDeFactura);
-
     return venta + 1000000;
 }
 
 
-//RECAUDACION TOTAL
-/*void recaudacionTotal(){
-FILE *recaudacionT;
-recaudacionT=fopen("Recaudaciones.dat","rb");
-if(recaudacionT==NULL){
-cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
-return;
-}
-Recaudacion obj;
-float totalR=0;
-while(fread(&obj,sizeof(Recaudacion),1,recaudacionT)!=0){
-totalR+=obj.getIngreso();
-}
-fclose(recaudacionT);
-cout<<"LA RECAUDACION TOTAL ES DE: "<<totalR<<endl;
-system("pause");
-system("cls");
-}
-/*
 
-//RECAUDACION POR MES Y ANIO
-
-/*
-void recaudacionMesyAnio(){
-int opcion;
-int anio;
-cout<<"INGRESE EL ANIO DE LA RECAUDACION: ";
-cin>>anio;
-while(true){
-cout<<"1-)Enero"<<endl;
-cout<<"2-)Febrero"<<endl;
-cout<<"3-)Marzo"<<endl;
-cout<<"4-)Abril"<<endl;
-cout<<"5-)Mayo"<<endl;
-cout<<"6-)Junio"<<endl;
-cout<<"7-)Julio"<<endl;
-cout<<"8-)Agosto"<<endl;
-cout<<"9-)Septiembre"<<endl;
-cout<<"10-)Octubre"<<endl;
-cout<<"11-)Noviembre"<<endl;
-cout<<"12-)Diciembre"<<endl;
-cin>>opcion;
-switch(opcion){
-
-}
-}
-}
-*/
