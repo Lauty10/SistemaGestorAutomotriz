@@ -172,6 +172,7 @@ system("cls");
 }
 
 
+
 };
 
 #endif // CLASSRECAUDACIONES_H_INCLUDED

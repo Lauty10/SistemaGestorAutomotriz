@@ -1,10 +1,13 @@
 #include <iostream>
 #include "FuncionesDeclaraciones.h"
 #include "ClassAuto.h"
+#include "ClassRecaudaciones.h"
+#include "ClassVendedor.h"
+#include "ClassClientes.h"
 #include <conio.h>
 using namespace std;
 
-//FUNCIONES EJECUTADAS
+FUNCIONES EJECUTADAS
 void menu(){
 int opcion;
 bool logeo;

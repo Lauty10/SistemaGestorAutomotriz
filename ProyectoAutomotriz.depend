@@ -59,19 +59,21 @@
 	"ClassFecha.h"
 	"ClassRecaudaciones.h"
 
-1732296857 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732298546 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1732298983 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+	<cstring>
 	<string.h>
 
 1732230376 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\main.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732298983 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+	<cstring>
 	<string.h>
 
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h

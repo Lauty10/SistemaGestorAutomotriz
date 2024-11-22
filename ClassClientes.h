@@ -119,12 +119,54 @@ idCliente=generarIdCliente();
 cout<<"Ingrese el nombre del cliente:";
 cin.ignore();
 cin.getline(nombreCliente,30,'\n');
+if(strlen(nombreCliente) == 0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Nombre: ";
+cin.getline(nombreCliente,30,'\n');
+}
+
 cout<<"Ingrese el correo del cliente:";
 cin.getline(correoCliente, 35,'\n');
+if(strlen(correoCliente) == 0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Correo: ";
+cin.getline(correoCliente, 35,'\n');
+ }
+FILE *validacionC;
+validacionC=fopen("Clientes.dat","rb");
+if(validacionC==NULL){return;}
+Clientes obj;
+while(fread(&obj,sizeof(Clientes),1,validacionC)!=0){
+if(strcmp(obj.getCorreo(),correoCliente)==0){
+cout<<"Correo ya registrado"<<endl;
+cout<<"Correo: ";
+cin.getline(correoCliente, 35,'\n');
+ }
+}
+
 cout<<"Ingrese el telefono del cliente:";
 cin.getline(telefono, 14,'\n');
+if(strlen(telefono) == 0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Telefono: ";
+cin.getline(telefono, 14,'\n');
+ }
+
 cout<<"Ingrese el dni del cliente:";
 cin>>dni;
+if(dni==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"D.N.I: ";
+cin>>dni;
+ }
+while(fread(&obj,sizeof(Clientes),1,validacionC)!=0){
+if(obj.getDni()==dni){
+cout<<"D.N.I ya registrado"<<endl;
+cout<<"D.N.I: ";
+cin>>dni;
+ }
+}
+
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"Cliente registrado correctamente..."<<endl;
 cout<<"Nombre:"<<getNombreCliente()<<endl;
@@ -311,6 +353,11 @@ while(fread(&nombreObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
+        if(strlen(nuevoNombre) == 0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"Nombre: ";
+        cin.getline(nuevoNombre,30,'\n');
+
         nombreObj.setNombreCliente(nuevoNombre);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&nombreObj,sizeof(Clientes),1,editar);
@@ -346,9 +393,23 @@ while(fread(&correoObj,sizeof(Clientes),1,editar)!=0){
         encontrado=true;
         long longitud=ftell(editar)-sizeof(Clientes);
         char nuevoCorreo[30];
-        cout<<"Ingresa el nombre:";
+        cout<<"Ingresa el nuevo correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,30,'\n');
+        if(strlen(nuevoCorreo) == 0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"Correo: ";
+        cin.getline(nuevoCorreo,35,'\n');
+        }
+
+        while(fread(&correoObj,sizeof(Vendedores),1,editar)!=0){
+        if(strcmp(correoObj.getCorreoCliente(),nuevoCorreo)==0){
+        cout<<"Correo ya registrado"<<endl;
+        cout<<"Correo: ";
+        cin.getline(nuevoCorreo,35,'\n');
+        }
+        }
+
         correoObj.setCorreoCliente(nuevoCorreo);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&correoObj,sizeof(Clientes),1,editar);
@@ -388,6 +449,12 @@ while(fread(&TelefonObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el telefono:";
         cin.ignore();
         cin.getline(nuevoTel,30,'\n');
+        if(strlen(nuevoTel) == 0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"Telefono: ";
+        cin.getline(nuevoTel, 14,'\n');
+        }
+
         TelefonObj.setTelefono(nuevoTel);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&TelefonObj,sizeof(Clientes),1,editar);
@@ -427,6 +494,18 @@ while(fread(&DniObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el dni:";
         cin.ignore();
         cin>>dniNuevo;
+        if(dniNuevo==0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"D.N.I: ";
+        cin>>dniNuevo;
+        }
+        while(fread(&DniObj,sizeof(Clientes),1,editar)!=0){
+        if(DniObj.getDni()==dniNuevo){
+        cout<<"D.N.I ya registrado"<<endl;
+        cout<<"D.N.I: ";
+        cin>>dniNuevo;
+        }
+        }
         DniObj.setDni(dniNuevo);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&DniObj,sizeof(Clientes),1,editar);
