@@ -1,5 +1,6 @@
 #ifndef CLASSRECAUDACIONES_H_INCLUDED
 #define CLASSRECAUDACIONES_H_INCLUDED
+#include "ClassVendedor.h"
 
 class Recaudacion{
 private:
@@ -119,7 +120,7 @@ cout<<"No se pudo abrir este archivo"<<endl;
 return;
 }
 Recaudacion obj;
-int anio;
+float anio;
 cout<<"Ingrese el anio: ";
 cin>>anio;
 cout<<endl;
@@ -134,6 +135,41 @@ fclose(anios);
 system("pause");
 system("cls");
 }
+
+//RECAUDACION POR ID
+void recaudacionXid(){
+FILE *id;
+id=fopen("Recaudaciones.dat","rb");
+if(id==NULL){
+cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+return;
+}
+FILE *vendedores;
+vendedores=fopen("Vendedores.dat","rb");
+if(vendedores==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Recaudacion obj;
+Vendedores obj1;
+float idR=0;
+int iD;
+cout<<"RECAUDACIONES POR ID"<<endl;
+cout<<"Ingrese el id: ";
+cin>>iD;
+while(fread(&obj1,sizeof(Vendedores),1,vendedores)!=0){
+if(obj1.getIdVendedor()==iD){
+while(fread(&obj,sizeof(Recaudacion),1,id)!=0){
+idR+=obj.getIngreso();
+}
+}
+}
+fclose(id);
+cout<<"La recaudacion del id: "<<iD<<" es de: "<<idR<<endl;
+system("pause");
+system("cls");
+}
+
 };
 
 #endif // CLASSRECAUDACIONES_H_INCLUDED

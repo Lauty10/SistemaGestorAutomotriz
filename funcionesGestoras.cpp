@@ -433,6 +433,7 @@ case 3:
     break;
 case 4:
     system("cls");
+    obj.recaudacionXid();
     break;
 case 5:
     system("cls");

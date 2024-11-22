@@ -47,7 +47,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732237987 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732294617 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	"ClassAuto.h"
@@ -110,5 +110,6 @@
 
 1732253921 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
-1732238163 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
+1732295000 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
+	"ClassVendedor.h"
 
