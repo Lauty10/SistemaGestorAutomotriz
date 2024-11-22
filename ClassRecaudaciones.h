@@ -164,11 +164,13 @@ idR+=obj.getIngreso();
 }
 }
 }
+fclose(vendedores);
 fclose(id);
 cout<<"La recaudacion del id: "<<iD<<" es de: "<<idR<<endl;
 system("pause");
 system("cls");
 }
+
 
 };
 

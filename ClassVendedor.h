@@ -132,7 +132,7 @@ public:
 
     cout << "Ingrese el DNI:";
     cin >> dni;
-    if(dni==NULL){
+    if(dni==0){
     cout<<"Campo incompleto"<<endl;
     cout<<"D.N.I: ";
     cin>>dni;
@@ -144,6 +144,7 @@ public:
     cout<<"D.N.I ya registrado"<<endl;
     cout<<"D.N.I: ";
     cin>>dni;
+    fclose(validacion);
     }
     }
     setDni(dni);
@@ -396,6 +397,11 @@ while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
         cout<<"Ingresa el nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
+        if(strlen(nuevoNombre) == 0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"Nombre: ";
+        cin.getline(nuevoNombre,30,'\n');
+        }
         obj.setNombre(nuevoNombre);
         fseek(nombrePersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,nombrePersonal);
@@ -427,6 +433,23 @@ while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
         cout<<"Ingresa el correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,35,'\n');
+        if(strlen(correo) == 0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"Correo: ";
+        cin.getline(nuevoCorreo,35,'\n');
+        }
+        FILE *validacion;
+        validacion=fopen("Vendedores.dat","rb");
+        if(validacion==NULL){return;}
+        Vendedores obj;
+        while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
+        if(strcmp(obj.getCorreo(),nuevoCorreo)==0){
+        cout<<"Correo ya registrado"<<endl;
+        cout<<"Correo: ";
+        cin.getline(nuevoCorreo,35,'\n');
+        }
+        }
+        fclose(validacion);
         obj.setCorreo(nuevoCorreo);
         fseek(correoPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,correoPersonal);
@@ -488,6 +511,22 @@ while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
         long posicion=ftell(dniPersonal)-sizeof(Vendedores);
         cout<<"Ingresa el dni:";
         cin>>nuevoDni;
+        if(nuevoDni==0){
+        cout<<"Campo incompleto"<<endl;
+        cout<<"D.N.I: ";
+        cin>>nuevoDni;
+        }
+        FILE *validacion;
+        validacion=fopen("Vendedores.dat","rb");
+        if(validacion==NULL){return;}
+        while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
+        if(obj.getDni()==nuevoDni){
+        cout<<"D.N.I ya registrado"<<endl;
+        cout<<"D.N.I: ";
+        cin>>nuevoDni;
+        }
+        }
+        fclose(validacion);
         obj.setDni(nuevoDni);
         fseek(dniPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,dniPersonal);
