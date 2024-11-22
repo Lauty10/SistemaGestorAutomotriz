@@ -114,8 +114,6 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"6-)Mi cuenta"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"7-)Recaudaciones"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir..."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"Ingrese la opcion que desee:";
@@ -148,10 +146,6 @@ while(true){
         system("cls");
         editarMiCuenta();
         break;
-
-    case 7:
-        system("cls");
-        recaudaciones();
     default:
         cout<<"Opcion incorrecta"<<endl;
     }
@@ -411,43 +405,38 @@ cout<<"2-)Recaudacion por mes y anio"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"3-)Recaudacion por anio"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"3-)Recaudacion por id de vendedor"<<endl;
+cout<<"4-)Recaudacion por id de vendedor"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"4-)Vendedores con mas ventas"<<endl;
+cout<<"5-)Vendedores con mas ventas"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"0-)Salir"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
-
+Recaudacion obj;
 switch(opcion){
 case 0:
     system("cls");
     menuDeVendedores();
     break;
 case 1:
-    {system("cls");
-    Recaudacion obj;
-    obj.recaudacionTotal();}
+    system("cls");
+    obj.recaudacionTotal();
     break;
-
 case 2:
-    {system("cls");
-    Recaudacion obj;
-    obj.recaudacionMesyAnio();}
+    system("cls");
+    obj.recaudacionMesyAnio();
     break;
-
 case 3:
-   {system("cls");
-   Recaudacion obj;
-   obj.recaudacionXanio();
-   }
+    system("cls");
+    obj.recaudacionXanio();
     break;
-
 case 4:
     system("cls");
     break;
-
+case 5:
+    system("cls");
+    break;
 default:
     cout<<"Esta opcion es incorrecta..."<<endl;
 }
