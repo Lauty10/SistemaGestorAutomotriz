@@ -62,9 +62,10 @@ return estado;
 
  //FUNCIONES
 
- void menuAutos(){
+ void menuAutos(int id){
  int opcion;
  while(true){
+
 cout<<"Ustes se encuentra en el menu de autos..."<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
@@ -89,7 +90,7 @@ altaAuto();
 
 case 2:
 system("cls");
-modificarAutos();
+modificarAutos(id);
     break;
 
 case 3:
@@ -109,7 +110,7 @@ buscarVehiculo();
 
 case 0:
 system("cls");
-menuDeVendedores();
+menuDeVendedores(id);
     break;
 }
 }
@@ -176,7 +177,7 @@ void altaAuto(){
 
 
 //MODIFICAR DATOS
-void modificarAutos(){
+void modificarAutos(int id){
 int opcion;
 while(true){
 cout<<"-1)Modificar nombre"<<endl;
@@ -210,7 +211,7 @@ modificarPrecio();
     break;
 case 0:
 system("cls");
-menuAutos();
+menuAutos(id);
     break;
 }
 }

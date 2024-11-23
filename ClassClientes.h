@@ -3,8 +3,9 @@
 #include <string.h>
 
 //Volver a los menus
-void menuDeVendedores();
+void menuDeVendedores(int id);
 void menu();
+void usuarioLogeado(int id);
 
 class Clientes {
 private:
@@ -64,7 +65,7 @@ public:
     }
 
     //MENU PARA CLIENTES
-    void menuClientes(){
+    void menuClientes(int id){
     int opcion;
     Clientes objCliente;
     cout<<"USTED ESTA GESTIONANDO A LOS CLIENTES..."<<endl;
@@ -86,7 +87,7 @@ public:
     switch(opcion){
 case 0:
     system("cls");
-    //menuDeVendedores();
+    menuDeVendedores(id);
     break;
 case 1:
     system("cls");

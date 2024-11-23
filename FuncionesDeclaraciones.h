@@ -6,16 +6,19 @@
 #include "ClassRecaudaciones.h"
 #include "ClassAuto.h"
 #include "ClassAdministrador.h"
+#include "ClassTicket.h"
 
 void menu();
-void menuDeVendedores();
+void menuDeVendedores(int id);
 void editarMiCuenta();
-void realizarVenta();
-void recaudaciones();
+void realizarVenta(int id);
+void recaudaciones(int id);
 void recuperarClave();
 int numeroDeVenta();
 void recaudacionTotal();
 void recaudacionMesyAnio();
 void menuDeSoporte();
+void bienvenidoUsuario(int id);
+
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED

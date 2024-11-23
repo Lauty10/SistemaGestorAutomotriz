@@ -8,19 +8,17 @@ using namespace std;
 void menu(){
 Vendedores obj;
 Administrador objA;
-int opcion;
-bool logeo,logeoAdmin;
+int opcion,logeo;
+bool logeoAdmin;
 int idLogeado;
 while(true){
     cout<<"BIENVENIDO AL MENU PRINCIPAL...."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"1-)Registrarse"<<endl;
+    cout<<"1-)Iniciar sesion"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"2-)Iniciar sesion"<<endl;
+    cout<<"2-)Recuperar clave"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"3-)Recuperar contraseña"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
-    cout<<"4-)Soporte"<<endl;
+    cout<<"3-)Soporte"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir del programa"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -31,23 +29,17 @@ case 0:
     return;
 case 1:
     system("cls");
-    obj.cargarVendedor();
-    obj.registrarVendedor(obj);
-    break;
-
-case 2:
-    system("cls");
     logeo=obj.iniciarSesion();
-    if(logeo==true){
+    if(logeo!=0){
         system("cls");
-        menuDeVendedores();
+        menuDeVendedores(logeo);
     }
     break;
-case 3:
+case 2:
     system("cls");
     recuperarClave();
     break;
-case 4:
+case 3:
     system("cls");
     logeoAdmin=objA.logeoDeUsuariosAdministradores();
     if(logeoAdmin==true){
@@ -102,13 +94,14 @@ system("cls");
 }
 
 //MENU DE VENDEDORES
-void menuDeVendedores(){
+void menuDeVendedores(int id){
 Clientes objCliente;
 Vendedores objVendedores;
 Auto objAuto;
+TicketAdmin objT;
 int opcion;
 while(true){
-    cout<<"Bienvenido al menu de vendedores.........."<<endl;
+    bienvenidoUsuario(id);
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"1-)Clientes"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -120,7 +113,7 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"5-)Realizar Venta"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"6-)Mi cuenta"<<endl;
+    cout<<"6-)Generar Ticket para soporte"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir..."<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -128,31 +121,32 @@ while(true){
     cin>>opcion;
     switch(opcion){
     case 0:
+        system("cls");
         menu();
         break;
     case 1:
         system("cls");
-        objCliente.menuClientes();
+        objCliente.menuClientes(id);
         break;
     case 2:
         system("cls");
-        objVendedores.funcionalidadesVendedor();
+        objVendedores.funcionalidadesVendedor(id);
         break;
     case 3:
         system("cls");
-        objAuto.menuAutos();
+        objAuto.menuAutos(id);
         break;
     case 4:
         system("cls");
-        recaudaciones();
+        recaudaciones(id);
         break;
     case 5:
         system("cls");
-        realizarVenta();
+        realizarVenta(id);
         break;
     case 6:
         system("cls");
-        editarMiCuenta();
+        objT.generarTicket(id);
         break;
     default:
         cout<<"Opcion incorrecta"<<endl;
@@ -160,77 +154,12 @@ while(true){
 }
 }
 
-//Editar mi cuenta
-void editarMiCuenta(){
-char correoBuscado[35];
-char claveBuscado[20];
-int DniBuscado;
-cout<<"Por favor ingrese los datos solicitados para validar su identidad..."<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"Ingrese su correo:";
-cin.ignore();
-cin.getline(correoBuscado,35,'\n');
-cout<<"-----------------------------------------------------"<<endl;
- cout << "Ingrese su clave: ";
-    char ch;
-    int index = 0;
-    while (true) {
-    ch = _getch();
-    if (ch == 13) {
-    claveBuscado[index] = '\0';
-    break;
-    }else if (ch == 8) {
-     if (index > 0) {
-     index--;
-     cout << "\b \b";
-    }
-    }else{
-    claveBuscado[index++] = ch;
-    cout << "*";
-    }
-    }
-cout << endl;
-cout << "-----------------------------------------------------" << endl;
-cout<<"Ingrese su DNI:";
-cin>>DniBuscado;
-cout<<"-------------------------------------------------------"<<endl;
-FILE *buscar;
-buscar=fopen("Vendedores.dat","rb");
-if(buscar==NULL){
-    cout<<"Error al entrar al archivo de Vendedores"<<endl;
-}
-Vendedores objV;
-while(fread(&objV,sizeof(Vendedores),1,buscar)!=0){
-    if(strcmp(objV.getCorreo(),correoBuscado)==0 && strcmp(objV.getClave(),claveBuscado)==0 && objV.getDni()==DniBuscado){
-        if(objV.getEstado()==true){
-                fclose(buscar);
-                int idDelVendedor;
-                char nombreObtenido[30];
-                idDelVendedor=objV.getIdVendedor();
-                const char *nombre=objV.getNombre();
-                strcpy(nombreObtenido,nombre);
-                system("cls");
-                objV.menuMiCuenta(idDelVendedor,nombreObtenido);
-        }else{
-        cout<<"El vendedor se encuentra dado de baja en el sistema..."<<endl;
-        system("pause");
-        system("cls");
-        break;
-        }
-    }
-}
-fclose(buscar);
-}
-
 
 //FUNCION PARA REALIZAR VENTA
 
-void realizarVenta() {
-    int idV, idC, idA;
+void realizarVenta(int idV) {
+    int idC, idA;
     cout << "Bienvenido al sector de ventas..." << endl;
-    cout << "-------------------------------------------------------" << endl;
-    cout << "Por favor ingrese su id de vendedor: ";
-    cin >> idV;
     cout << "-------------------------------------------------------" << endl;
     cout << "Por favor ingrese el id del cliente: ";
     cin >> idC;
@@ -402,7 +331,7 @@ void realizarVenta() {
 }
 
 //FUNCION PARA RECAUDACIONES
-void recaudaciones(){
+void recaudaciones(int id){
 int opcion;
 while(true){
 cout<<"Menu de recaudaciones..."<<endl;
@@ -423,7 +352,7 @@ Recaudacion obj;
 switch(opcion){
 case 0:
     system("cls");
-    menuDeVendedores();
+    menuDeVendedores(id);
     break;
 case 1:
     system("cls");
@@ -465,15 +394,58 @@ int numeroDeVenta() {
 
 //Menu de Soporte
 void menuDeSoporte(){
+Vendedores objV;
 int opcion;
+Vendedores obj;
 cout<<"Bienvenido al menu de soporte..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-1)Dar de baja vendedores"<<endl;
+cout<<"-1)Dar de alta vendedores"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-2)Dar de baja vendedores"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-3)Editar vendedores"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-4)Mostrar tickets generados en el sistema de soporte"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-5)Cerrar ticket"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"Eliga la opcion que desee:";
 cin>>opcion;
+switch(opcion){
+case 1:
+    system("cls");
+    obj.cargarVendedor();
+    obj.registrarVendedor(obj);
+    break;
+case 2:
+    break;
+case 3:
+    system("cls");
+    objV.menuMiCuenta();
+    break;
+case 4:
+    break;
+case 5:
+    break;
+}
 }
 
+void bienvenidoUsuario(int id){
+FILE *buscarVendedor;
+buscarVendedor=fopen("Vendedores.dat","rb");
+if(buscarVendedor==NULL){
+    cout<<"Error al encontrar vendedor..."<<endl;
+}
+Vendedores obj;
+char nombre[35];
+while(fread(&obj,sizeof(Vendedores),1,buscarVendedor)!=0){
+    if(id==obj.getIdVendedor()){
+        strcpy(nombre,obj.getNombre());
+    }
+}
+cout<<"Bienvenido al sistema "<<nombre<<endl;
+fclose(buscarVendedor);
+}
 
 
 

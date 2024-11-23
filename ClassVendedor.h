@@ -7,7 +7,7 @@
 using namespace std;
 
 //Volver a los menus
-void menuDeVendedores();
+void menuDeVendedores(int id);
 void menu();
 
 class Vendedores{
@@ -189,7 +189,7 @@ system("pause");
 system("cls");
 }
 
-bool iniciarSesion() {
+int iniciarSesion() {
     FILE *logeo;
     logeo = fopen("Vendedores.dat", "rb");
     if (logeo == NULL) {
@@ -230,7 +230,7 @@ bool iniciarSesion() {
             fclose(logeo);
             system("pause");
             system("cls");
-            return true;
+            return idLogeado;
         }
     }
     if (!inicio) {
@@ -242,16 +242,14 @@ bool iniciarSesion() {
     }
 }
 
-void funcionalidadesVendedor(){
+void funcionalidadesVendedor(int id){
 Vendedores obj;
 int opcion;
-cout<<"Usted esta gestionando los vendedores..."<<endl;
+cout<<"Menu de vendedores..."<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"-1)Dar de alta nuevo vendedor"<<endl;
+cout<<"-1)Listar vendedores"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
-cout<<"-2)Listar vendedores"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-3)Buscar un vendedor"<<endl;
+cout<<"-2)Buscar un vendedor"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"0-)Volver atras"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
@@ -260,21 +258,15 @@ cin>>opcion;
 switch(opcion){
 case 1:
     system("cls");
-    obj.cargarVendedor();
-    obj.registrarVendedor(obj);
-    system("cls");
-    break;
-case 2:
-    system("cls");
     obj.listarVendedores();
     break;
-case 3:
+case 2:
     system("cls");
     obj.buscarVendedor();
     break;
 case 0:
     system("cls");
-    menuDeVendedores();
+    menuDeVendedores(id);
 default:
     cout<<"Opcion incorrecta..."<<endl;
 }
@@ -333,12 +325,10 @@ if(!buscado){
 system("cls");
 }
 
-void menuMiCuenta(int idDelVendedor, char nombre[30]){
+void menuMiCuenta(){
 Vendedores obj;
 int opcion;
-cout<<"Bienvenido "<<nombre<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"Aqui podra editar sus datos"<<endl;
+cout<<"Bienvenido aqui podra editar los datos dos vendedores"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
 cout<<"-1)Editar nombre"<<endl;
 cout<<"------------------------------------------------------------"<<endl;
@@ -355,23 +345,23 @@ cin>>opcion;
 switch(opcion){
 case 1:
     system("cls");
-    obj.editarMiNombre(idDelVendedor);
+    obj.editarMiNombre();
     break;
 case 2:
     system("cls");
-    obj.editarMiCorreo(idDelVendedor);
+    obj.editarMiCorreo();
     break;
 case 3:
     system("cls");
-    obj.editarMiClave(idDelVendedor);
+    obj.editarMiClave();
     break;
 case 4:
     system("cls");
-    obj.editarDni(idDelVendedor);
+    obj.editarDni();
     break;
 case 0:
     system("cls");
-    menuDeVendedores();
+    //menuDeVendedores();
     break;
 default:
     cout<<"Opcion incorrecta..."<<endl;
@@ -380,7 +370,7 @@ default:
 
 
 
-void editarMiNombre(int id){
+void editarMiNombre(){
 FILE *nombrePersonal;
 nombrePersonal=fopen("Vendedores.dat","rb+");
 if(nombrePersonal==NULL){
@@ -389,6 +379,9 @@ if(nombrePersonal==NULL){
 Vendedores obj;
 bool encontrado=false;
 char nuevoNombre[30];
+int id;
+cout<<"Ingrese el id del usuario a modificar:";
+cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
@@ -411,7 +404,7 @@ fclose(nombrePersonal);
 system("cls");
 }
 
-void editarMiCorreo(int id){
+void editarMiCorreo(){
 FILE *correoPersonal;
 correoPersonal=fopen("Vendedores.dat","rb+");
 if(correoPersonal==NULL){
@@ -420,6 +413,9 @@ if(correoPersonal==NULL){
 Vendedores obj;
 bool encontrado=false;
 char nuevoCorreo[35];
+int id;
+cout<<"Ingrese el id del usuario a modificar:";
+cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
@@ -442,7 +438,7 @@ fclose(correoPersonal);
 system("cls");
 }
 
-void editarMiClave(int id){
+void editarMiClave(){
 FILE *clavePersonal;
 clavePersonal=fopen("Vendedores.dat","rb+");
 if(clavePersonal==NULL){
@@ -451,6 +447,9 @@ if(clavePersonal==NULL){
 Vendedores obj;
 bool encontrado=false;
 char nuevaCLave[20];
+int id;
+cout<<"Ingrese el id del usuario a modificar:";
+cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,clavePersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
@@ -473,7 +472,7 @@ fclose(clavePersonal);
 system("cls");
 }
 
-void editarDni(int id){
+void editarDni(){
 FILE *dniPersonal;
 dniPersonal=fopen("Vendedores.dat","rb+");
 if(dniPersonal==NULL){
@@ -482,6 +481,9 @@ if(dniPersonal==NULL){
 Vendedores obj;
 bool encontrado=false;
 int nuevoDni;
+int id;
+cout<<"Ingrese el id del usuario a modificar:";
+cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
