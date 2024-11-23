@@ -4,6 +4,8 @@
 #include "ClassClientes.h"
 #include "ClassFecha.h"
 #include "ClassRecaudaciones.h"
+#include "ClassAuto.h"
+#include "ClassAdministrador.h"
 
 void menu();
 void menuDeVendedores();
@@ -14,5 +16,6 @@ void recuperarClave();
 int numeroDeVenta();
 void recaudacionTotal();
 void recaudacionMesyAnio();
+void menuDeSoporte();
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED

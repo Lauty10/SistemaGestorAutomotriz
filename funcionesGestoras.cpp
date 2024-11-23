@@ -1,14 +1,15 @@
 #include <iostream>
 #include "FuncionesDeclaraciones.h"
-#include "ClassAuto.h"
 #include <conio.h>
+
 using namespace std;
 
 //FUNCIONES EJECUTADAS
 void menu(){
-int opcion;
-bool logeo;
 Vendedores obj;
+Administrador objA;
+int opcion;
+bool logeo,logeoAdmin;
 int idLogeado;
 while(true){
     cout<<"BIENVENIDO AL MENU PRINCIPAL...."<<endl;
@@ -19,14 +20,15 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"3-)Recuperar contraseña"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
+    cout<<"4-)Soporte"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir del programa"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
     switch(opcion){
 case 0:
-    break;
-
+    return;
 case 1:
     system("cls");
     obj.cargarVendedor();
@@ -41,12 +43,18 @@ case 2:
         menuDeVendedores();
     }
     break;
-
 case 3:
     system("cls");
     recuperarClave();
     break;
-
+case 4:
+    system("cls");
+    logeoAdmin=objA.logeoDeUsuariosAdministradores();
+    if(logeoAdmin==true){
+        system("cls");
+        menuDeSoporte();
+    }
+    break;
 default:
     cout<<"Esta opcion no existe"<<endl;
     }
@@ -108,7 +116,7 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"3-)Autos"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
-    cout<<"4-)Facturaciones"<<endl;
+    cout<<"4-)Recaudaciones"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"5-)Realizar Venta"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -407,8 +415,6 @@ cout<<"3-)Recaudacion por anio"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"4-)Recaudacion por id de vendedor"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"5-)Vendedores con mas ventas"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
 cout<<"0-)Salir"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"Ingrese la opcion que desee:";
@@ -432,10 +438,8 @@ case 3:
     obj.recaudacionXanio();
     break;
 case 4:
-    obj.recaudacionPorId();
     system("cls");
-    break;
-case 5:
+    obj.recaudacionPorId();
     system("cls");
     break;
 default:
@@ -446,7 +450,7 @@ default:
 
 int numeroDeVenta() {
     FILE *numeroDeFactura;
-    int venta = 1;
+    int venta = 0;
     numeroDeFactura = fopen("Recaudaciones.dat", "rb");
     if (numeroDeFactura == NULL) {
         return 1000001;
@@ -458,6 +462,19 @@ int numeroDeVenta() {
     fclose(numeroDeFactura);
     return venta + 1000000;
 }
+
+//Menu de Soporte
+void menuDeSoporte(){
+int opcion;
+cout<<"Bienvenido al menu de soporte..."<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-1)Dar de baja vendedores"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"Eliga la opcion que desee:";
+cin>>opcion;
+}
+
+
 
 
 

@@ -157,6 +157,7 @@ system("pause");
 system("cls");
 fclose(informacion);
 }
+
 };
 
 #endif // CLASSRECAUDACIONES_H_INCLUDED
