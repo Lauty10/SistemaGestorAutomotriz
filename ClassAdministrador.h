@@ -13,13 +13,15 @@ private:
     char clave[20];
     char rol[6];
     bool estado;
+    bool ticket;
 
 public:
-    Administrador(const char* correo = "administrador@gmail.com", const char* clave = "administrador2024", const char* r = "admin", bool e = true) {
+    Administrador(const char* correo = "administrador@gmail.com", const char* clave = "administrador2024", const char* r = "admin", bool e = true, bool t=false) {
         strcpy(this->correo, correo);
         strcpy(this->clave, clave);
         strcpy(this->rol, r);
         this->estado = e;
+        this->ticket=t;
     }
 
     void setCorreo(const char correo[35]) {
@@ -28,6 +30,10 @@ public:
 
     void setClave(const char clave[20]) {
         strcpy(this->clave, clave);
+    }
+
+    void setTicket(bool t=false){
+    this->ticket=t;
     }
 
     const char* getCorreo(){
@@ -44,6 +50,10 @@ public:
 
     bool getEstado() {
         return estado;
+    }
+
+    bool getTicket(){
+    return ticket;
     }
 
     bool logeoDeUsuariosAdministradores() {
@@ -77,6 +87,8 @@ public:
             return false;
         }
     }
+
+
 };
 
 
