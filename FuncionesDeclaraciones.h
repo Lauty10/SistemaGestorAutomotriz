@@ -19,6 +19,7 @@ void recaudacionTotal();
 void recaudacionMesyAnio();
 void menuDeSoporte();
 void bienvenidoUsuario(int id);
+void generarSolicutudDeAlta();
 
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED
