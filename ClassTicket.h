@@ -127,7 +127,7 @@ void generarTicket(int id) {
 //MOSTRAR TICKETS
 void mostrarTickets(){
 FILE *tickets;
-tickets=fopen("Ticket.dat","rb");
+tickets=fopen("Ticket.dat","rb+");
 if(tickets==NULL){
 cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
 return;
@@ -145,6 +145,37 @@ fclose(tickets);
 system("pause");
 system("cls");
 
+}
+
+void darDeBajaTickets(){
+FILE *baja;
+baja=fopen("Ticket.dat","rb");
+if(baja==NULL){
+cout<<"ESTE ARCHIVO NO SE PUDO ABRIR"<<endl;
+return;
+}
+TicketAdmin obj;
+int i;
+bool encontrado=false;
+cout<<"Ingrese el id del ticket a dar de baja: ";
+cin>>i;
+
+while(fread(&obj,sizeof(TicketAdmin),1,baja)!=0){
+if(obj.getTicket()==true&&obj.getId==i){
+obj.setTicket(false);
+encontrado=true;
+long posicion=ftell(baja)-sizeof(TicketAdmin);
+fseek(baja,posicion,SEEK_SET);
+fwrite(&obj,sizeof(TicketAdmin),1,baja);
+cout<<"Ticket dado de baja correctamente"<<endl;
+break;
+}
+}
+if(!encontrado){
+cout<<"NO SE ENCONTRO EL ID INGRESADO"<<endl;
+return;
+}
+fclose(baja);
 }
 
 };
