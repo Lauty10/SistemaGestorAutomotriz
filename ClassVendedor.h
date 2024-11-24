@@ -48,7 +48,7 @@ public:
     void setRol(char rol[6]){
     strcpy(this->rol,rol);
     };
-    void setEstado(bool est=false){
+    void setEstado(bool est){
     this->estado=est;
     };
     ///Getters
@@ -77,87 +77,48 @@ public:
 
 //Funciones
     void cargarVendedor(){
-    cout << "Ingrese el nombre del vendedor: ";
+    cout <<"Ingrese el nombre del vendedor: ";
     cin.ignore();
     cin.getline(nombre, 30,'\n');
-    if(strlen(nombre) == 0){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"Nombre: ";
-    cin.getline(nombre,30);
-    }
     setNombre(nombre);
 
     cout << "Ingrese el correo: ";
     cin.getline(correo, 35,'\n');
-    if(strlen(correo) == 0){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"Correo: ";
-    cin.getline(correo,35);
-    }
-    FILE *validacion;
-    validacion=fopen("Vendedores.dat","rb");
-    if(validacion==NULL){return;}
-    Vendedores obj;
-    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
-    if(strcmp(obj.getCorreo(),correo)==0){
-    cout<<"Correo ya registrado"<<endl;
-    cout<<"Correo: ";
-    cin.getline(correo,30);
-    }
-    }
-    fclose(validacion);
     setCorreo(correo);
 
-
-    cout << "Ingrese la clave:";
+    cout << "Ingrese la clave: ";
     char ch;
     int index = 0;
     while (true) {
-    ch = _getch();
-    if (ch == 13) {
-     clave[index] = '\0';
-        break;
-    }else if (ch == 8) {
-      if (index > 0) {
-        index--;
-        cout << "\b \b";
-        }
+        ch = _getch();
+        if (ch == 13) {
+            clave[index] = '\0';
+            break;
+        } else if (ch == 8) {
+            if (index > 0) {
+                index--;
+                cout << "\b \b";
+            }
         } else {
-        clave[index++] = ch;
-     cout << "*";
+            clave[index++] = ch;
+            cout << "*";
         }
     }
     setClave(clave);
     cout << endl;
-
-    cout << "Ingrese el DNI:";
-    cin >> dni;
-    if(dni==NULL){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"D.N.I: ";
+    cout << "Ingrese el DNI: ";
     cin>>dni;
-    }
-    validacion=fopen("Vendedores.dat","rb");
-    if(validacion==NULL){return;}
-    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
-    if(obj.getDni()==dni){
-    cout<<"D.N.I ya registrado"<<endl;
-    cout<<"D.N.I: ";
-    cin>>dni;
-    }
-    }
     setDni(dni);
 
-
-    idVendedor=generarIdVendedor();
-    cout<<"------------------------------------------------------------"<<endl;
-    cout<<"Vendedor registrado correctamente"<<endl;
-    cout<<"Nombre:"<<getNombre()<<endl;
-    cout<<"Correo:"<<getCorreo()<<endl;
-    cout<<"Dni:"<<getDni()<<endl;
-    cout<<"Estado:"<<getEstado()<<endl;
-    cout<<"ID:"<<getIdVendedor()<<endl;
-    cout<<"------------------------------------------------------------"<<endl;
+    idVendedor = generarIdVendedor();
+    cout << "------------------------------------------------------------" << endl;
+    cout << "Vendedor registrado correctamente" << endl;
+    cout << "Nombre: " << getNombre() << endl;
+    cout << "Correo: " << getCorreo() << endl;
+    cout << "Dni: " << getDni() << endl;
+    cout << "Estado: " << getEstado() << endl;
+    cout << "ID: " << getIdVendedor() << endl;
+    cout << "------------------------------------------------------------" << endl;
 }
 
  int generarIdVendedor() {
@@ -504,6 +465,37 @@ if(!encontrado){
 fclose(dniPersonal);
 system("cls");
 }
+
+void darDeBajaVendedor(){
+int idBaja;
+cout<<"Ingrese el id del vendedor a dar de baja:";
+cin>>idBaja;
+FILE *baja;
+baja=fopen("Vendedores.dat","rb+");
+if(baja==NULL){
+    cout<<"Error a dar de baja vendedor"<<endl;
+}
+Vendedores obj;
+bool encontrado=false;
+while(fread(&obj,sizeof(Vendedores),1,baja)!=0){
+    if(obj.getIdVendedor()==idBaja){
+        encontrado=true;
+        obj.setEstado(false);
+        long posicion=ftell(baja)-sizeof(Vendedores);
+        fseek(baja,posicion,SEEK_SET);
+        fwrite(&obj,sizeof(Vendedores),1,baja);
+        cout<<"Vendedor dado de baja correctamente..."<<endl;
+        system("pause");
+        break;
+    }
+}
+if(!encontrado){
+    cout<<"Error al encontrar al vendedor correspondiente..."<<endl;
+}
+fclose(baja);
+system("cls");
+}
+
 };
 
 #endif // CLASSVENDEDOR_H_INCLUDED

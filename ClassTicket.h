@@ -6,7 +6,7 @@ class TicketAdmin {
 private:
     int idT;
     char fechaActual[11];
-    char infoTicket[35];
+    char infoTicket[65];
     char usuarioTicket[35];
 
 public:
@@ -22,7 +22,7 @@ public:
     void setFecha(const char f[11]) {
         strcpy(this->fechaActual, f);
     }
-    void setInfo(const char it[35]) {
+    void setInfo(const char it[65]) {
         strcpy(this->infoTicket, it);
     }
     void setUsuario(const char uT[35]) {
@@ -79,7 +79,7 @@ void generarTicket(int id) {
     cout << "-------------------------------------------------------------------" << endl;
     cout << "Ingrese el asunto del ticket: ";
     cin.ignore();
-    cin.getline(infoTicket, 35);
+    cin.getline(infoTicket, 65);
     objT.setInfo(infoTicket);
     cout << "Ingrese la fecha del ticket (Ej: 01/01/1900): ";
     cin.getline(fechaActual, 11);
@@ -110,6 +110,25 @@ void generarTicket(int id) {
         }
         fclose(generar);
         return dato + 1;
+    }
+
+    void mostrarTickets(){
+    FILE *ticketG;
+    ticketG=fopen("Ticket.dat","rb");
+    if(ticketG==NULL){
+        cout<<"Error al mostrar tickets"<<endl;
+    }
+    TicketAdmin objT;
+    while(fread(&objT,sizeof(TicketAdmin),1,ticketG)!=0){
+        cout<<"Fecha en la que se genero el ticket:"<<objT.getFecha()<<endl;
+        cout<<"Asunto del ticket:"<<objT.getInfoT()<<endl;
+        cout<<"Usuario que genero el ticket:"<<objT.getUsuario()<<endl;
+        cout<<"Id del ticket:"<<objT.getId()<<endl;
+        cout << "------------------------------------------------------------" << endl;
+    }
+    system("pause");
+    system("cls");
+    fclose(ticketG);
     }
 };
 

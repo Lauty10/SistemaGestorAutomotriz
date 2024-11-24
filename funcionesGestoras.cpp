@@ -20,6 +20,8 @@ while(true){
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"3-)Soporte"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
+    cout<<"4-)Generar solicitudes de alta"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir del programa"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"Ingrese la opcion que desee:";
@@ -46,6 +48,8 @@ case 3:
         system("cls");
         menuDeSoporte();
     }
+case 4:
+    system("cls");
     break;
 default:
     cout<<"Esta opcion no existe"<<endl;
@@ -395,38 +399,60 @@ int numeroDeVenta() {
 //Menu de Soporte
 void menuDeSoporte(){
 Vendedores objV;
+TicketAdmin objT;
 int opcion;
-Vendedores obj;
-cout<<"Bienvenido al menu de soporte..."<<endl;
+while(true){
+    cout<<"Bienvenido al menu de soporte..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-1)Dar de alta vendedores"<<endl;
+cout<<"-1)Listar vendedores"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-2)Dar de baja vendedores"<<endl;
+cout<<"-2)Dar de alta vendedores"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-3)Editar vendedores"<<endl;
+cout<<"-3)Dar de baja vendedores"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-4)Mostrar tickets generados en el sistema de soporte"<<endl;
+cout<<"-4)Editar vendedores"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-5)Cerrar ticket"<<endl;
+cout<<"-5)Mostrar tickets generados en el sistema de soporte"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-6)Solicitudes de alta"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-7)Cerrar ticket"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-0)Cerrar sesion"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"Eliga la opcion que desee:";
 cin>>opcion;
 switch(opcion){
 case 1:
     system("cls");
-    obj.cargarVendedor();
-    obj.registrarVendedor(obj);
+    objV.listarVendedores();
     break;
 case 2:
+    system("cls");
+    objV.cargarVendedor();
+    objV.registrarVendedor(objV);
     break;
 case 3:
     system("cls");
-    objV.menuMiCuenta();
+    objV.darDeBajaVendedor();
     break;
 case 4:
+    system("cls");
+    objV.menuMiCuenta();
     break;
 case 5:
+    system("cls");
+    objT.mostrarTickets();
     break;
+case 6:
+    break;
+case 7:
+    break;
+case 0:
+    system("cls");
+    menu();
+    break;
+}
 }
 }
 
