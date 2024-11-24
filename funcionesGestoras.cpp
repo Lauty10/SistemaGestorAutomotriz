@@ -416,31 +416,9 @@ cin>>opcion;
 switch(opcion){
 case 1:
     system("cls");
-    int opc;
-    while(true){
     obj.cargarVendedor();
-    cout<<"Desea dar de alta a este usuario?"<<endl;
-    cout<<"1-)SI"<<endl;
-    cout<<"2-)NO"<<endl;
-    cin>>opc;
-    switch(opc){
-
-case 1:
-    system("cls");
     obj.registrarVendedor(obj);
-    cout<<"ESTE USUARIO FUE DADO DE ALTA CORRECTAMENTE"<<endl;
-    menuDeSoporte();
-    break;
-case 2:
-    system("cls");
-    cout<<"Este usuario no fue dado de alta"<<endl;
-    menuDeSoporte();
-    return;
-    }
-    }
 
-
-    break;
 case 2:
     break;
 case 3:
