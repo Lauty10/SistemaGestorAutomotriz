@@ -47,31 +47,33 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732237987 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732417937 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
-	"ClassAuto.h"
 	<conio.h>
 
-1732234279 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 	"ClassFecha.h"
 	"ClassRecaudaciones.h"
+	"ClassAuto.h"
+	"ClassAdministrador.h"
+	"ClassTicket.h"
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 
-1732230376 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\main.cpp
+1732413077 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\main.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
@@ -108,11 +110,11 @@
 
 1732304424 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
-1732230376 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
 1732326749 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
-1732238163 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
 1732362596 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
@@ -121,5 +123,14 @@
 	<cstdio>
 
 1732367552 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+	"ClassVendedor.h"
+
+1732417431 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
+	<iostream>
+	<cstring>
+	<chrono>
+	<cstdio>
+
+1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
