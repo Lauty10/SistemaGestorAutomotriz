@@ -398,7 +398,7 @@ Vendedores objV;
 int opcion;
 Vendedores obj;
 Administrador objA;
-
+TicketAdmin objT;
 cout<<"Bienvenido al menu de soporte..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"-1)Dar de alta vendedores"<<endl;
@@ -426,9 +426,12 @@ case 3:
     objV.menuMiCuenta();
     break;
 case 4:
+    system("cls");
+    objT.mostrarTickets();
     break;
 case 5:
     break;
+
 }
 }
 
