@@ -8,13 +8,15 @@ private:
     char fechaActual[11];
     char infoTicket[35];
     char usuarioTicket[35];
+    bool ticket;
 
 public:
-    TicketAdmin(int i = 0, const char* f = "01/01/1990", const char* iT = "XXX", const char* uT = "usuario123@gmail.com") {
+    TicketAdmin(int i = 0, const char* f = "01/01/1990", const char* iT = "XXX", const char* uT = "usuario123@gmail.com",bool t=false) {
         strcpy(this->fechaActual, f);
         strcpy(this->infoTicket, iT);
         strcpy(this->usuarioTicket, uT);
         this->idT = i;
+        this->ticket=t;
     }
     void setIdT(int id) {
         this->idT = id;
@@ -28,6 +30,9 @@ public:
     void setUsuario(const char uT[35]) {
         strcpy(this->usuarioTicket, uT);
     }
+    void setTicket(bool t=false){
+    this->ticket=t;
+    }
     int getId() const {
         return idT;
     }
@@ -40,6 +45,10 @@ public:
     const char* getUsuario(){
         return usuarioTicket;
     }
+    bool getTicket(){
+    return ticket;
+    }
+
 
 void generarTicket(int id) {
     FILE *infoId;
@@ -73,6 +82,8 @@ void generarTicket(int id) {
         cout << "Error al generar nuevo ticket" << endl;
         return;
     }
+
+
     TicketAdmin objT;
     int idT;
     cout << "Por favor complete los siguientes datos para generar un ticket:" << endl;
@@ -87,6 +98,7 @@ void generarTicket(int id) {
     objT.setUsuario(usuario);
     idT = generarIdTicket();
     objT.setIdT(idT);
+    objT.setTicket(true);
     fwrite(&objT, sizeof(TicketAdmin), 1, nuevoT);
     cout << "-------------------------------------------------------------------" << endl;
     cout << "Ticket generado correctamente..." << endl;
@@ -111,6 +123,30 @@ void generarTicket(int id) {
         fclose(generar);
         return dato + 1;
     }
+
+//MOSTRAR TICKETS
+void mostrarTickets(){
+FILE *tickets;
+tickets=fopen("Ticket.dat","rb");
+if(tickets==NULL){
+cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+return;
+}
+TicketAdmin obj;
+while(fread(&obj,sizeof(TicketAdmin),1,tickets)!=0){
+if(obj.getTicket()==true){
+cout<<"Fecha: "<<obj.getFecha()<<endl;
+cout<<"Id del ticket: "<<obj.getId()<<endl;
+cout<<"Usuario: "<<obj.getUsuario()<<endl;
+cout<<"Informacion del ticket: "<<obj.getInfoT()<<endl;
+}
+}
+fclose(tickets);
+system("pause");
+system("cls");
+
+}
+
 };
 
 

@@ -47,7 +47,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732417937 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732464640 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
@@ -125,12 +125,12 @@
 1732367552 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732417431 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
+1732463200 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
 	<cstring>
 	<chrono>
 	<cstdio>
 
-1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1732464629 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
