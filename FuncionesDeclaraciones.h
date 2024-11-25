@@ -8,6 +8,7 @@
 #include "ClassAdministrador.h"
 #include "ClassTicket.h"
 #include "ClassSolicitudAlta.h"
+#include "rlutil.h"
 
 void menu();
 void menuDeVendedores(int id);
