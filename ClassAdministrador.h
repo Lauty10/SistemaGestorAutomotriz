@@ -4,7 +4,7 @@
 #include <cstring>
 #include <chrono>
 #include <cstdio>
-
+#include "rlutil.h"
 using namespace std;
 
 class Administrador {
@@ -57,28 +57,27 @@ public:
         admnis[3] = Administrador("francoAdmin19@gmail.com", "987654321", "admin", true);
         char correoAdmin[35];
         char claveAdmin[20];
-        bool loginExitoso = false;
-        cout << "Ingrese su correo:";
-        cin.ignore();
+        rlutil::locate(39,13);
+        rlutil::showcursor();
         cin.getline(correoAdmin, 35, '\n');
-        cout << "Ingrese su clave:";
+        rlutil::locate(39,18);
         cin.getline(claveAdmin, 20, '\n');
         for (int j = 0; j < 4; j++) {
             if (strcmp(admnis[j].getCorreo(), correoAdmin) == 0 && strcmp(admnis[j].getClave(), claveAdmin) == 0) {
-                loginExitoso = true;
-                cout << endl;
-                cout << "Credenciales de administrador correctas..." << endl;
-                cout << "Iniciando sesion..." << endl;
-                system("pause");
+                //loginExitoso = true;
+                //cout << endl;
+                //cout << "Credenciales de administrador correctas..." << endl;
+                //cout << "Iniciando sesion..." << endl;
+                //system("pause");
                 return true;
             }
         }
-        if (!loginExitoso) {
-            cout << "Credenciales incorrectas. Intentelo nuevamente..." << endl;
-            system("pause");
-            system("cls");
+        //if (!loginExitoso) {
+            //cout << "Credenciales incorrectas. Intentelo nuevamente..." << endl;
+            //system("pause");
+            //system("cls");
             return false;
-        }
+        //}
     }
 
 

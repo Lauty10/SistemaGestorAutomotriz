@@ -24,5 +24,13 @@ void bienvenidoUsuario(int id);
 int generarId();
 void estadoDeMiSolicitud();
 
+void GraficarOpiciones(const char*,int,int,bool,int,int);
+void GraficarCeldas(int,int,int,const char*);
+void GraficarLineasHorizontales(int,int,int,bool,int);
+void GraficarLineasVerticales(int,int,int,int,int);
+void Borrar(int,int,int,int);
+void Dibujar_Cuadro_Login();
+int Mover_Cursor_Teclas(int,int);
+
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED
