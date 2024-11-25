@@ -10,14 +10,16 @@ private:
     char clave[20];
     int dni;
     bool estado;
+    bool aprobado;
 public:
-    Solicitud(int i=0,const char* n="XXX", const char* c="XXX", const char* cl="NuevoVendedor", int d=0, bool e=true){
+    Solicitud(int i=0,const char* n="XXX", const char* c="XXX", const char* cl="NuevoVendedor", int d=0, bool e=false, bool a=false){
     this->id=i;
     strcpy(this->nombre,n);
     strcpy(this->correo,c);
     strcpy(this->clave,cl);
     this->dni=d;
     this->estado=e;
+    this->aprobado=a;
     }
 void setId(int idS){
 this->id=idS;
@@ -37,6 +39,9 @@ this->dni=d;
 void setEstado(bool e){
 this->estado=e;
 }
+void setAprobado(bool a){
+this->aprobado=a;
+}
 int getIdSolicitud(){
 return id;
 }
@@ -55,6 +60,10 @@ return dni;
 bool getEstado(){
 return estado;
 }
+bool getAprobado(){
+return aprobado;
+}
+
 
 void cargarSolicitud(){
 Solicitud objS;
@@ -118,11 +127,12 @@ Solicitud obj;
 cout<<"Bienvenido estos son los vendedores que estan esperando la aprobacion en el sistema..."<<endl;
 cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
 while(fread(&obj,sizeof(Solicitud),1,soli)!=0){
-    if(obj.getEstado()==true){
+    if(obj.getEstado()==false){
         cout<<"Nombre del usuario a dar de alta:"<<obj.getNombre()<<endl;
         cout<<"Correo del usuario a dar de alta:"<<obj.getCorreo()<<endl;
         cout<<"Dni del usuario a dar de alta:"<<obj.getDni()<<endl;
         cout<<"El id de la solicitud es:"<<obj.getIdSolicitud()<<endl;
+
         cout<<"------------------------------------------------------------"<<endl;
     }
 }
@@ -143,11 +153,12 @@ cin>>id;
 Solicitud objS;
 bool buscar=false;
 while(fread(&objS,sizeof(Solicitud),1,buscarS)!=0){
-    if(objS.getEstado()==true){
+    if(objS.getEstado()==false){
         if(objS.getIdSolicitud()==id){
             buscar=true;
             long posicion=ftell(buscarS)-sizeof(Solicitud);
-            objS.setEstado(false);
+            objS.setEstado(true);
+            objS.setAprobado(true);
             fseek(buscarS,posicion,SEEK_SET);
             fwrite(&objS,sizeof(Solicitud),1,buscarS);
             cout<<"Solicitud aprobada correctamente..."<<endl;

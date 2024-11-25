@@ -480,16 +480,16 @@ case 8:
 
 void estadoDeMiSolicitud(){
 FILE *buscarMiSolicitud;
-buscarMiSolicitud=fopen("Solicitud.dat","rb");
+buscarMiSolicitud=fopen("Solicitud.dat","rb+");
 if(buscarMiSolicitud==NULL){
     cout<<"Error al encontrar su solicitud"<<endl;
+    return;
 }
 Solicitud objS;
 Vendedores objV;
 int idS;
 cout<<"Ingrese el ID de su solicitud:";
 cin>>idS;
-bool aprobado=false;
 char nombre[30];
 char correo[35];
 int dni;
@@ -497,26 +497,27 @@ char clave[20];
 char clave2[20];
 int id;
 while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
-    if(idS==objS.getIdSolicitud() && objS.getEstado()==false){
-        objS.setEstado(true);
-        aprobado=true;
+    if(idS==objS.getIdSolicitud()){
+        if(objS.getAprobado()==true){
         strcpy(nombre,objS.getNombre());
         strcpy(correo,objS.getCorreo());
         dni=objS.getDni();
+        long posicion = ftell(buscarMiSolicitud) - sizeof(Solicitud);
+        objS.setAprobado(false);
+        fseek(buscarMiSolicitud, posicion, SEEK_SET);
+        fwrite(&objS,sizeof(Solicitud),1,buscarMiSolicitud);
+        cout<<"Solicitud aprobada..."<<endl;
+        system("pause");
+        system("cls");
         break;
         }else{
-        cout<<"Su solicitud fue aprobado o no fue encontrada..."<<endl;
-        fclose(buscarMiSolicitud);
+        cout<<"La solicitud ya fue aprobada o no se encontro en nuestro sistema..."<<endl;
         system("pause");
         system("cls");
         return;
         }
         }
-if(!aprobado){
-    cout<<"Su solicitud no fue aprobada,sera aprobada a la brevedad gracias..."<<endl;
-    fclose(buscarMiSolicitud);
-}else{
-cout<<"Su solicitud fue aprobada..."<<endl;
+        }
 system("pause");
 system("cls");
 
@@ -545,11 +546,12 @@ if(strcmp(clave,clave2)==0){
  cout<<"Proceso finalizado fue dato de alta en el sistema correctamente"<<endl;
  fclose(Nuevoalta);
 }
-}
 fclose(buscarMiSolicitud);
 system("pause");
 system("cls");
 }
+
+
 
  int generarId(){
    FILE *generar;
