@@ -5,6 +5,7 @@
 using namespace std;
 
 //FUNCIONES EJECUTADAS
+
 void menu(){
 Vendedores obj;
 Administrador objA;
@@ -12,21 +13,45 @@ Solicitud objS;
 int opcion,logeo;
 bool logeoAdmin;
 int idLogeado;
+rlutil::setColor(15);
+rlutil::setBackgroundColor(9);
+rlutil::setColor(rlutil::WHITE);
+rlutil::cls();
+for(int j=1;j<121;j++){
+        rlutil::locate(j,1);
+         cout<<char(176);
+}
+
+for(int j=1;j<121;j++){
+        rlutil::locate(j,30);
+         cout<<char(176);
+}
+
+for(int j=20;j<100;j++){
+        rlutil::locate(j,3);
+         cout<<"-";
+}
+for(int j=20;j<100;j++){
+        rlutil::locate(j,27);
+         cout<<"-";
+}
+
 while(true){
-    cout<<"BIENVENIDO AL MENU PRINCIPAL...."<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+    rlutil::locate(45,7);
+    cout<<"BIENVENIDO AL MENU PRINCIPAL"<<endl;
+    rlutil::locate(45,9);
     cout<<"1-)Iniciar sesion"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+    rlutil::locate(45,11);
     cout<<"2-)Recuperar clave"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
-    cout<<"3-)Soporte"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
-    cout<<"4-)Generar solicitud de alta en el sistema"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
-    cout<<"5-)Ver estado de mi solicitud"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+    rlutil::locate(45,13);
+    cout<<"3-)Generar solicitud de alta en el sistema"<<endl;
+    rlutil::locate(45,15);
+    cout<<"4-)Ver estado de mi solicitud"<<endl;
+    rlutil::locate(45,17);
+    cout<<"5-)Soporte"<<endl;
+    rlutil::locate(45,19);
     cout<<"0-)Salir del programa"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+    rlutil::locate(45,22);
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
     switch(opcion){
@@ -46,20 +71,21 @@ case 2:
     break;
 case 3:
     system("cls");
+    objS.cargarSolicitud();
+    objS.nuevaSolicitud(objS);
+    break;
+case 4:
+    system("cls");
+    estadoDeMiSolicitud();
+     system("cls");
+    break;
+case 5:
+    system("cls");
     logeoAdmin=objA.logeoDeUsuariosAdministradores();
     if(logeoAdmin==true){
         system("cls");
         menuDeSoporte();
     }
-    break;
-case 4:
-    system("cls");
-    objS.cargarSolicitud();
-    objS.nuevaSolicitud(objS);
-    break;
-case 5:
-    system("cls");
-    estadoDeMiSolicitud();
     break;
 default:
     cout<<"Esta opcion no existe"<<endl;
@@ -115,22 +141,23 @@ Auto objAuto;
 TicketAdmin objT;
 int opcion;
 while(true){
+    rlutil::locate(3,2);
     bienvenidoUsuario(id);
-    cout<<"-----------------------------------------------------"<<endl;
+    rlutil::locate(45,7);
     cout<<"1-)Clientes"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,9);
     cout<<"2-)Vendedores"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,11);
     cout<<"3-)Autos"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,13);
     cout<<"4-)Recaudaciones"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,15);
     cout<<"5-)Realizar Venta"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,17);
     cout<<"6-)Generar Ticket para soporte"<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,19);
     cout<<"0-)Salir..."<<endl;
-    cout<<"-----------------------------------------------------"<<endl;
+     rlutil::locate(45,21);
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
     switch(opcion){
