@@ -139,6 +139,7 @@ cout<<"Fecha: "<<obj.getFecha()<<endl;
 cout<<"Id del ticket: "<<obj.getId()<<endl;
 cout<<"Usuario: "<<obj.getUsuario()<<endl;
 cout<<"Informacion del ticket: "<<obj.getInfoT()<<endl;
+cout<<"------------------------------------------------------------"<<endl;
 }
 }
 fclose(tickets);
@@ -147,6 +148,7 @@ system("cls");
 
 }
 
+
 void darDeBajaTickets(){
 FILE *baja;
 baja=fopen("Ticket.dat","rb");
@@ -154,19 +156,19 @@ if(baja==NULL){
 cout<<"ESTE ARCHIVO NO SE PUDO ABRIR"<<endl;
 return;
 }
-TicketAdmin obj;
+TicketAdmin objA;
 int i;
 bool encontrado=false;
 cout<<"Ingrese el id del ticket a dar de baja: ";
 cin>>i;
 
-while(fread(&obj,sizeof(TicketAdmin),1,baja)!=0){
-if(obj.getTicket()==true&&obj.getId==i){
-obj.setTicket(false);
+while(fread(&objA,sizeof(TicketAdmin),1,baja)!=0){
+if(objA.getTicket()==true&&objA.getId()==i){
+objA.setTicket(false);
 encontrado=true;
 long posicion=ftell(baja)-sizeof(TicketAdmin);
 fseek(baja,posicion,SEEK_SET);
-fwrite(&obj,sizeof(TicketAdmin),1,baja);
+fwrite(&objA,sizeof(TicketAdmin),1,baja);
 cout<<"Ticket dado de baja correctamente"<<endl;
 break;
 }

@@ -7,6 +7,7 @@
 #include "ClassAuto.h"
 #include "ClassAdministrador.h"
 #include "ClassTicket.h"
+#include "ClassSolicitudAlta.h"
 
 void menu();
 void menuDeVendedores(int id);
@@ -19,6 +20,8 @@ void recaudacionTotal();
 void recaudacionMesyAnio();
 void menuDeSoporte();
 void bienvenidoUsuario(int id);
+int generarId();
+void estadoDeMiSolicitud();
 
 
 #endif // FUNCIONESDECLARACIONES_H_INCLUDED

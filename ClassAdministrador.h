@@ -49,9 +49,6 @@ public:
         return estado;
     }
 
-
-
-
     bool logeoDeUsuariosAdministradores() {
         Administrador admnis[4];
         admnis[0] = Administrador("lautaroAdmin19@gmail.com", "Riverplate1", "admin", true);

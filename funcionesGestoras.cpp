@@ -8,6 +8,7 @@ using namespace std;
 void menu(){
 Vendedores obj;
 Administrador objA;
+Solicitud objS;
 int opcion,logeo;
 bool logeoAdmin;
 int idLogeado;
@@ -19,6 +20,10 @@ while(true){
     cout<<"2-)Recuperar clave"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"3-)Soporte"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
+    cout<<"4-)Generar solicitud de alta en el sistema"<<endl;
+    cout<<"-----------------------------------------------------"<<endl;
+    cout<<"5-)Ver estado de mi solicitud"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
     cout<<"0-)Salir del programa"<<endl;
     cout<<"-----------------------------------------------------"<<endl;
@@ -46,6 +51,15 @@ case 3:
         system("cls");
         menuDeSoporte();
     }
+    break;
+case 4:
+    system("cls");
+    objS.cargarSolicitud();
+    objS.nuevaSolicitud(objS);
+    break;
+case 5:
+    system("cls");
+    estadoDeMiSolicitud();
     break;
 default:
     cout<<"Esta opcion no existe"<<endl;
@@ -395,10 +409,11 @@ int numeroDeVenta() {
 //Menu de Soporte
 void menuDeSoporte(){
 Vendedores objV;
-int opcion;
-Vendedores obj;
 Administrador objA;
 TicketAdmin objT;
+Solicitud objS;
+int opcion;
+while(true){
 cout<<"Bienvenido al menu de soporte..."<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"-1)Dar de alta vendedores"<<endl;
@@ -409,17 +424,31 @@ cout<<"-3)Editar vendedores"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"-4)Mostrar tickets generados en el sistema de soporte"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
-cout<<"-5)Cerrar ticket"<<endl;
+cout<<"-5)Mostrar solicitudes de alta"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-6)Aprobar solicitudes de alta"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-7)Cerrar ticket"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-8)Listar vendedores"<<endl;
+cout<<"-----------------------------------------------------"<<endl;
+cout<<"-0)Salir"<<endl;
 cout<<"-----------------------------------------------------"<<endl;
 cout<<"Eliga la opcion que desee:";
 cin>>opcion;
 switch(opcion){
+case 0:
+    system("cls");
+    menu();
+    break;
 case 1:
     system("cls");
-    obj.cargarVendedor();
-    obj.registrarVendedor(obj);
-
+    objV.cargarVendedor();
+    objV.registrarVendedor(objV);
+    break;
 case 2:
+    system("cls");
+    objV.bajaVendedores();
     break;
 case 3:
     system("cls");
@@ -431,11 +460,114 @@ case 4:
     break;
 case 5:
     system("cls");
+    objS.listarSolicitudes();
+    break;
+case 6:
+    system("cls");
+    objS.aprobarSolicitudDeAlta();
+    break;
+case 7:
+    system("cls");
     objT.darDeBajaTickets();
     break;
+case 8:
+    system("cls");
+    objV.listarVendedores();
+    break;
+}
+}
+}
 
+void estadoDeMiSolicitud(){
+FILE *buscarMiSolicitud;
+buscarMiSolicitud=fopen("Solicitud.dat","rb");
+if(buscarMiSolicitud==NULL){
+    cout<<"Error al encontrar su solicitud"<<endl;
+}
+Solicitud objS;
+Vendedores objV;
+int idS;
+cout<<"Ingrese el ID de su solicitud:";
+cin>>idS;
+bool aprobado=false;
+char nombre[30];
+char correo[35];
+int dni;
+char clave[20];
+char clave2[20];
+int id;
+while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
+    if(idS==objS.getIdSolicitud() && objS.getEstado()==false){
+        objS.setEstado(true);
+        aprobado=true;
+        strcpy(nombre,objS.getNombre());
+        strcpy(correo,objS.getCorreo());
+        dni=objS.getDni();
+        break;
+        }else{
+        cout<<"Su solicitud fue aprobado o no fue encontrada..."<<endl;
+        fclose(buscarMiSolicitud);
+        system("pause");
+        system("cls");
+        return;
+        }
+        }
+if(!aprobado){
+    cout<<"Su solicitud no fue aprobada,sera aprobada a la brevedad gracias..."<<endl;
+    fclose(buscarMiSolicitud);
+}else{
+cout<<"Su solicitud fue aprobada..."<<endl;
+system("pause");
+system("cls");
+
+FILE *Nuevoalta;
+Nuevoalta=fopen("Vendedores.dat","ab");
+if(Nuevoalta==NULL){
+    cout<<"Error al dar de alta"<<endl;
+    fclose(Nuevoalta);
+    return;
+}
+cout<<"Ingrese su clave para terminar su alta:";
+cin.ignore();
+cin.getline(clave,20,'\n');
+
+cout<<"Vuelva a ingresar su clave:";
+cin.getline(clave2,20,'\n');
+
+if(strcmp(clave,clave2)==0){
+ id=generarId();
+ objV.setNombre(nombre);
+ objV.setId(id);
+ objV.setCorreo(correo);
+ objV.setClave(clave);
+ objV.setDni(dni);
+ fwrite(&objV,sizeof(Vendedores),1,Nuevoalta);
+ cout<<"Proceso finalizado fue dato de alta en el sistema correctamente"<<endl;
+ fclose(Nuevoalta);
 }
 }
+fclose(buscarMiSolicitud);
+system("pause");
+system("cls");
+}
+
+ int generarId(){
+   FILE *generar;
+   int dato=0;
+   generar=fopen("Vendedores.dat","rb");
+   if(generar==NULL){
+    dato=1;
+    fclose(generar);
+    return dato;
+   }
+   Vendedores obj;
+   while(fread(&obj,sizeof(Vendedores),1,generar)!=0){
+    dato++;
+   }
+   fclose(generar);
+   return dato+1;
+    }
+
 
 void bienvenidoUsuario(int id){
 FILE *buscarVendedor;
@@ -453,7 +585,6 @@ while(fread(&obj,sizeof(Vendedores),1,buscarVendedor)!=0){
 cout<<"Bienvenido al sistema "<<nombre<<endl;
 fclose(buscarVendedor);
 }
-
 
 
 

@@ -80,35 +80,10 @@ public:
     cout << "Ingrese el nombre del vendedor: ";
     cin.ignore();
     cin.getline(nombre, 30,'\n');
-    if(strlen(nombre) == 0){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"Nombre: ";
-    cin.getline(nombre,30);
-    }
     setNombre(nombre);
-
     cout << "Ingrese el correo: ";
     cin.getline(correo, 35,'\n');
-    if(strlen(correo) == 0){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"Correo: ";
-    cin.getline(correo,35);
-    }
-    FILE *validacion;
-    validacion=fopen("Vendedores.dat","rb");
-    if(validacion==NULL){return;}
-    Vendedores obj;
-    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
-    if(strcmp(obj.getCorreo(),correo)==0){
-    cout<<"Correo ya registrado"<<endl;
-    cout<<"Correo: ";
-    cin.getline(correo,30);
-    }
-    }
-    fclose(validacion);
     setCorreo(correo);
-
-
     cout << "Ingrese la clave:";
     char ch;
     int index = 0;
@@ -129,26 +104,9 @@ public:
     }
     setClave(clave);
     cout << endl;
-
     cout << "Ingrese el DNI:";
     cin >> dni;
-    if(dni==NULL){
-    cout<<"Campo incompleto"<<endl;
-    cout<<"D.N.I: ";
-    cin>>dni;
-    }
-    validacion=fopen("Vendedores.dat","rb");
-    if(validacion==NULL){return;}
-    while(fread(&obj,sizeof(Vendedores),1,validacion)!=0){
-    if(obj.getDni()==dni){
-    cout<<"D.N.I ya registrado"<<endl;
-    cout<<"D.N.I: ";
-    cin>>dni;
-    }
-    }
     setDni(dni);
-
-
     idVendedor=generarIdVendedor();
     cout<<"------------------------------------------------------------"<<endl;
     cout<<"Vendedor registrado correctamente"<<endl;
@@ -166,14 +124,15 @@ public:
    generar=fopen("Vendedores.dat","rb");
    if(generar==NULL){
     dato=1;
+    fclose(generar);
     return dato;
    }
    Vendedores obj;
    while(fread(&obj,sizeof(Vendedores),1,generar)!=0){
     dato++;
    }
-   return dato+1;
    fclose(generar);
+   return dato+1;
     }
 
 void registrarVendedor(Vendedores obj){
@@ -272,6 +231,40 @@ default:
 }
 }
 
+void bajaVendedores(){
+FILE *baja;
+baja=fopen("Vendedores.dat","rb+");
+if(baja==NULL){
+    cout<<"Error al dar de baja vendedor..."<<endl;
+}
+bool encontrado=false;
+int id;
+Vendedores objV;
+cout<<"Ingrese el id del vendedor que desea dar de baja:";
+cin>>id;
+while(fread(&objV,sizeof(Vendedores),1,baja)!=0){
+    if(objV.getEstado()==true){
+        if(objV.getIdVendedor()==id){
+            encontrado=true;
+            long posicion=ftell(baja)-sizeof(Vendedores);
+            objV.setEstado(false);
+            fseek(baja,posicion,SEEK_SET);
+            fwrite(&objV,sizeof(Vendedores),1,baja);
+            cout<<"Vendedor dado de baja correctamente..."<<endl;
+            break;
+            system("pause");
+        }
+    }else{
+    cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+    break;
+    system("pause");
+    }
+}
+fclose(baja);
+system("cls");
+}
+
+
 void listarVendedores(){
 FILE *listaV;
 listaV=fopen("Vendedores.dat","rb");
@@ -361,7 +354,6 @@ case 4:
     break;
 case 0:
     system("cls");
-    //menuDeVendedores();
     break;
 default:
     cout<<"Opcion incorrecta..."<<endl;
@@ -394,6 +386,7 @@ while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
         fwrite(&obj,sizeof(Vendedores),1,nombrePersonal);
         cout<<"Nombre actualizado correctamente..."<<endl;
         system("pause");
+        break;
     }
 }
 if(!encontrado){
@@ -428,6 +421,7 @@ while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
         fwrite(&obj,sizeof(Vendedores),1,correoPersonal);
         cout<<"Correo actualizado correctamente..."<<endl;
         system("pause");
+        break;
     }
 }
 if(!encontrado){
@@ -462,6 +456,7 @@ while(fread(&obj,sizeof(Vendedores),1,clavePersonal)!=0){
         fwrite(&obj,sizeof(Vendedores),1,clavePersonal);
         cout<<"Clave actualizada correctamente..."<<endl;
         system("pause");
+        break;
     }
 }
 if(!encontrado){
@@ -495,6 +490,7 @@ while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
         fwrite(&obj,sizeof(Vendedores),1,dniPersonal);
         cout<<"Dni actualizado correctamente..."<<endl;
         system("pause");
+        break;
     }
 }
 if(!encontrado){
