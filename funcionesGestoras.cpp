@@ -18,96 +18,20 @@ rlutil::setColor(15);
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
 rlutil::cls();
-for(int j=1;j<121;j++){
-        rlutil::locate(j,1);
-         cout<<char(176);
-}
-
-/*
-for(int j=1;j<121;j++){
-        rlutil::locate(j,30);
-         cout<<char(176);
-}
-
-for(int j=20;j<100;j++){
-        rlutil::locate(j,3);
-         cout<<"-";
-}
-for(int j=20;j<100;j++){
-        rlutil::locate(j,27);
-         cout<<"-";
-}
-
-while(true){
-    rlutil::locate(45,7);
-    cout<<"BIENVENIDO AL MENU PRINCIPAL"<<endl;
-    rlutil::locate(45,9);
-    cout<<"1-)Iniciar sesion"<<endl;
-    rlutil::locate(45,11);
-    cout<<"2-)Recuperar clave"<<endl;
-    rlutil::locate(45,13);
-    cout<<"3-)Generar solicitud de alta en el sistema"<<endl;
-    rlutil::locate(45,15);
-    cout<<"4-)Ver estado de mi solicitud"<<endl;
-    rlutil::locate(45,17);
-    cout<<"5-)Soporte"<<endl;
-    rlutil::locate(45,19);
-    cout<<"0-)Salir del programa"<<endl;
-    rlutil::locate(45,22);
-    cout<<"Ingrese la opcion que desee:";
-    cin>>opcion;
-    switch(opcion){
-case 0:
-    return;
-case 1:
-    system("cls");
-    logeo=obj.iniciarSesion();
-    if(logeo!=0){
-        system("cls");
-        menuDeVendedores(logeo);
-    }
-    break;
-case 2:
-    system("cls");
-    recuperarClave();
-    break;
-case 3:
-    system("cls");
-    objS.cargarSolicitud();
-    objS.nuevaSolicitud(objS);
-    break;
-case 4:
-    system("cls");
-    estadoDeMiSolicitud();
-     system("cls");
-    break;
-case 5:
-    system("cls");
-    logeoAdmin=objA.logeoDeUsuariosAdministradores();
-    if(logeoAdmin==true){
-        system("cls");
-        menuDeSoporte();
-    }
-    break;
-default:
-    cout<<"Esta opcion no existe"<<endl;
-    }
-}
-
-*/
-
 do{
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
-rlutil::locate(45,10);
+rlutil::locate(1,1);
 cout<<" GROUP 51 CAR CENTER ";
+rlutil::locate(45,6);
+cout<<"BIENVENIDO AL SISTEMA GESTOR";
 rlutil::hidecursor();
-GraficarOpiciones(" INICIAR SESION ",40,12,y==0,15,0);
-GraficarOpiciones(" OLVIDE MI CLAVE ",40,13,y==1,15,0);
-GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",40,14,y==2,15,0);
-GraficarOpiciones(" VER ESTADO DE MI SOLICITUD ",40,15,y==3,15,0);
-GraficarOpiciones(" SOPORTE ",40,16,y==4,15,0);
-GraficarOpiciones(" SALIR ",40,17,y==5,15,0);
+GraficarOpiciones(" INICIAR SESION ",45,8,y==0,15,0);
+GraficarOpiciones(" OLVIDE MI CLAVE ",45,10,y==1,15,0);
+GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",45,12,y==2,15,0);
+GraficarOpiciones(" VER ESTADO DE MI SOLICITUD ",45,14,y==3,15,0);
+GraficarOpiciones(" SOPORTE ",45,16,y==4,15,0);
+GraficarOpiciones(" SALIR ",45,18,y==5,15,0);
 switch(rlutil::getkey()){
 case 14:
     y--;
@@ -220,7 +144,15 @@ Auto objAuto;
 TicketAdmin objT;
 int opcion;
 while(true){
-    rlutil::locate(3,2);
+for(int j=1;j<121;j++){
+rlutil::locate(j,1);
+cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,30);
+cout<<char(176);
+}
+    rlutil::locate(3,3);
     bienvenidoUsuario(id);
     rlutil::locate(45,7);
     cout<<"1-)Clientes"<<endl;
@@ -522,19 +454,19 @@ int y=0;
 bool control_menu_soporte=true;
 do{
 rlutil::setBackgroundColor(rlutil::BLACK);
-rlutil::setColor(rlutil::LIGHTGREEN);
+rlutil::setColor(rlutil::BLACK);
 rlutil::locate(2,2);
 cout<<"BIENVENIDO AL MENU DE SOPORTE...";
 rlutil::hidecursor();
-GraficarOpiciones("Dar de alta vendedores ",3,5,y==0,10,0);
-GraficarOpiciones("Dar de baja vendedores ",3,6,y==1,10,0);
-GraficarOpiciones("Editar vendedores ",3,7,y==2,10,0);
-GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",3,8,y==3,10,0);
-GraficarOpiciones("Mostrar solicitudes de alta ",3,9,y==4,10,0);
-GraficarOpiciones("Aprobar solicitudes de alta ",3,10,y==5,10,0);
-GraficarOpiciones("Mostrar solicitudes de alta ",3,11,y==6,10,0);
-GraficarOpiciones("Cerrar ticket ",3,12,y==7,10,0);
-GraficarOpiciones("Salir ",3,13,y==8,10,0);
+GraficarOpiciones("Dar de alta vendedores ",45,5,y==0,10,0);
+GraficarOpiciones("Dar de baja vendedores ",45,7,y==1,10,0);
+GraficarOpiciones("Editar vendedores ",45,9,y==2,10,0);
+GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,11,y==3,10,0);
+GraficarOpiciones("Mostrar solicitudes de alta ",45,13,y==4,10,0);
+GraficarOpiciones("Aprobar solicitudes de alta ",45,15,y==5,10,0);
+GraficarOpiciones("Dar de baja ticket ",45,17,y==6,10,0);
+GraficarOpiciones("Listar vendedores",45,19,y==7,10,0);
+GraficarOpiciones("Salir ",45,21,y==8,10,0);
 switch(rlutil::getkey()){
 case 14:
     y--;
@@ -570,6 +502,7 @@ case 1:
    case 4:
        system("cls");
        objS.listarSolicitudes();
+       break;
    case 5:
        system("cls");
        objS.aprobarSolicitudDeAlta();
@@ -586,81 +519,11 @@ case 1:
        rlutil::setBackgroundColor(rlutil::BLACK);
        system("cls");
        control_menu_soporte=false;
-
     break;
    }
 break;
 }
 }while(control_menu_soporte);
-
-
-
-/*
-int opcion;
-while(true){
-cout<<"Bienvenido al menu de soporte..."<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-1)Dar de alta vendedores"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-2)Dar de baja vendedores"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-3)Editar vendedores"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-4)Mostrar tickets generados en el sistema de soporte"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-5)Mostrar solicitudes de alta"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-6)Aprobar solicitudes de alta"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-7)Cerrar ticket"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-8)Listar vendedores"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"-0)Salir"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
-cout<<"Eliga la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 0:
-    system("cls");
-    menu();
-    break;
-case 1:
-    system("cls");
-    objV.cargarVendedor();
-    objV.registrarVendedor(objV);
-    break;
-case 2:
-    system("cls");
-    objV.bajaVendedores();
-    break;
-case 3:
-    system("cls");
-    objV.menuMiCuenta();
-    break;
-case 4:
-    system("cls");
-    objT.mostrarTickets();
-    break;
-case 5:
-    system("cls");
-    objS.listarSolicitudes();
-    break;
-case 6:
-    system("cls");
-    objS.aprobarSolicitudDeAlta();
-    break;
-case 7:
-    system("cls");
-    objT.darDeBajaTickets();
-    break;
-case 8:
-    system("cls");
-    objV.listarVendedores();
-    break;
-}
-}
-*/
 }
 
 void estadoDeMiSolicitud(){
@@ -848,34 +711,6 @@ rlutil::locate(52,7);
 cout<<"INICIO DE SESION";
 GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
 GraficarCeldas(38,80,18,"CONTRASENA");
-//rlutil::locate(39,13);
-//cin>>correo;
-//rlutil::locate(39,18);
-//cin>>clave;
-//int y=0;
-//bool control=true;
-//do{
-//rlutil::hidecursor();
-//GraficarOpiciones("INICIAR SESION",51,22,y==0);
-//GraficarOpiciones("     SALIR    ",51,23,y==1);
-//switch(rlutil::getkey()){
-//case 14:
-  //  y--;
-   // if(y<0){
-    //y=0;
-   // }
-   // break;
-//case 15:
-//    y++;
-  //  if(y>1){
-    //    y=1;
- //   }
-   // break;
-//case 1:
-  //  control=false;
-
-//}
-//}while(control);
 }
 
 

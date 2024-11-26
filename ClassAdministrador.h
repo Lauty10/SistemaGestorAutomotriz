@@ -64,20 +64,12 @@ public:
         cin.getline(claveAdmin, 20, '\n');
         for (int j = 0; j < 4; j++) {
             if (strcmp(admnis[j].getCorreo(), correoAdmin) == 0 && strcmp(admnis[j].getClave(), claveAdmin) == 0) {
-                //loginExitoso = true;
-                //cout << endl;
-                //cout << "Credenciales de administrador correctas..." << endl;
-                //cout << "Iniciando sesion..." << endl;
-                //system("pause");
                 return true;
             }
         }
-        //if (!loginExitoso) {
-            //cout << "Credenciales incorrectas. Intentelo nuevamente..." << endl;
-            //system("pause");
-            //system("cls");
-            return false;
-        //}
+        system("cls");
+        return false;
+
     }
 
 

@@ -132,7 +132,6 @@ while(fread(&obj,sizeof(Solicitud),1,soli)!=0){
         cout<<"Correo del usuario a dar de alta:"<<obj.getCorreo()<<endl;
         cout<<"Dni del usuario a dar de alta:"<<obj.getDni()<<endl;
         cout<<"El id de la solicitud es:"<<obj.getIdSolicitud()<<endl;
-
         cout<<"------------------------------------------------------------"<<endl;
     }
 }

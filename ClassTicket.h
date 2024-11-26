@@ -11,7 +11,7 @@ private:
     bool ticket;
 
 public:
-    TicketAdmin(int i = 0, const char* f = "01/01/1990", const char* iT = "XXX", const char* uT = "usuario123@gmail.com",bool t=false) {
+    TicketAdmin(int i = 0, const char* f = "01/01/1990", const char* iT = "XXX", const char* uT = "usuario123@gmail.com", bool t=false) {
         strcpy(this->fechaActual, f);
         strcpy(this->infoTicket, iT);
         strcpy(this->usuarioTicket, uT);
@@ -151,7 +151,7 @@ system("cls");
 
 void darDeBajaTickets(){
 FILE *baja;
-baja=fopen("Ticket.dat","rb");
+baja=fopen("Ticket.dat","rb+");
 if(baja==NULL){
 cout<<"ESTE ARCHIVO NO SE PUDO ABRIR"<<endl;
 return;
@@ -163,20 +163,24 @@ cout<<"Ingrese el id del ticket a dar de baja: ";
 cin>>i;
 
 while(fread(&objA,sizeof(TicketAdmin),1,baja)!=0){
-if(objA.getTicket()==true&&objA.getId()==i){
+if(objA.getTicket()==true && objA.getId()==i){
 objA.setTicket(false);
 encontrado=true;
 long posicion=ftell(baja)-sizeof(TicketAdmin);
 fseek(baja,posicion,SEEK_SET);
 fwrite(&objA,sizeof(TicketAdmin),1,baja);
 cout<<"Ticket dado de baja correctamente"<<endl;
+system("pause");
 break;
 }
 }
 if(!encontrado){
 cout<<"NO SE ENCONTRO EL ID INGRESADO"<<endl;
+system("pause");
+system("cls");
 return;
 }
+system("cls");
 fclose(baja);
 }
 

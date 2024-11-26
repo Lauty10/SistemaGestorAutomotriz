@@ -162,6 +162,7 @@ int iniciarSesion() {
     bool inicio = false;
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
+    cin.ignore();
     rlutil::locate(39,18);
     char ch;
     int index = 0;
@@ -250,13 +251,13 @@ while(fread(&objV,sizeof(Vendedores),1,baja)!=0){
             fseek(baja,posicion,SEEK_SET);
             fwrite(&objV,sizeof(Vendedores),1,baja);
             cout<<"Vendedor dado de baja correctamente..."<<endl;
+             system("pause");
             break;
-            system("pause");
         }
     }else{
     cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
-    break;
     system("pause");
+    break;
     }
 }
 fclose(baja);
@@ -313,8 +314,10 @@ while(fread(&listaV,sizeof(Vendedores),1,buscarV)!=0){
 }
 if(!buscado){
     cout<<"El id del vendedor no pudo ser encontrado..."<<endl;
+    system("pause");
 }
 system("cls");
+fclose(buscarV);
 }
 
 void menuMiCuenta(){

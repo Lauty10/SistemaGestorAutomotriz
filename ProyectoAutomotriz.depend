@@ -79,12 +79,12 @@
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
 	<string.h>
 
-1732550686 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732631413 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
 
-1732548904 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 	"ClassFecha.h"
@@ -95,10 +95,11 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732508234 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732632154 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
+	"rlutil.h"
 
 1732494040 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
@@ -118,13 +119,14 @@
 
 1732413077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
-1732502073 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
+1732628474 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
 	<cstring>
 	<chrono>
 	<cstdio>
+	"rlutil.h"
 
-1732495001 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1732630513 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
 1732463200 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
@@ -136,10 +138,10 @@
 1732473503 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732543681 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1732628661 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
-1732548729 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\rlutil.h
+1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
