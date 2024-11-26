@@ -135,10 +135,9 @@ void altaAuto(){
     char nombreAuto[20];
     char marcaAuto[20];
     float precioAuto;
-    bool estadoA = false;
+    bool estadoA = false,contrl_va_pre=true;
     idUnico = generarIdAuto();
     obj.setIdAuto(idUnico);
-
     estiloAuto();
     rlutil::locate(25,10);
     cout << "Por favor, ingrese el nombre del nuevo auto para darlo de alta en el sistema..." << endl;
@@ -148,7 +147,6 @@ void altaAuto(){
     obj.NombreV(nombreAuto);
     obj.setNombreAuto(nombreAuto);
     system("cls");
-
     estiloAuto();
     rlutil::locate(25,10);
     cout << "Por favor, ingrese la marca del nuevo auto para darlo de alta en el sistema..." << endl;
@@ -158,18 +156,29 @@ void altaAuto(){
     obj.marcaV(marcaAuto);
     obj.setMarcaAuto(marcaAuto);
     system("cls");
-
     estiloAuto();
     rlutil::locate(25,10);
     cout << "Por favor, ingrese el nombre del nuevo auto para darlo de alta en el sistema..." << endl;
-    rlutil::locate(45,14);
-    cout << "Ingrese el precio del auto: ";
-    cin >> precioAuto;
-    obj.precioV(precioAuto);
-    obj.setPrecioAuto(precioAuto);
+    do{
+       rlutil::showcursor();
+       rlutil::locate(45,14);
+       cout << "Ingrese el precio del auto: ";
+       cin >> precioAuto;
+       cin.ignore();
+       if(obj.precioV(precioAuto)){
+        contrl_va_pre=false;
+        }
+       else{rlutil::locate(45,16);
+       cout<<"Error: Campo incompleto o precio invalido.";
+       rlutil::locate(45,17);
+       cout<<"Por favor intentelo de nuevo.";
+       rlutil::locate(45,14);
+       cout << "                                                                     ";
+       }
+    }while(contrl_va_pre);
     system("cls");
-
-    cin.ignore();
+    rlutil::hidecursor();
+    obj.setPrecioAuto(precioAuto);
     estadoA = true;
     obj.setEstado(estadoA);
     estiloAuto();
@@ -281,6 +290,7 @@ int idBuscado;
 rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
+cin.ignore();
 while(fread(&obj,sizeof(Auto),1,nombre)!=0){
 if(idBuscado==obj.getId()){
 encontrado=true;
@@ -293,7 +303,6 @@ long longitud=ftell(nombre)-sizeof(Auto);
 char nuevoNombre[20];
 rlutil::locate(45,16);
 cout<<"Ingresa el nombre:";
-cin.ignore();
 cin.getline(nuevoNombre,20,'\n');
 obj.NombreV(nuevoNombre);
 obj.setNombreAuto(nuevoNombre);
@@ -342,7 +351,7 @@ int idBuscado;
 rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
-
+cin.ignore();
 while(fread(&obj,sizeof(Auto),1,marca)!=0){
 if(idBuscado==obj.getId()){
 encontrado=true;
@@ -355,7 +364,6 @@ long longitud=ftell(marca)-sizeof(Auto);
 char nuevaMarca[20];
 rlutil::locate(45,16);
 cout<<"Ingresa la marca:";
-cin.ignore();
 cin.getline(nuevaMarca,20,'\n');
 obj.marcaV(nuevaMarca);
 obj.setMarcaAuto(nuevaMarca);
@@ -400,7 +408,7 @@ int idBuscado;
 rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
-
+cin.ignore();
 while(fread(&obj,sizeof(Auto),1,precio)!=0){
 if(idBuscado==obj.getId()){
 encontrado=true;
@@ -414,6 +422,7 @@ float nuevoPrecio;
 rlutil::locate(45,16);
 cout<<"Ingresa el precio:";
 cin>>nuevoPrecio;
+cin.ignore();
 obj.precioV(nuevoPrecio);
 obj.setPrecioAuto(nuevoPrecio);
 fseek(precio,longitud,SEEK_SET);
@@ -449,6 +458,7 @@ int baja;
 rlutil::locate(42,12);
 cout<<"Ingrese el ID del vehiculo a dar de baja:";
 cin>>baja;
+cin.ignore();
 FILE *bajaV;
 bajaV=fopen("Vehiculo.dat","rb+");
 
@@ -537,6 +547,7 @@ int idBuscado;
 rlutil::locate(40,8);
 cout<<"Ingrese el id del vehiculo que esta buscando:";
 cin>>idBuscado;
+cin.ignore();
 bool buscado=false;
 while(fread(&obj,sizeof(Auto),1,buscarV)!=0){
 if(idBuscado==obj.getId()){
@@ -612,14 +623,16 @@ cin.getline(f,11);
 }
 
 //PRECIO
-void precioV(float&p){
-while(p==0.0 || p<=0){
-rlutil::locate(45,16);
-cout<<"Campo incompleto o precio invalido"<<endl;
-rlutil::locate(45,18);
-cout<<"Ingrese el precio: ";
-cin>>p;
+bool precioV(float p){
+if(p==0.0 || p<=0){
+   //rlutil::locate(45,16);
+   //cout<<"Campo incompleto o precio invalido"<<endl;
+   //rlutil::locate(45,18);
+   //cout<<"Ingrese el precio: ";
+   return false;
+   //cin>>p;
 }
+return true;
 }
 
 void estiloAuto(){

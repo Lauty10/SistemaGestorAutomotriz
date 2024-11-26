@@ -305,7 +305,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732639578 source:c:\users\sol\desktop\lastima\sistemagestorautomotriz\funcionesgestoras.cpp
+1732641033 source:c:\users\sol\desktop\lastima\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
@@ -321,7 +321,7 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732639842 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classvendedor.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
@@ -341,28 +341,28 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1732635015 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classclientes.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
-1732633261 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classfecha.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classfecha.h
 
 1732633261 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classrecaudaciones.h
 
-1732633261 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classauto.h
+1732645894 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classauto.h
 	<string.h>
 
-1732636458 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classadministrador.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classadministrador.h
 	<iostream>
 	<cstring>
 	<chrono>
 	<cstdio>
 	"rlutil.h"
 
-1732633261 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classticket.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732626201 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classsolicitudalta.h
+1732641033 c:\users\sol\desktop\lastima\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732626201 source:c:\users\sol\desktop\lastima\sistemagestorautomotriz\main.cpp
