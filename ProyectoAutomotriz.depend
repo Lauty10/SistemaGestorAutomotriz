@@ -241,3 +241,67 @@
 1732640077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
+1732660157 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+	<conio.h>
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+	"ClassVendedor.h"
+	"ClassClientes.h"
+	"ClassFecha.h"
+	"ClassRecaudaciones.h"
+	"ClassAuto.h"
+	"ClassAdministrador.h"
+	"ClassTicket.h"
+	"ClassSolicitudAlta.h"
+	"rlutil.h"
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classvendedor.h
+	<cstring>
+	<string.h>
+	<conio.h>
+	"rlutil.h"
+
+1732570481 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classclientes.h
+	<string.h>
+	"FuncionesDeclaraciones.h"
+
+1732570481 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classfecha.h
+
+1732570481 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classrecaudaciones.h
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classauto.h
+	<string.h>
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classadministrador.h
+	<iostream>
+	<cstring>
+	<chrono>
+	<cstdio>
+	"rlutil.h"
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classticket.h
+	"ClassVendedor.h"
+
+1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+	<string.h>
+
+1732570481 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\main.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+
