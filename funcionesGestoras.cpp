@@ -10,11 +10,12 @@ void menu(){
 Vendedores obj;
 Administrador objA;
 Solicitud objS;
-int opcion,logeo;
-bool logeoAdmin;
+int opcion,logeo, y=0;
+bool logeoAdmin=false;;
 int idLogeado;
+bool control_del_menu=true;
 rlutil::setColor(15);
-rlutil::setBackgroundColor(9);
+rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
 rlutil::cls();
 for(int j=1;j<121;j++){
@@ -22,6 +23,7 @@ for(int j=1;j<121;j++){
          cout<<char(176);
 }
 
+/*
 for(int j=1;j<121;j++){
         rlutil::locate(j,30);
          cout<<char(176);
@@ -91,6 +93,83 @@ default:
     cout<<"Esta opcion no existe"<<endl;
     }
 }
+
+*/
+
+do{
+rlutil::setBackgroundColor(rlutil::BLACK);
+rlutil::setColor(rlutil::WHITE);
+rlutil::locate(45,10);
+cout<<" GROUP 51 CAR CENTER ";
+rlutil::hidecursor();
+GraficarOpiciones(" INICIAR SESION ",40,12,y==0,15,0);
+GraficarOpiciones(" OLVIDE MI CLAVE ",40,13,y==1,15,0);
+GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",40,14,y==2,15,0);
+GraficarOpiciones(" VER ESTADO DE MI SOLICITUD ",40,15,y==3,15,0);
+GraficarOpiciones(" SOPORTE ",40,16,y==4,15,0);
+GraficarOpiciones(" SALIR ",40,17,y==5,15,0);
+switch(rlutil::getkey()){
+case 14:
+    y--;
+    if(y<0){
+        y=0;
+    }
+    break;
+case 15:
+    y++;
+    if(y>5){
+        y=0;
+    }
+    break;
+case 1:
+       switch(y){
+   case 0:
+        system("cls");
+        rlutil::showcursor();
+        Dibujar_Cuadro_Login();
+        logeo=obj.iniciarSesion();
+        if(logeo!=0){
+        system("cls");
+        menuDeVendedores(logeo);
+        }
+    break;
+   case 1:
+        system("cls");
+        recuperarClave();
+    break;
+   case 2:
+        system("cls");
+        objS.cargarSolicitud();
+        objS.nuevaSolicitud(objS);
+    break;
+   case 3:
+       system("cls");
+       estadoDeMiSolicitud();
+       system("cls");
+    break;
+   case 4:
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       system("cls");
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(10);
+       Dibujar_Cuadro_Login();
+       logeoAdmin=objA.logeoDeUsuariosAdministradores();
+       if(logeoAdmin==true){
+       system("cls");
+       menuDeSoporte();
+       }
+       else{cout<<"Credenciales incorrectas";}
+    break;
+   case 5:
+       system("cls");
+       control_del_menu=false;
+       system("pause");
+    break;
+   }
+break;
+}
+}while(control_del_menu);
+
 }
 
 //FUNCION PARA RECUPERAR CLAVE
@@ -439,6 +518,84 @@ Vendedores objV;
 Administrador objA;
 TicketAdmin objT;
 Solicitud objS;
+int y=0;
+bool control_menu_soporte=true;
+do{
+rlutil::setBackgroundColor(rlutil::BLACK);
+rlutil::setColor(rlutil::LIGHTGREEN);
+rlutil::locate(2,2);
+cout<<"BIENVENIDO AL MENU DE SOPORTE...";
+rlutil::hidecursor();
+GraficarOpiciones("Dar de alta vendedores ",3,5,y==0,10,0);
+GraficarOpiciones("Dar de baja vendedores ",3,6,y==1,10,0);
+GraficarOpiciones("Editar vendedores ",3,7,y==2,10,0);
+GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",3,8,y==3,10,0);
+GraficarOpiciones("Mostrar solicitudes de alta ",3,9,y==4,10,0);
+GraficarOpiciones("Aprobar solicitudes de alta ",3,10,y==5,10,0);
+GraficarOpiciones("Mostrar solicitudes de alta ",3,11,y==6,10,0);
+GraficarOpiciones("Cerrar ticket ",3,12,y==7,10,0);
+GraficarOpiciones("Salir ",3,13,y==8,10,0);
+switch(rlutil::getkey()){
+case 14:
+    y--;
+    if(y<0){
+        y=0;
+    }
+    break;
+case 15:
+    y++;
+    if(y>8){
+        y=0;
+    }
+    break;
+case 1:
+       switch(y){
+   case 0:
+        system("cls");
+        objV.cargarVendedor();
+        objV.registrarVendedor(objV);
+    break;
+   case 1:
+        system("cls");
+        objV.bajaVendedores();
+    break;
+   case 2:
+        system("cls");
+        objV.menuMiCuenta();
+    break;
+   case 3:
+       system("cls");
+       objT.mostrarTickets();
+    break;
+   case 4:
+       system("cls");
+       objS.listarSolicitudes();
+   case 5:
+       system("cls");
+       objS.aprobarSolicitudDeAlta();
+    break;
+   case 6:
+       system("cls");
+       objT.darDeBajaTickets();
+    break;
+   case 7:
+       system("cls");
+       objV.listarVendedores();
+    break;
+   case 8:
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       system("cls");
+       control_menu_soporte=false;
+
+    break;
+   }
+break;
+}
+}while(control_menu_soporte);
+
+
+
+/*
 int opcion;
 while(true){
 cout<<"Bienvenido al menu de soporte..."<<endl;
@@ -503,6 +660,7 @@ case 8:
     break;
 }
 }
+*/
 }
 
 void estadoDeMiSolicitud(){
@@ -615,5 +773,109 @@ cout<<"Bienvenido al sistema "<<nombre<<endl;
 fclose(buscarVendedor);
 }
 
+void GraficarOpiciones(const char*opc_a_graficar,int columna,int fila,bool seleccion,int color1,int color2){
+if (seleccion){
+ rlutil::setBackgroundColor(color1);
+ rlutil::setColor(color2);
+ rlutil::locate(columna-2,fila);
+ cout<< " " << opc_a_graficar << " " <<endl;
+ }
+ else{
+ rlutil::setBackgroundColor(color2);
+ rlutil::setColor(color1);
+ }
+ rlutil::locate(columna-2,fila);
+ cout<< " " << opc_a_graficar << " " <<endl;
+}
+
+
+
+void GraficarCeldas(int desde_la_columna,int hasta_la_columna,int filas,const char*texto){
+for(int x=desde_la_columna;x<hasta_la_columna;x++){
+    if(x==desde_la_columna){
+    rlutil::locate(x-1,filas);
+    cout<<char(58);
+    }
+    else if(x==(hasta_la_columna-1)){
+            rlutil::locate(x+1,filas);
+            cout<<char(58);
+           }
+    rlutil::locate(x,filas-1);
+    cout<<char(250);
+    rlutil::locate(x,filas+1);
+    cout<<char(46);
+}
+    rlutil::locate(desde_la_columna,filas-2);
+    cout<<texto;
+
+}
+
+void GraficarLineasHorizontales(int desde_la_columna,int hasta_la_columna,int fila,bool esquinas,int caracter){
+       if(esquinas){
+       rlutil::locate(desde_la_columna-1,fila);
+       cout<<char(201);
+       rlutil::locate(hasta_la_columna,fila);
+       cout<<char(187);
+       }
+       for(int x=desde_la_columna;x<hasta_la_columna;x++){
+       rlutil::locate(x,fila);
+       cout<<char(caracter);
+       }
+       }
+void GraficarLineasVerticales(int desde_la_columna,int hasta_la_columna,int fila_inicial,int fila_final,int caracter){
+       for(int x=fila_inicial;x<fila_final;x++){
+       rlutil::locate(desde_la_columna,x);
+       cout<<char(caracter);
+       rlutil::locate(hasta_la_columna,x);
+       cout<<char(caracter);
+       }
+       }
+
+void Borrar(int columnas,int desde_fila,int hasta_fila,int saltoFila){
+for(int x=desde_fila;x<=hasta_fila;x+=saltoFila){
+rlutil::locate(columnas,x);
+cout<<"                                                                                  ";
+    }
+
+}
+
+void Dibujar_Cuadro_Login(){
+GraficarLineasHorizontales(35,85,5,true,205);
+GraficarLineasHorizontales(35,85,9,false,205);
+GraficarLineasHorizontales(35,85,25,false,205);
+GraficarLineasVerticales(34,85,6,25,186);
+rlutil::locate(52,7);
+cout<<"INICIO DE SESION";
+GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
+GraficarCeldas(38,80,18,"CONTRASENA");
+//rlutil::locate(39,13);
+//cin>>correo;
+//rlutil::locate(39,18);
+//cin>>clave;
+//int y=0;
+//bool control=true;
+//do{
+//rlutil::hidecursor();
+//GraficarOpiciones("INICIAR SESION",51,22,y==0);
+//GraficarOpiciones("     SALIR    ",51,23,y==1);
+//switch(rlutil::getkey()){
+//case 14:
+  //  y--;
+   // if(y<0){
+    //y=0;
+   // }
+   // break;
+//case 15:
+//    y++;
+  //  if(y>1){
+    //    y=1;
+ //   }
+   // break;
+//case 1:
+  //  control=false;
+
+//}
+//}while(control);
+}
 
 

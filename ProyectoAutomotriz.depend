@@ -153,3 +153,66 @@
 	<sys/types.h>
 	<sys/time.h>
 
+1732570421 source:c:\users\sol\desktop\lautaro\sistemagestorautomotriz\funcionesgestoras.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+	<conio.h>
+
+1732566146 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\funcionesdeclaraciones.h
+	"ClassVendedor.h"
+	"ClassClientes.h"
+	"ClassFecha.h"
+	"ClassRecaudaciones.h"
+	"ClassAuto.h"
+	"ClassAdministrador.h"
+	"ClassTicket.h"
+	"ClassSolicitudAlta.h"
+	"rlutil.h"
+
+1732570822 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classvendedor.h
+	<cstring>
+	<string.h>
+	<conio.h>
+	"rlutil.h"
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classclientes.h
+	<string.h>
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classfecha.h
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classrecaudaciones.h
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classauto.h
+	<string.h>
+
+1732569319 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classadministrador.h
+	<iostream>
+	<cstring>
+	<chrono>
+	<cstdio>
+	"rlutil.h"
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classticket.h
+	"ClassVendedor.h"
+
+1732569142 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\classsolicitudalta.h
+	<string.h>
+
+1732562429 c:\users\sol\desktop\lautaro\sistemagestorautomotriz\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1732562429 source:c:\users\sol\desktop\lautaro\sistemagestorautomotriz\main.cpp
+	<iostream>
+	"FuncionesDeclaraciones.h"
+

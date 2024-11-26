@@ -3,6 +3,7 @@
 #include <cstring>
 #include <string.h>
 #include <conio.h>
+#include "rlutil.h"
 
 using namespace std;
 
@@ -159,10 +160,9 @@ int iniciarSesion() {
     char correoLogin[35];
     char claveLogin[20];
     bool inicio = false;
-    cout << "Ingresa su correo: ";
-    cin.ignore();
+    rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
-    cout << "Ingrese su clave: ";
+    rlutil::locate(39,18);
     char ch;
     int index = 0;
     while (true) {
@@ -184,10 +184,9 @@ int iniciarSesion() {
     while (fread(&obj, sizeof(Vendedores), 1, logeo) != 0) {
         if (strcmp(obj.getCorreo(), correoLogin) == 0 && strcmp(obj.getClave(), claveLogin) == 0) {
             inicio = true;
-            cout << "Login realizado correctamente" << endl;
+            //cout << "Login realizado correctamente" << endl;
             int idLogeado=obj.getIdVendedor();
             fclose(logeo);
-            system("pause");
             system("cls");
             return idLogeado;
         }
