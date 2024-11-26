@@ -163,6 +163,9 @@ Vendedores objVendedores;
 Auto objAuto;
 TicketAdmin objT;
 int opcion;
+GraficarLineasVerticales(40,100,4,25,186);
+GraficarLineasHorizontales(41,100,4,true,205);
+GraficarLineasHorizontales(41,100,25,false,205);
 while(true){
 for(int j=1;j<121;j++){
 rlutil::locate(j,1);
@@ -174,8 +177,6 @@ cout<<char(176);
 }
     rlutil::locate(45,3);
     bienvenidoUsuario(id);
-    rlutil::locate(42,4);
-    cout<<"--------------------------------------------------------"<<endl;
     rlutil::locate(45,7);
     cout<<"1-)Clientes"<<endl;
      rlutil::locate(45,9);
