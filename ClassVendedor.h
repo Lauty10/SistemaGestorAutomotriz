@@ -162,7 +162,6 @@ int iniciarSesion() {
     bool inicio = false;
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
-    cin.ignore();
     rlutil::locate(39,18);
     char ch;
     int index = 0;
@@ -185,7 +184,6 @@ int iniciarSesion() {
     while (fread(&obj, sizeof(Vendedores), 1, logeo) != 0) {
         if (strcmp(obj.getCorreo(), correoLogin) == 0 && strcmp(obj.getClave(), claveLogin) == 0) {
             inicio = true;
-            //cout << "Login realizado correctamente" << endl;
             int idLogeado=obj.getIdVendedor();
             fclose(logeo);
             system("cls");

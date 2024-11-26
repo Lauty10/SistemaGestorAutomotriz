@@ -171,6 +171,7 @@ cout<<char(176);
      rlutil::locate(45,21);
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
+    cin.ignore();
     switch(opcion){
     case 0:
         system("cls");
