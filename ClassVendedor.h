@@ -202,7 +202,15 @@ int iniciarSesion() {
 void funcionalidadesVendedor(int id){
 Vendedores obj;
 int opcion;
-
+while(true){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
 rlutil::locate(45,5);
 cout<<"Menu de vendedores..."<<endl;
 rlutil::locate(45,8);
@@ -213,7 +221,6 @@ rlutil::locate(45,12);
 cout<<"0-)Volver atras"<<endl;
 rlutil::locate(45,14);
 cout<<"Ingrese la opcion que desee:";
-rlutil::locate(45,16);
 cin>>opcion;
 switch(opcion){
 case 1:
@@ -229,6 +236,7 @@ case 0:
     menuDeVendedores(id);
 default:
     cout<<"Opcion incorrecta..."<<endl;
+}
 }
 }
 

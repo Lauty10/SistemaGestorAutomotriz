@@ -21,17 +21,27 @@ rlutil::cls();
 do{
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
-rlutil::locate(45,3);
-cout<<" GROUP 51 CAR CENTER ";
-rlutil::locate(45,6);
-cout<<"BIENVENIDO AL SISTEMA GESTOR";
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+rlutil::locate(40,6);
+cout<<" GROUP 51 CAR CENTER"<<endl;
+rlutil::locate(35,7);
+cout<<"-------------------------------------------------------------"<<endl;
+rlutil::locate(55,8);
+cout<<"BIENVENIDO AL SISTEMA GESTOR"<<endl;
 rlutil::hidecursor();
-GraficarOpiciones(" INICIAR SESION ",45,8,y==0,15,0);
-GraficarOpiciones(" OLVIDE MI CLAVE ",45,10,y==1,15,0);
-GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",45,12,y==2,15,0);
-GraficarOpiciones(" VER ESTADO DE MI SOLICITUD ",45,14,y==3,15,0);
-GraficarOpiciones(" SOPORTE ",45,16,y==4,15,0);
-GraficarOpiciones(" SALIR ",45,18,y==5,15,0);
+GraficarOpiciones(" INICIAR SESION ",45,11,y==0,15,0);
+GraficarOpiciones(" OLVIDE MI CLAVE ",45,13,y==1,15,0);
+GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",45,15,y==2,15,0);
+GraficarOpiciones(" VER ESTADO DE MI SOLICITUD ",45,17,y==3,15,0);
+GraficarOpiciones(" SOPORTE ",45,19,y==4,15,0);
+GraficarOpiciones(" SALIR ",45,21,y==5,15,0);
 switch(rlutil::getkey()){
 case 14:
     y--;
@@ -164,6 +174,8 @@ cout<<char(176);
 }
     rlutil::locate(45,3);
     bienvenidoUsuario(id);
+    rlutil::locate(42,4);
+    cout<<"--------------------------------------------------------"<<endl;
     rlutil::locate(45,7);
     cout<<"1-)Clientes"<<endl;
      rlutil::locate(45,9);
@@ -397,6 +409,14 @@ void realizarVenta(int idV) {
 void recaudaciones(int id){
 int opcion;
 while(true){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
 rlutil::locate(45,5);
 cout<<"Menu de recaudaciones..."<<endl;
 rlutil::locate(45,8);
@@ -408,10 +428,9 @@ cout<<"3-)Recaudacion por anio"<<endl;
 rlutil::locate(45,14);
 cout<<"4-)Recaudacion por id de vendedor"<<endl;
 rlutil::locate(45,16);
-cout<<"0-)Salir"<<endl;
+cout<<"0-)Volver atras"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese la opcion que desee:";
-rlutil::locate(45,20);
 cin>>opcion;
 Recaudacion obj;
 switch(opcion){
@@ -464,6 +483,14 @@ Vendedores objV;
 Administrador objA;
 TicketAdmin objT;
 Solicitud objS;
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
 int y=0;
 bool control_menu_soporte=true;
 do{

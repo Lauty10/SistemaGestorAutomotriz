@@ -13,8 +13,6 @@ private:
     char clave[20];
     char rol[6];
     bool estado;
-
-
 public:
     Administrador(const char* correo = "administrador@gmail.com", const char* clave = "administrador2024", const char* r = "admin", bool e = true) {
         strcpy(this->correo, correo);
@@ -68,11 +66,11 @@ public:
             }
         }
         system("cls");
+        cout<<"Error credenciales incorrectas..."<<endl;
+        system("pause");
+        system("cls");
         return false;
-
     }
-
-
 };
 
 

@@ -65,6 +65,14 @@ return estado;
  void menuAutos(int id){
  int opcion;
  while(true){
+ for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+     }
+    for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+    }
 rlutil::locate(45,5);
 cout<<"Ustes se encuentra en el menu de autos..."<<endl;
 rlutil::locate(45,8);
@@ -81,7 +89,6 @@ rlutil::locate(45,18);
 cout<<"0-)Salir"<<endl;
 rlutil::locate(45,20);
 cout<<"Ingrese la opcion que desee:";
-rlutil::locate(45,22);
 cin>>opcion;
 switch(opcion){
 case 1:

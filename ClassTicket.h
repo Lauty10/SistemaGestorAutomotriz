@@ -95,12 +95,10 @@ void generarTicket(int id) {
       rlutil::locate(1,6);
     cout << "Ingrese el asunto del ticket: ";
     cin.ignore();
-    rlutil::locate(1,7);
     cin.getline(infoTicket, 35);
     objT.setInfo(infoTicket);
     rlutil::locate(1,9);
     cout << "Ingrese la fecha del ticket (Ej: 01/01/1900): ";
-    rlutil::locate(1,10);
     cin.getline(fechaActual, 11);
     objT.setFecha(fechaActual);
     objT.setUsuario(usuario);

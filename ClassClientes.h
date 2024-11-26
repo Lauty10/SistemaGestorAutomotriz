@@ -68,6 +68,14 @@ public:
     void menuClientes(int id){
     int opcion;
     Clientes objCliente;
+    for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+     }
+    for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+    }
     rlutil::locate(45,5);
     cout<<"USTED ESTA GESTIONANDO A LOS CLIENTES..."<<endl;
     rlutil::locate(45,8);
@@ -84,7 +92,6 @@ public:
     cout<<"0-)Volver atras"<<endl;
     rlutil::locate(45,20);
     cout<<"Ingresa la opcion que desee:";
-    rlutil::locate(45,22);
     cin>>opcion;
     switch(opcion){
 case 0:
