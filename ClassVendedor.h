@@ -101,6 +101,7 @@ void cargarVendedor(){
      rlutil::locate(40,13);
     cout << "INGRESE LA CLAVE DEL NUEVO VENDEDOR: ";
     char ch;
+    cin.ignore();
     int index = 0;
     while (true) {
     ch = _getch();
@@ -125,6 +126,7 @@ void cargarVendedor(){
     rlutil::locate(40,13);
     cout << "INGRESE EL DNI DEL NUEVO VENDEDOR: ";
     cin >> dni;
+    cin.ignore();
     objVal.dniV(dni);
     setDni(dni);
     system("cls");
@@ -409,44 +411,66 @@ fclose(buscarV);
 
 void menuMiCuenta(){
 Vendedores obj;
-int opcion;
-cout<<"Bienvenido aqui podra editar los datos dos vendedores"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-1)Editar nombre"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-2)Editar correo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-3)Editar clave"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"4-)Editar dni"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"0-)Salir"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"Ingrese la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 1:
-    system("cls");
-    obj.editarMiNombre();
+bool control_editarV=true;
+int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       rlutil::locate(35,6);
+       cout<<"GROUP 51 CAR CENTER - EDITAR VENDEDORES"<<endl;
+       rlutil::locate(35,7);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(35,8);
+       cout<<"Bienvenido, aqui podras editar los datos de los vendedores"<<endl;
+       GraficarOpiciones("Editar nombre ",55,10,y==0,15,0);
+       GraficarOpiciones("Editar correo ",55,12,y==1,15,0);
+       GraficarOpiciones("Editar clave ",55,14,y==2,15,0);
+       GraficarOpiciones("Editar DNI ",55,16,y==3,15,0);
+       GraficarOpiciones("Volver atras ",55,18,y==4,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>4){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     obj.editarMiNombre();
+              break;
+              case 1:
+                     system("cls");
+                     obj.editarMiCorreo();
+              break;
+              case 2:
+                     system("cls");
+                     obj.editarMiClave();
+              break;
+              case 3:
+                     system("cls");
+                     obj.editarDni();
+              break;
+              case 4:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_editarV=false;
+
+              break;
+           }
     break;
-case 2:
-    system("cls");
-    obj.editarMiCorreo();
-    break;
-case 3:
-    system("cls");
-    obj.editarMiClave();
-    break;
-case 4:
-    system("cls");
-    obj.editarDni();
-    break;
-case 0:
-    system("cls");
-    break;
-default:
-    cout<<"Opcion incorrecta..."<<endl;
-}
+  }
+  }while(control_editarV);
 }
 
 

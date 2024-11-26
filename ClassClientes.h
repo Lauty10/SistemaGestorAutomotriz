@@ -2,7 +2,7 @@
 #define CLASSCLIENTES_H_INCLUDED
 #include <string.h>
 #include "FuncionesDeclaraciones.h"
-#include "FuncionesDeclaraciones.h"
+
 //Volver a los menus
 void menuDeVendedores(int id);
 void menu();
@@ -402,63 +402,69 @@ system("cls");
 }
 
 void modificarCliente(int id){
-int opcion;
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
+bool control_modf_cliente=true;
+int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       rlutil::locate(35,6);
+       cout<<"GROUP 51 CAR CENTER"<<endl;
+       rlutil::locate(35,7);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(45,8);
+       cout<<"AQUI PODRA EDITAR LA INFORMACION DE LOS CLIENTES"<<endl;
+       GraficarOpiciones("Editar nombre ",55,14,y==0,15,0);
+       GraficarOpiciones("Editar correo ",55,16,y==1,15,0);
+       GraficarOpiciones("Editar telefono ",55,18,y==2,15,0);
+       GraficarOpiciones("Editar DNI ",55,20,y==3,15,0);
+       GraficarOpiciones("Volver atras ",55,22,y==4,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>4){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     editarNombre();
+              break;
+              case 1:
+                     system("cls");
+                     editarCorreo();
+              break;
+              case 2:
+                     system("cls");
+                     editarTelefono();
+              break;
+              case 3:
+                     system("cls");
+                     editarDni();
+              break;
+              case 4:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_modf_cliente=false;
+                     menuDeVendedores(id);
+              break;
+           }
+    break;
+  }
+  }while(control_modf_cliente);
 }
-rlutil::locate(45,8);
-cout<<"AQUI PODRA EDITAR LA INFORMACION DE LOS CLIENTES"<<endl;
-rlutil::locate(45,10);
-cout<<"-1)Editar nombre"<<endl;
-rlutil::locate(45,12);
-cout<<"-2)Editar Correo"<<endl;
-rlutil::locate(45,14);
-cout<<"-3)Editar telefono"<<endl;
-rlutil::locate(45,16);
-cout<<"-4)Editar dni"<<endl;
-rlutil::locate(45,18);
-cout<<"-0)Volver atras"<<endl;
-rlutil::locate(45,20);
-cout<<"Eliga la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 1:
-    system("cls");
-    editarNombre();
-    break;
-case 2:
-    system("cls");
-    editarCorreo();
-    break;
-case 3:
-    system("cls");
-    editarTelefono();
-    break;
-case 4:
-    system("cls");
-    editarDni();
-    break;
-case 0:
-    system("cls");
-    menuDeVendedores(id);
-default:
-    rlutil::locate(45,15);
-    cout<<"Opcion incorrecta..."<<endl;
-}
-}
+
+
 
 void editarNombre(){
 for(int j=1;j<121;j++){
