@@ -202,15 +202,18 @@ int iniciarSesion() {
 void funcionalidadesVendedor(int id){
 Vendedores obj;
 int opcion;
+
+rlutil::locate(45,5);
 cout<<"Menu de vendedores..."<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-1)Listar vendedores"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"-2)Buscar un vendedor"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,8);
+cout<<"1-)Listar vendedores"<<endl;
+rlutil::locate(45,10);
+cout<<"2-)Buscar un vendedor"<<endl;
+rlutil::locate(45,12);
 cout<<"0-)Volver atras"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,14);
 cout<<"Ingrese la opcion que desee:";
+rlutil::locate(45,16);
 cin>>opcion;
 switch(opcion){
 case 1:

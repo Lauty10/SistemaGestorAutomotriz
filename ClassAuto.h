@@ -65,22 +65,23 @@ return estado;
  void menuAutos(int id){
  int opcion;
  while(true){
-
+rlutil::locate(45,5);
 cout<<"Ustes se encuentra en el menu de autos..."<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,8);
 cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,10);
 cout<<"2-)Modificar vehiculo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,12);
 cout<<"3-)Dar de baja vehiculo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,14);
 cout<<"4-)Listar vehiculo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,16);
 cout<<"5-)Buscar vehiculo"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,18);
 cout<<"0-)Salir"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(45,20);
 cout<<"Ingrese la opcion que desee:";
+rlutil::locate(45,22);
 cin>>opcion;
 switch(opcion){
 case 1:

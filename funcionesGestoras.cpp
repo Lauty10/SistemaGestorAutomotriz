@@ -21,7 +21,7 @@ rlutil::cls();
 do{
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
-rlutil::locate(1,1);
+rlutil::locate(45,3);
 cout<<" GROUP 51 CAR CENTER ";
 rlutil::locate(45,6);
 cout<<"BIENVENIDO AL SISTEMA GESTOR";
@@ -101,6 +101,7 @@ void recuperarClave(){
 FILE *clave;
 clave=fopen("Vendedores.dat","rb+");
 if(clave==nullptr){
+rlutil::locate(1,3);
 cout<<"ERROR AL INTENTAR ABRIR EL ARCHIVO DE REGISTROS"<<endl;
 return; }
 Vendedores objC;
@@ -108,15 +109,21 @@ int dni;
 char correo[30];
 char nuevaClave[30];
 bool encontrado=false;
+rlutil::locate(45,3);
 cout<<"Ingrese los siguientes datos para recuperar su clave: "<<endl;
+rlutil::locate(45,4);
 cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,6);
 cout<<"D.N.I: ";
 cin>>dni;
+rlutil::locate(45,8);
 cout<<"Correo: ";
 cin.ignore();
 cin.getline(correo,30,'\n');
+
 while(fread(&objC, sizeof(Vendedores),1,clave)!=0){
 if(strcmp(objC.getCorreo(),correo)==0 && objC.getDni()==dni) {
+rlutil::locate(45,10);
 cout<<"Ingrese su nueva Clave:";
 cin.ignore();
 cin.getline(nuevaClave,30,'\n');
@@ -124,14 +131,17 @@ objC.setClave(nuevaClave);
 long pos=ftell(clave)-sizeof(Vendedores);
 fseek(clave,pos,SEEK_CUR);
 fwrite(&objC, sizeof(Vendedores), 1, clave);
+rlutil::locate(45,12);
 cout << "Su nueva clave fue guardada con exito" << endl;
 encontrado=true;
 break; }
 }
 if(!encontrado){
+rlutil::locate(45,12);
 cout<<"LOS DATOS INGRESADOS NO ESTAN EN LA BASE DE DATOS"<<endl;
  }
 fclose(clave);
+rlutil::locate(45,16);
 system("pause");
 system("cls");
 }
@@ -152,7 +162,7 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,30);
 cout<<char(176);
 }
-    rlutil::locate(3,3);
+    rlutil::locate(45,3);
     bienvenidoUsuario(id);
     rlutil::locate(45,7);
     cout<<"1-)Clientes"<<endl;
@@ -387,19 +397,21 @@ void realizarVenta(int idV) {
 void recaudaciones(int id){
 int opcion;
 while(true){
+rlutil::locate(45,5);
 cout<<"Menu de recaudaciones..."<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,8);
 cout<<"1-)Recaudacion total"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,10);
 cout<<"2-)Recaudacion por mes y anio"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,12);
 cout<<"3-)Recaudacion por anio"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,14);
 cout<<"4-)Recaudacion por id de vendedor"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,16);
 cout<<"0-)Salir"<<endl;
-cout<<"-----------------------------------------------------"<<endl;
+rlutil::locate(45,18);
 cout<<"Ingrese la opcion que desee:";
+rlutil::locate(45,20);
 cin>>opcion;
 Recaudacion obj;
 switch(opcion){
@@ -425,6 +437,7 @@ case 4:
     system("cls");
     break;
 default:
+    rlutil::locate(45,22);
     cout<<"Esta opcion es incorrecta..."<<endl;
 }
 }

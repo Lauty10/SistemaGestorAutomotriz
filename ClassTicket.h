@@ -86,13 +86,21 @@ void generarTicket(int id) {
 
     TicketAdmin objT;
     int idT;
-    cout << "Por favor complete los siguientes datos para generar un ticket:" << endl;
+    rlutil::locate(1,1);
     cout << "-------------------------------------------------------------------" << endl;
+    rlutil::locate(1,3);
+    cout << "Por favor complete los siguientes datos para generar un ticket:" << endl;
+    rlutil::locate(1,5);
+    cout << "-------------------------------------------------------------------" << endl;
+      rlutil::locate(1,6);
     cout << "Ingrese el asunto del ticket: ";
     cin.ignore();
+    rlutil::locate(1,7);
     cin.getline(infoTicket, 35);
     objT.setInfo(infoTicket);
+    rlutil::locate(1,9);
     cout << "Ingrese la fecha del ticket (Ej: 01/01/1900): ";
+    rlutil::locate(1,10);
     cin.getline(fechaActual, 11);
     objT.setFecha(fechaActual);
     objT.setUsuario(usuario);
@@ -100,10 +108,12 @@ void generarTicket(int id) {
     objT.setIdT(idT);
     objT.setTicket(true);
     fwrite(&objT, sizeof(TicketAdmin), 1, nuevoT);
-    cout << "-------------------------------------------------------------------" << endl;
+    rlutil::locate(1,12);
     cout << "Ticket generado correctamente..." << endl;
+    rlutil::locate(1,14);
     cout << "El numero del ticket es: " << idT << endl;
     fclose(nuevoT);
+    rlutil::locate(1,18);
     system("pause");
     system("cls");
 }
@@ -129,16 +139,24 @@ void mostrarTickets(){
 FILE *tickets;
 tickets=fopen("Ticket.dat","rb+");
 if(tickets==NULL){
+rlutil::locate(1,6);
 cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
 return;
 }
+rlutil::locate(1,3);
+cout<<"Estos son todos los tikets"<<endl;
 TicketAdmin obj;
 while(fread(&obj,sizeof(TicketAdmin),1,tickets)!=0){
 if(obj.getTicket()==true){
+
 cout<<"Fecha: "<<obj.getFecha()<<endl;
+
 cout<<"Id del ticket: "<<obj.getId()<<endl;
+
 cout<<"Usuario: "<<obj.getUsuario()<<endl;
+
 cout<<"Informacion del ticket: "<<obj.getInfoT()<<endl;
+
 cout<<"------------------------------------------------------------"<<endl;
 }
 }
@@ -159,6 +177,7 @@ return;
 TicketAdmin objA;
 int i;
 bool encontrado=false;
+rlutil::locate(1,2);
 cout<<"Ingrese el id del ticket a dar de baja: ";
 cin>>i;
 
@@ -169,13 +188,17 @@ encontrado=true;
 long posicion=ftell(baja)-sizeof(TicketAdmin);
 fseek(baja,posicion,SEEK_SET);
 fwrite(&objA,sizeof(TicketAdmin),1,baja);
+rlutil::locate(1,4);
 cout<<"Ticket dado de baja correctamente"<<endl;
+rlutil::locate(1,8);
 system("pause");
 break;
 }
 }
 if(!encontrado){
+rlutil::locate(1,4);
 cout<<"NO SE ENCONTRO EL ID INGRESADO"<<endl;
+rlutil::locate(1,8);
 system("pause");
 system("cls");
 return;
