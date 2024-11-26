@@ -2,10 +2,13 @@
 #define CLASSCLIENTES_H_INCLUDED
 #include <string.h>
 #include "FuncionesDeclaraciones.h"
+#include "FuncionesDeclaraciones.h"
 //Volver a los menus
 void menuDeVendedores(int id);
 void menu();
 void usuarioLogeado(int id);
+void GraficarOpiciones(const char*,int,int,bool,int,int);
+void GraficarLineasHorizontales(int,int,int,bool,int);
 
 class Clientes {
 private:
@@ -66,75 +69,75 @@ public:
 
     //MENU PARA CLIENTES
     void menuClientes(int id){
-    int opcion;
     Clientes objCliente;
-    for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-    for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-    for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-     for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-      }
-    rlutil::locate(42,6);
-    cout<<"GESTIONANDO A LOS CLIENTES"<<endl;
-    rlutil::locate(38,7);
-    cout<<"--------------------------------------------------------------"<<endl;
-    rlutil::locate(65,9);
-    cout<<"GROUP 51 CAR CENTER"<<endl;
-    rlutil::locate(45,11);
-    cout<<"1-)Dar de alta cliente"<<endl;
-    rlutil::locate(45,13);
-    cout<<"2-)Dar de baja cliente"<<endl;
-    rlutil::locate(45,15);
-    cout<<"3-)Modificar cliente"<<endl;
-    rlutil::locate(45,17);
-    cout<<"4-)Listar clientes"<<endl;
-    rlutil::locate(45,19);
-    cout<<"5-)Buscar un cliente"<<endl;
-    rlutil::locate(45,21);
-    cout<<"0-)Volver atras"<<endl;
-    rlutil::locate(45,23);
-    cout<<"Ingresa la opcion que desee:";
-    cin>>opcion;
-    switch(opcion){
-case 0:
-    system("cls");
-    menuDeVendedores(id);
+    bool control_menu_clientes=true;
+    int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,4,false,205);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       GraficarLineasHorizontales(1,121,27,false,205);
+       rlutil::locate(35,6);
+       cout<<" GROUP 51 CAR CENTER"<<endl;
+       rlutil::locate(35,5);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(54,8);
+       cout<<"GESTIONANDO A LOS CLIENTES"<<endl;
+       GraficarOpiciones("Dar de alta cliente ",45,10,y==0,15,0);
+       GraficarOpiciones("Dar de baja cliente ",45,12,y==1,15,0);
+       GraficarOpiciones("Modificar cliente ",45,14,y==2,15,0);
+       GraficarOpiciones("Listar clientes ",45,16,y==3,15,0);
+       GraficarOpiciones("Buscar un cliente ",45,18,y==4,15,0);
+       GraficarOpiciones("Volver atras ",45,20,y==5,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>5){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     objCliente.cargarCliente();
+                     objCliente.darDeAltaCliente(objCliente);
+              break;
+              case 1:
+                     system("cls");
+                     objCliente.darDeBajaCliente();
+              break;
+              case 2:
+                     system("cls");
+                     objCliente.modificarCliente(id);
+              break;
+              case 3:
+                     system("cls");
+                     objCliente.listarClientes();
+              break;
+              case 4:
+                     system("cls");
+                     objCliente.buscarCliente();
+              break;
+              case 5:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_menu_clientes=false;
+              break;
+           }
     break;
-case 1:
-    system("cls");
-    objCliente.cargarCliente();
-    objCliente.darDeAltaCliente(objCliente);
-    break;
-case 2:
-    system("cls");
-    objCliente.darDeBajaCliente();
-    break;
-case 3:
-    system("cls");
-    objCliente.modificarCliente(id);
-    break;
-case 4:
-    system("cls");
-    objCliente.listarClientes();
-    break;
-case 5:
-    system("cls");
-    objCliente.buscarCliente();
-    break;
-default:
-    cout<<"Opcion no encontrada"<<endl;
-    }
-}
+  }
+  }while(control_menu_clientes);
+ }
 
 void cargarCliente(){
 idCliente=generarIdCliente();
