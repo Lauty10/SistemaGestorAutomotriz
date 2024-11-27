@@ -47,12 +47,12 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732708320 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732730878 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
 
-1732640077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+1732728477 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 	"ClassFecha.h"
@@ -63,7 +63,7 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732714358 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732731078 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
