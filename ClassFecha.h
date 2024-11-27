@@ -34,12 +34,15 @@ public:
     void cargarFecha(){
     cout<<"Ingrese el dia de la fecha:";
     cin>>dia;
+    fechaV(dia);
     setDia(dia);
     cout<<"Ingrese el mes de la fecha:";
     cin>>mes;
+    fechaV(mes);
     setMes(mes);
     cout<<"Ingrese el anio de la fecha:";
     cin>>anio;
+    fechaV(anio);
     setAnio(anio);
     cout<<"Fecha cargada correctamente..."<<endl;
     system("pause");
@@ -49,6 +52,15 @@ public:
     void mostrarFecha(){
     cout<<this->dia<<"/"<<this->mes<<"/"<<this->anio<<endl;
     }
+
+//VALIDACION
+void fechaV(int f){
+if(f==0){
+cout<<"Campo inclompleto"<<endl;
+cin>>f;
+}
+}
+
 };
 
 
