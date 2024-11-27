@@ -96,10 +96,12 @@ void generarTicket(int id) {
     cout << "Ingrese el asunto del ticket: ";
     cin.ignore();
     cin.getline(infoTicket, 35);
+    objT.ticketV(infoTicket);
     objT.setInfo(infoTicket);
     rlutil::locate(1,9);
     cout << "Ingrese la fecha del ticket (Ej: 01/01/1900): ";
     cin.getline(fechaActual, 11);
+    objT.fechaV(fechaActual);
     objT.setFecha(fechaActual);
     objT.setUsuario(usuario);
     idT = generarIdTicket();
@@ -205,6 +207,26 @@ system("cls");
 fclose(baja);
 }
 
+//VALIDACIONES
+//ASUNTO
+void ticketV(char* asunto){
+if(asunto[0]=='\0'){
+cout<<"Es necesario completar este campo"<<endl;
+cout<<"Asunto: ";
+cin.ignore();
+cin.getline(asunto,35,'\n');
+}
+}
+
+//FECHA
+void fechaV(char* f){
+if(f[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Fecha";
+cin.ignore();
+cin.getline(f,11,'\f');
+}
+}
 };
 
 
