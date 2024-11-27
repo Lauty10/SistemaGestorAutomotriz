@@ -72,13 +72,16 @@ cout<<"Bienvenido complete los datos solicitados para generar una solicitud de a
 cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
 cout<<"Ingrese su nombre:";
 cin.getline(nombre,30,'\n');
+objS.validarN(nombre);
 setNombre(nombre);
 cout<<"Ingrese su correo:";
 cin.getline(correo,35,'\n');
+objS.validarC(correo);
 setCorreo(correo);
 cout<<"Ingrese su dni:";
 cin>>dni;
 cin.ignore();
+objS.validarD(dni);
 setDni(dni);
 soli=generarIdSolicitud();
 setId(soli);
@@ -177,6 +180,69 @@ if(!buscar){
 }
 fclose(buscarS);
 system("cls");
+}
+
+
+
+//VALIDACIONES
+//Nombre
+void validarC(char* c){
+FILE *correo;
+correo=fopen("Solicitud.dat","rb");
+if(correo==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Solicitud obj;
+if(c[0]==0){
+cout<<"Campo incompleto"<<endl;
+cin.ignore();
+cin.getline(c,30,'\n');
+}
+while(fread(&obj,sizeof(Solicitud),1,correo)!=0){
+if(strcmp(obj.getCorreo(),c)==0){
+cout<<"Este correo fue dado de alta, igrese uno distinto"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(c,30,'\n');
+}
+}
+fclose(correo);
+}
+
+//NOMBRE
+void validarN(char* n){
+if(n[0]==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Nombre: ";
+cin.ignore();
+cin.getline(n,30,'\n');
+}
+}
+
+//DNI
+void validarD(int d){
+if(d==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+
+FILE *dni;
+dni=fopen("Solicitud.dat","rb");
+if(dni==NULL){
+cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
+return;
+}
+Solicitud obj;
+while(fread(&obj,sizeof(Solicitud),1,dni)!=0){
+if(obj.getDni()==d){
+cout<<"Este dni ya fue dado de alta, ingrese otro"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+}
+fclose(dni);
 }
 
 };
