@@ -211,15 +211,27 @@ for(int j=1;j<121;j++){
     rlutil::locate(j,30);
     cout<<char(176);
 }
-rlutil::locate(45,5);
-cout<<"Menu de vendedores..."<<endl;
-rlutil::locate(45,8);
+for(int j=1;j<121;j++){
+    rlutil::locate(j,25);
+    cout<<char(205);
+     }
+     for(int j=1;j<121;j++){
+     rlutil::locate(j,3);
+     cout<<char(205);
+      }
+rlutil::locate(45,7);
+cout<<"MENU DE VENDEDORES"<<endl;
+rlutil::locate(38,8);
+cout<<"------------------------------------------------"<<endl;
+rlutil::locate(60,9);
+cout<<"GROUP 51 CAR CENTER"<<endl;
+rlutil::locate(46,12);
 cout<<"1-)Listar vendedores"<<endl;
-rlutil::locate(45,10);
+rlutil::locate(46,14);
 cout<<"2-)Buscar un vendedor"<<endl;
-rlutil::locate(45,12);
+rlutil::locate(46,16);
 cout<<"0-)Volver atras"<<endl;
-rlutil::locate(45,14);
+rlutil::locate(46,18);
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 switch(opcion){
@@ -275,54 +287,109 @@ system("cls");
 
 
 void listarVendedores(){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,27);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
 FILE *listaV;
 listaV=fopen("Vendedores.dat","rb");
 if(listaV==NULL){
     cout<<"Error al listar vendedores..."<<endl;
 }
 Vendedores objV;
+int fila=9;
+rlutil::locate(50,6);
+cout<<"Estos son los vendedores en nuestro sistema"<<endl;
+rlutil::locate(30,7);
+cout<<"--------------------------------------------------------------------------------"<<endl;
 while(fread(&objV,sizeof(Vendedores),1,listaV)!=0){
     if(objV.getEstado()==true){
+    rlutil::locate(3, fila);
     cout<<"Nombre:"<<objV.getNombre()<<endl;
+    rlutil::locate(40, fila);
     cout<<"Correo:"<<objV.getCorreo()<<endl;
+    rlutil::locate(80, fila);
     cout<<"Dni:"<<objV.getDni()<<endl;
-    cout<<"Rol:"<<objV.getRol()<<endl;
-    cout<<"Estado:"<<objV.getEstado()<<endl;
+    rlutil::locate(100, fila);
     cout<<"ID:"<<objV.getIdVendedor()<<endl;
-    cout<<"------------------------------------------------------------"<<endl;
+     fila++;
+    if (fila > 25) {
+    system("cls");
+    fila = 8;
     }
-
+    }
 }
 fclose(listaV);
+rlutil::locate(45, 25);
 system("pause");
 system("cls");
 }
 
 void buscarVendedor(){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,27);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
 FILE *buscarV;
 buscarV=fopen("Vendedores.dat","rb");
 if(buscarV==NULL){
     cout<<"Error al buscar vendedor..."<<endl;
 }
 Vendedores listaV;
+rlutil::locate(50,6);
+cout<<"BUSCAR VENDEDOR EN EL SISTEMA"<<endl;
+rlutil::locate(30,8);
+cout<<"-------------------------------------------------------------------------"<<endl;
 int idBuscado;
+rlutil::locate(45,10);
 cout<<"Ingrese el id del vendedor que esta buscando:";
 cin>>idBuscado;
 bool buscado=false;
 while(fread(&listaV,sizeof(Vendedores),1,buscarV)!=0){
     if(idBuscado==listaV.getIdVendedor()){
     buscado=true;
+    rlutil::locate(45,12);
     cout<<"Vendedor encontrado:"<<endl;
+    rlutil::locate(45,14);
     cout<<"Nombre:"<<listaV.getNombre()<<endl;
+    rlutil::locate(45,16);
     cout<<"Correo:"<<listaV.getCorreo()<<endl;
+    rlutil::locate(45,18);
     cout<<"Dni:"<<listaV.getDni()<<endl;
+    rlutil::locate(45,20);
     cout<<"ID:"<<listaV.getIdVendedor()<<endl;
-    cout<<"------------------------------------------------------------"<<endl;
+    rlutil::locate(45,22);
     system("pause");
     }
 }
 if(!buscado){
+    rlutil::locate(45,12);
     cout<<"El id del vendedor no pudo ser encontrado..."<<endl;
+    rlutil::locate(45,14);
     system("pause");
 }
 system("cls");

@@ -163,9 +163,6 @@ Vendedores objVendedores;
 Auto objAuto;
 TicketAdmin objT;
 int opcion;
-GraficarLineasVerticales(40,100,4,25,186);
-GraficarLineasHorizontales(41,100,4,true,205);
-GraficarLineasHorizontales(41,100,25,false,205);
 while(true){
 for(int j=1;j<121;j++){
 rlutil::locate(j,1);
@@ -175,23 +172,31 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,30);
 cout<<char(176);
 }
-    rlutil::locate(45,3);
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,5);
+cout<<char(205);
+}
+    rlutil::locate(40,3);
     bienvenidoUsuario(id);
-    rlutil::locate(45,7);
+    rlutil::locate(45,9);
     cout<<"1-)Clientes"<<endl;
-     rlutil::locate(45,9);
-    cout<<"2-)Vendedores"<<endl;
      rlutil::locate(45,11);
-    cout<<"3-)Autos"<<endl;
+    cout<<"2-)Vendedores"<<endl;
      rlutil::locate(45,13);
-    cout<<"4-)Recaudaciones"<<endl;
+    cout<<"3-)Autos"<<endl;
      rlutil::locate(45,15);
-    cout<<"5-)Realizar Venta"<<endl;
+    cout<<"4-)Recaudaciones"<<endl;
      rlutil::locate(45,17);
-    cout<<"6-)Generar Ticket para soporte"<<endl;
+    cout<<"5-)Realizar Venta"<<endl;
      rlutil::locate(45,19);
-    cout<<"0-)Salir..."<<endl;
+    cout<<"6-)Generar Ticket para soporte"<<endl;
      rlutil::locate(45,21);
+    cout<<"0-)Salir..."<<endl;
+     rlutil::locate(45,23);
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
     cin.ignore();
@@ -418,19 +423,39 @@ for(int j=1;j<121;j++){
     rlutil::locate(j,30);
     cout<<char(176);
 }
-rlutil::locate(45,5);
-cout<<"Menu de recaudaciones..."<<endl;
-rlutil::locate(45,8);
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,27);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+rlutil::locate(42,5);
+cout<<"RECAUDACIONES DE LA CONSESCIONARIA"<<endl;
+rlutil::locate(38,6);
+cout<<"--------------------------------------------------------------"<<endl;
+rlutil::locate(65,7);
+cout<<"GROUP 51 CAR CENTER"<<endl;
+rlutil::locate(46,10);
 cout<<"1-)Recaudacion total"<<endl;
-rlutil::locate(45,10);
+rlutil::locate(46,12);
 cout<<"2-)Recaudacion por mes y anio"<<endl;
-rlutil::locate(45,12);
+rlutil::locate(46,14);
 cout<<"3-)Recaudacion por anio"<<endl;
-rlutil::locate(45,14);
+rlutil::locate(46,16);
 cout<<"4-)Recaudacion por id de vendedor"<<endl;
-rlutil::locate(45,16);
+rlutil::locate(46,18);
 cout<<"0-)Volver atras"<<endl;
-rlutil::locate(45,18);
+rlutil::locate(46,20);
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 Recaudacion obj;

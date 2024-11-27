@@ -66,28 +66,40 @@ return estado;
  int opcion;
  while(true){
  for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
+rlutil::locate(j,1);
+cout<<char(176);
      }
-    for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
+for(int j=1;j<121;j++){
+rlutil::locate(j,30);
+cout<<char(176);
     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,27);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
 rlutil::locate(45,5);
-cout<<"Ustes se encuentra en el menu de autos..."<<endl;
-rlutil::locate(45,8);
-cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
+cout<<"GESTIONANDO AUTOS"<<endl;
+rlutil::locate(45,6);
+cout<<"------------------------------------------------"<<endl;
+rlutil::locate(65,7);
+cout<<"GROUP 51 CAR CENTER"<<endl;
 rlutil::locate(45,10);
-cout<<"2-)Modificar vehiculo"<<endl;
+cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
 rlutil::locate(45,12);
-cout<<"3-)Dar de baja vehiculo"<<endl;
+cout<<"2-)Modificar vehiculo"<<endl;
 rlutil::locate(45,14);
-cout<<"4-)Listar vehiculo"<<endl;
+cout<<"3-)Dar de baja vehiculo"<<endl;
 rlutil::locate(45,16);
-cout<<"5-)Buscar vehiculo"<<endl;
+cout<<"4-)Listar vehiculo"<<endl;
 rlutil::locate(45,18);
-cout<<"0-)Salir"<<endl;
+cout<<"5-)Buscar vehiculo"<<endl;
 rlutil::locate(45,20);
+cout<<"0-)Volver atras"<<endl;
+rlutil::locate(45,22);
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 switch(opcion){
