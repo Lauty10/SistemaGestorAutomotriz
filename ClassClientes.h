@@ -757,7 +757,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Clientes objC;
-if(dato==NULL){
+if(dato[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Correo: ";
 cin.ignore();
