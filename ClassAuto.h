@@ -158,15 +158,19 @@ void altaAuto(){
     cout << "Ingrese el nombre del auto: ";
     cin.ignore();
     cin.getline(nombreAuto, 20, '\n');
+    obj.NombreV(nombreAuto);
     obj.setNombreAuto(nombreAuto);
     cout << "Ingrese la marca del auto: ";
     cin.getline(marcaAuto, 20, '\n');
+    obj.marcaV(marcaAuto);
     obj.setMarcaAuto(marcaAuto);
     cout << "Ingrese la fecha de fabricacion del auto: ";
     cin.getline(anioVehiculo, 11, '\n');
+    obj.fechaV(anioVehiculo);
     obj.setAnio(anioVehiculo);
     cout << "Ingrese el precio del auto: ";
     cin >> precioAuto;
+    obj.precioV(precioAuto);
     obj.setPrecioAuto(precioAuto);
     estadoA = true;
     obj.setEstado(estadoA);
@@ -265,6 +269,7 @@ char nuevoNombre[20];
 cout<<"Ingresa el nombre:";
 cin.ignore();
 cin.getline(nuevoNombre,20,'\n');
+obj.NombreV(nuevoNombre);
 obj.setNombreAuto(nuevoNombre);
 fseek(nombre,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,nombre);
@@ -311,6 +316,7 @@ char nuevaMarca[20];
 cout<<"Ingresa la marca:";
 cin.ignore();
 cin.getline(nuevaMarca,20,'\n');
+obj.marcaV(nuevaMarca);
 obj.setMarcaAuto(nuevaMarca);
 fseek(marca,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,marca);
@@ -354,6 +360,7 @@ long longitud=ftell(anio)-sizeof(Auto);
 char nuevoAnio[10];
 cout<<"Ingresa la fecha de fabricacion:";
 cin.getline(nuevoAnio,10,'\n');
+obj.fechaV(nuevoAnio);
 obj.setAnio(nuevoAnio);
 fseek(anio,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,anio);
@@ -398,6 +405,7 @@ long longitud=ftell(precio)-sizeof(Auto);
 int nuevoPrecio;
 cout<<"Ingresa el precio:";
 cin>>nuevoPrecio;
+obj.precioV(nuevoPrecio);
 obj.setPrecioAuto(nuevoPrecio);
 fseek(precio,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,precio);
@@ -507,6 +515,49 @@ if(!buscado){
 }
 system("cls");
 fclose(buscarV);
+}
+
+//VALIDACIONES
+//NOMBRE
+void NombreV(char* n){
+if(n[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Nombre: ";
+cin.ignore();
+cin.getline(n,30,'\n');
+}
+}
+
+
+//Marca
+void marcaV(char* m){
+if(m[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Marca: ";
+cin.ignore();
+cin.getline(m,20,'\n');
+}
+}
+
+
+//FECHA
+void fechaV(char* f){
+if(f[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Fecha";
+cin.ignore();
+cin.getline(f,11,'\f');
+}
+}
+
+
+//PRECIO
+void precioV(float p){
+if(p==0.0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Precio: ";
+cin>>p;
+}
 }
 };
 
