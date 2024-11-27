@@ -9,7 +9,7 @@ using namespace std;
 void menu(){
 Vendedores obj;
 Administrador objA;
-Solicitud objS;
+Solicitud objSolicitud;
 int opcion,logeo, y=0;
 bool logeoAdmin=false;;
 int idLogeado;
@@ -73,8 +73,8 @@ case 1:
     break;
    case 2:
         system("cls");
-        objS.cargarSolicitud();
-        objS.nuevaSolicitud(objS);
+        objSolicitud.cargarSolicitud();
+        objSolicitud.nuevaSolicitud(objSolicitud);
     break;
    case 3:
        system("cls");
@@ -656,7 +656,7 @@ char clave[20];
 char clave2[20];
 int id;
 while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
-    if(idS==objS.getIdSolicitud()){
+    if(idS==objS.getId()){
         if(objS.getAprobado()==true){
         strcpy(nombre,objS.getNombre());
         strcpy(correo,objS.getCorreo());

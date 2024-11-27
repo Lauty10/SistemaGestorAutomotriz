@@ -4,26 +4,24 @@
 
 class Solicitud{
 private:
-    int id;
     char nombre[30];
     char correo[35];
     char clave[20];
     int dni;
     bool estado;
     bool aprobado;
+    int id;
 public:
-    Solicitud(int i=0,const char* n="XXX", const char* c="XXX", const char* cl="NuevoVendedor", int d=0, bool e=false, bool a=false){
-    this->id=i;
+    Solicitud(const char* n="XXX", const char* c="XXX", const char* cl="NuevoVendedor", int d=0, bool e=false, bool a=false,int i=0){
     strcpy(this->nombre,n);
     strcpy(this->correo,c);
     strcpy(this->clave,cl);
     this->dni=d;
     this->estado=e;
     this->aprobado=a;
+    this->id=i;
     }
-void setId(int idS){
-this->id=idS;
-}
+
 void setNombre(char n[30]){
 strcpy(this->nombre,n);
 }
@@ -41,9 +39,6 @@ this->estado=e;
 }
 void setAprobado(bool a){
 this->aprobado=a;
-}
-int getIdSolicitud(){
-return id;
 }
 const char* getNombre(){
 return nombre;
@@ -63,31 +58,32 @@ return estado;
 bool getAprobado(){
 return aprobado;
 }
+void setId(int idN){
+this->id=idN;
+}
+int getId(){
+return id;
+}
 
 
 void cargarSolicitud(){
-Solicitud objS;
-int soli;
-cout<<"Bienvenido complete los datos solicitados para generar una solicitud de alta en el sistema..."<<endl;
-cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
-cout<<"Ingrese su nombre:";
-cin.getline(nombre,30,'\n');
-objS.validarN(nombre);
-setNombre(nombre);
-cout<<"Ingrese su correo:";
-cin.getline(correo,35,'\n');
-objS.validarC(correo);
-setCorreo(correo);
-cout<<"Ingrese su dni:";
-cin>>dni;
-cin.ignore();
-objS.validarD(dni);
-setDni(dni);
-soli=generarIdSolicitud();
-setId(soli);
-cout<<"------------------------------------------------------------"<<endl;
-cout<<"El numero de solicitud es:"<<getIdSolicitud()<<endl;
-
+    int nuevaSoli;
+    nuevaSoli=generarIdSolicitud();
+    setId(nuevaSoli);
+    cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+    cout << "Ingrese su nombre:";
+    cin.getline(nombre, 30, '\n');
+    setNombre(nombre);
+    cout << "Ingrese su correo:";
+    cin.getline(correo, 35, '\n');
+    setCorreo(correo);
+    cout << "Ingrese su dni:";
+    cin >> dni;
+    cin.ignore();
+    setDni(dni);
+    cout << "------------------------------------------------------------" << endl;
+    cout << "El número de solicitud es: " << getId() << endl;
 }
 
 void nuevaSolicitud(Solicitud objS){
@@ -109,7 +105,6 @@ system("cls");
    generar=fopen("Solicitud.dat","rb");
    if(generar==NULL){
     dato=1;
-    fclose(generar);
     return dato;
    }
    Solicitud obj;
@@ -134,7 +129,7 @@ while(fread(&obj,sizeof(Solicitud),1,soli)!=0){
         cout<<"Nombre del usuario a dar de alta:"<<obj.getNombre()<<endl;
         cout<<"Correo del usuario a dar de alta:"<<obj.getCorreo()<<endl;
         cout<<"Dni del usuario a dar de alta:"<<obj.getDni()<<endl;
-        cout<<"El id de la solicitud es:"<<obj.getIdSolicitud()<<endl;
+        cout<<"El id de la solicitud es:"<<obj.getId()<<endl;
         cout<<"------------------------------------------------------------"<<endl;
     }
 }
@@ -144,43 +139,39 @@ fclose(soli);
 }
 
 void aprobarSolicitudDeAlta(){
-FILE *buscarS;
-buscarS=fopen("Solicitud.dat","rb+");
-if(buscarS==NULL){
-    cout<<"Error al buscar solicitud"<<endl;
-}
-int id;
-cout<<"Ingrese el id de la solicitud que quiere aprobar:";
-cin>>id;
-Solicitud objS;
-bool buscar=false;
-while(fread(&objS,sizeof(Solicitud),1,buscarS)!=0){
-    if(objS.getEstado()==false){
-        if(objS.getIdSolicitud()==id){
-            buscar=true;
-            long posicion=ftell(buscarS)-sizeof(Solicitud);
-            objS.setEstado(true);
+    FILE *aprobarS;
+    aprobarS = fopen("Solicitud.dat", "rb+");
+    if(aprobarS == NULL){
+        cout << "Error al aprobar solicitud" << endl;
+        return;
+    }
+    Solicitud objS;
+    int id;
+    bool encontrado = false;
+    cout << "Ingrese el id de la solicitud que desea aprobar: ";
+    cin >> id;
+    while(fread(&objS, sizeof(Solicitud), 1, aprobarS) != 0){
+        if(objS.getId() == id && objS.getEstado()==false){
+            long posicion = ftell(aprobarS) - sizeof(Solicitud);
             objS.setAprobado(true);
-            fseek(buscarS,posicion,SEEK_SET);
-            fwrite(&objS,sizeof(Solicitud),1,buscarS);
-            cout<<"Solicitud aprobada correctamente..."<<endl;
+            objS.setEstado(true);
+            fseek(aprobarS, posicion, SEEK_SET);
+            fwrite(&objS, sizeof(Solicitud), 1, aprobarS);
+            cout << "Solicitud aprobada correctamente..." << endl;
             system("pause");
+            encontrado = true;
             break;
         }
-    }else{
-    cout<<"La solicitud ya se encuentra aprobada..."<<endl;
-    system("pause");
-    system("cls");
-    break;
     }
+    if(!encontrado){
+        cout << "Error al buscar la solicitud" << endl;
+        system("pause");
+        system("cls");
+    }
+    system("cls");
+    fclose(aprobarS);
 }
-if(!buscar){
-    cout<<"Solicitud no encontrada..."<<endl;
-     system("pause");
-}
-fclose(buscarS);
-system("cls");
-}
+
 
 
 

@@ -83,12 +83,12 @@
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
 	<string.h>
 
-1732669054 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732744800 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
 
-1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 	"ClassFecha.h"
@@ -99,24 +99,24 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732679224 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 	"rlutil.h"
 
-1732678358 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
-1732662542 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1732494040 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\main.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732494040 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
 1732722273 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
@@ -131,7 +131,7 @@
 	<cstdio>
 	"rlutil.h"
 
-1732654541 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
 1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
@@ -144,7 +144,7 @@
 1732721595 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732628661 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1732745513 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\rlutil.h
