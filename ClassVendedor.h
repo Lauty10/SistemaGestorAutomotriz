@@ -78,12 +78,15 @@ public:
 
 //Funciones
     void cargarVendedor(){
+    Vendedores objVal;
     cout << "Ingrese el nombre del vendedor: ";
     cin.ignore();
     cin.getline(nombre, 30,'\n');
+    objVal.nombreV(nombre);
     setNombre(nombre);
     cout << "Ingrese el correo: ";
     cin.getline(correo, 35,'\n');
+    objVal.correoV(correo);
     setCorreo(correo);
     cout << "Ingrese la clave:";
     char ch;
@@ -107,6 +110,7 @@ public:
     cout << endl;
     cout << "Ingrese el DNI:";
     cin >> dni;
+    objVal.dniV(dni);
     setDni(dni);
     idVendedor=generarIdVendedor();
     cout<<"------------------------------------------------------------"<<endl;
@@ -459,6 +463,7 @@ while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
         cout<<"Ingresa el nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
+        obj.nombreV(nuevoNombre);
         obj.setNombre(nuevoNombre);
         fseek(nombrePersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,nombrePersonal);
@@ -494,6 +499,7 @@ while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
         cout<<"Ingresa el correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,35,'\n');
+        obj.correoV(nuevoCorreo);
         obj.setCorreo(nuevoCorreo);
         fseek(correoPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,correoPersonal);
@@ -563,6 +569,7 @@ while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
         long posicion=ftell(dniPersonal)-sizeof(Vendedores);
         cout<<"Ingresa el dni:";
         cin>>nuevoDni;
+        obj.dniV(nuevoDni);
         obj.setDni(nuevoDni);
         fseek(dniPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,dniPersonal);
@@ -578,6 +585,72 @@ if(!encontrado){
 fclose(dniPersonal);
 system("cls");
 }
+
+
+//VALIDACIONES
+
+//NOMBRE
+void nombreV(char* nV){
+if(nV[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Nombre: ";
+cin.ignore();
+cin.getline(nV,30,'\n');
+}
+}
+
+//DNI
+void dniV(int d){
+FILE *dV;
+dV=fopen("Vendedores.dat","rb");
+if(dV==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Vendedores objd;
+if(d==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+while(fread(&objd,sizeof(Vendedores),1,dV)!=0){
+if(objd.getDni()==d){
+cout<<"Este dni ya esta registrado"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+}
+fclose(dV);
+}
+
+
+//CORREO
+void correoV( char* cV){
+FILE *correo;
+correo=fopen("Vendedore.dat","rb");
+if(correo==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Vendedores objC;
+if(cV[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(cV,30,'\n');
+}
+while(fread(&objC,sizeof(Vendedores),1,correo)!=0){
+if(strcmp(objC.getCorreo(),cV)==0){
+cout<<"Este correo ya esta registrado"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(cV,30,'\n');
+}
+}
+fclose(correo);
+}
+
+
 };
 
 #endif // CLASSVENDEDOR_H_INCLUDED
