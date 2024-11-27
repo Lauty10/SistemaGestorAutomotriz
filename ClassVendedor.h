@@ -153,6 +153,8 @@ system("pause");
 system("cls");
 }
 
+
+
 int iniciarSesion() {
     FILE *logeo;
     logeo = fopen("Vendedores.dat", "rb");
@@ -166,6 +168,9 @@ int iniciarSesion() {
     bool inicio = false;
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
+    obj.c1(correoLogin);
+
+
     rlutil::locate(39,18);
     char ch;
     int index = 0;
@@ -173,6 +178,7 @@ int iniciarSesion() {
         ch = _getch();
         if (ch == 13) {
             claveLogin[index] = '\0';
+            c2(claveLogin);
             break;
         } else if (ch == 8) {
             if (index > 0) {
@@ -202,6 +208,9 @@ int iniciarSesion() {
     return false;
     }
 }
+
+
+
 
 void funcionalidadesVendedor(int id){
 Vendedores obj;
@@ -651,6 +660,26 @@ fclose(correo);
 }
 
 
+//CORREO
+void c1(char* c){
+if(c[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(c,30,'\n');
+}
+}
+
+
+//CLAVE
+void c2(char* c){
+if(c[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Clave: ";
+cin.ignore();
+cin.getline(c,30,'\n');
+}
+}
 };
 
 #endif // CLASSVENDEDOR_H_INCLUDED

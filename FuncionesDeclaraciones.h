@@ -23,6 +23,10 @@ void menuDeSoporte();
 void bienvenidoUsuario(int id);
 int generarId();
 void estadoDeMiSolicitud();
+void validacion1(int d);
+void validacion2(char* c);
+void validacion3(char* clave);
+void validarId(int i);
 
 void GraficarOpiciones(const char*,int,int,bool,int,int);
 void GraficarCeldas(int,int,int,const char*);

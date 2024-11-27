@@ -126,10 +126,12 @@ cout<<"-----------------------------------------------------"<<endl;
 rlutil::locate(45,6);
 cout<<"D.N.I: ";
 cin>>dni;
+validacion1(dni);
 rlutil::locate(45,8);
 cout<<"Correo: ";
 cin.ignore();
 cin.getline(correo,30,'\n');
+validacion2(correo);
 
 while(fread(&objC, sizeof(Vendedores),1,clave)!=0){
 if(strcmp(objC.getCorreo(),correo)==0 && objC.getDni()==dni) {
@@ -137,6 +139,8 @@ rlutil::locate(45,10);
 cout<<"Ingrese su nueva Clave:";
 cin.ignore();
 cin.getline(nuevaClave,30,'\n');
+validacion3(nuevaClave);
+
 objC.setClave(nuevaClave);
 long pos=ftell(clave)-sizeof(Vendedores);
 fseek(clave,pos,SEEK_CUR);
@@ -154,6 +158,34 @@ fclose(clave);
 rlutil::locate(45,16);
 system("pause");
 system("cls");
+}
+//VALIDACIONES PARA LA FUNCION DE RECUPERAR CLAVE
+void validacion1(int d){
+if(d==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+}
+
+
+void validacion2(char* c){
+if(c[0]==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(c,30,'\n');
+}
+}
+
+
+void validacion3(char* clave){
+if(clave[0]==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Clave: ";
+cin.ignore();
+cin.getline(clave,30,'\n');
+}
 }
 
 //MENU DE VENDEDORES
@@ -244,9 +276,11 @@ void realizarVenta(int idV) {
     cout << "-------------------------------------------------------" << endl;
     cout << "Por favor ingrese el id del cliente: ";
     cin >> idC;
+    validarId(idC);
     cout << "-------------------------------------------------------" << endl;
     cout << "Por favor ingrese el id del vehiculo: ";
     cin >> idA;
+    validarId(idA);
     cout << "-------------------------------------------------------" << endl;
     cout<<endl;
     cout << "CARGANDO FECHA DE LA VENTA"<<endl;
@@ -410,6 +444,15 @@ void realizarVenta(int idV) {
     fclose(buscarVehiculo);
     fclose(buscarVendedor);
 }
+//VALIDACION PARA LA FUNCION DE VENTAS
+void validarId(int i){
+if(i==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Id: ";
+cin>>i;
+}
+}
+
 
 //FUNCION PARA RECAUDACIONES
 void recaudaciones(int id){
@@ -605,6 +648,7 @@ Vendedores objV;
 int idS;
 cout<<"Ingrese el ID de su solicitud:";
 cin>>idS;
+validarId(idS);
 char nombre[30];
 char correo[35];
 int dni;
@@ -646,10 +690,10 @@ if(Nuevoalta==NULL){
 cout<<"Ingrese su clave para terminar su alta:";
 cin.ignore();
 cin.getline(clave,20,'\n');
-
+validacion3(clave);
 cout<<"Vuelva a ingresar su clave:";
 cin.getline(clave2,20,'\n');
-
+validacion3(clave2);
 if(strcmp(clave,clave2)==0){
  id=generarId();
  objV.setNombre(nombre);
@@ -658,7 +702,7 @@ if(strcmp(clave,clave2)==0){
  objV.setClave(clave);
  objV.setDni(dni);
  fwrite(&objV,sizeof(Vendedores),1,Nuevoalta);
- cout<<"Proceso finalizado fue dato de alta en el sistema correctamente"<<endl;
+ cout<<"Proceso finalizado. Fue dado de alta en el sistema correctamente"<<endl;
  fclose(Nuevoalta);
 }
 fclose(buscarMiSolicitud);
@@ -777,7 +821,7 @@ GraficarLineasVerticales(34,85,6,25,186);
 rlutil::locate(52,7);
 cout<<"INICIO DE SESION";
 GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
-GraficarCeldas(38,80,18,"CONTRASENA");
+GraficarCeldas(38,80,18,"CONTRASENIA");
 }
 
 
