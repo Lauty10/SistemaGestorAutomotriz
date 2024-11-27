@@ -155,6 +155,8 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
 }
+
+Clientes obj;
 rlutil::locate(43,6);
 cout<<"CARGA LA INFORMCION DEL CLIENTE EN EL SISTEMA"<<endl;
 rlutil::locate(36,7);
@@ -163,15 +165,23 @@ rlutil::locate(43,10);
 cout<<"Ingrese el nombre del cliente:";
 cin.ignore();
 cin.getline(nombreCliente,30,'\n');
+rlutil::locate(43,11);
+obj.nombre(nombreCliente);
 rlutil::locate(43,12);
 cout<<"Ingrese el correo del cliente:";
 cin.getline(correoCliente, 35,'\n');
+rlutil::locate(43,12);
+obj.correo(correoCliente);
 rlutil::locate(43,14);
 cout<<"Ingrese el telefono del cliente:";
 cin.getline(telefono, 14,'\n');
+rlutil::locate(43,15);
+obj.telefono1(telefono);
 rlutil::locate(43,16);
 cout<<"Ingrese el dni del cliente:";
 cin>>dni;
+rlutil::locate(43,17);
+obj.dni1(dni);
 rlutil::locate(43,18);
 cout<<"Cliente registrado correctamente..."<<endl;
 rlutil::locate(43,20);
@@ -494,6 +504,8 @@ while(fread(&nombreObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el nuevo nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
+        rlutil::locate(45,18);
+        nombreObj.nombre(nuevoNombre);
         nombreObj.setNombreCliente(nuevoNombre);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&nombreObj,sizeof(Clientes),1,editar);
@@ -562,6 +574,8 @@ while(fread(&correoObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el nuevo correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,30,'\n');
+        rlutil::locate(45,17);
+        correoObj.correo(nuevoCorreo);
         correoObj.setCorreoCliente(nuevoCorreo);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&correoObj,sizeof(Clientes),1,editar);
@@ -626,11 +640,13 @@ while(fread(&TelefonObj,sizeof(Clientes),1,editar)!=0){
         cout<<"El telefono actual es: "<<TelefonObj.getTelefono()<<endl;
         encontrado=true;
         long longitud=ftell(editar)-sizeof(Clientes);
-        char nuevoTel[14];
+        char nuevoTel[30];
         rlutil::locate(45,17);
         cout<<"Ingresa el telefono:";
         cin.ignore();
         cin.getline(nuevoTel,30,'\n');
+        rlutil::locate(45,18);
+        TelefonObj.telefono1(nuevoTel);
         TelefonObj.setTelefono(nuevoTel);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&TelefonObj,sizeof(Clientes),1,editar);
@@ -698,6 +714,8 @@ while(fread(&DniObj,sizeof(Clientes),1,editar)!=0){
         cout<<"Ingresa el dni:";
         cin.ignore();
         cin>>dniNuevo;
+        rlutil::locate(45,18);
+        DniObj.dni1(dniNuevo);
         DniObj.setDni(dniNuevo);
         fseek(editar,longitud,SEEK_SET);
         fwrite(&DniObj,sizeof(Clientes),1,editar);
@@ -718,7 +736,79 @@ fclose(editar);
 system("cls");
 }
 
+//VALIDACIONES
+//NOMBRE
+void nombre( char* nom){
+if(nom[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Nombre: ";
+cin.ignore();
+cin.getline(nom,30,'\n');
+}
+}
 
+
+//CORREO
+void correo( char* dato){
+FILE *correo;
+correo=fopen("Clientes","rb");
+if(correo==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Clientes objC;
+if(dato==NULL){
+cout<<"Campo incompleto"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(dato,30,'\n');
+}
+while(fread(&objC,sizeof(Clientes),1,correo)!=0){
+if(strcmp(objC.getCorreoCliente(),dato)==0){
+cout<<"Este correo ya esta registrado"<<endl;
+cout<<"Correo: ";
+cin.ignore();
+cin.getline(dato,30,'\n');
+}
+}
+fclose(correo);
+}
+
+
+//TELEFONO
+void telefono1( char* tel){
+if(tel[0]=='\0'){
+cout<<"Campo incompleto"<<endl;
+cout<<"Telefono: ";
+cin.ignore();
+cin.getline(tel,30,'\n');
+}
+}
+
+
+//DNI
+void dni1( int d){
+FILE *dni;
+dni=fopen("Clientes","rb");
+if(dni==NULL){
+cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
+return;
+}
+Clientes objd;
+if(d==0){
+cout<<"Campo incompleto"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+while(fread(&objd,sizeof(Clientes),1,dni)!=0){
+if(objd.getDni()==d){
+cout<<"Este dni ya esta registrado"<<endl;
+cout<<"Dni: ";
+cin>>d;
+}
+}
+fclose(dni);
+}
 };
 
 

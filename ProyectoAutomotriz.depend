@@ -47,7 +47,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732643185 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732708320 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
@@ -63,13 +63,13 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732641075 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 	"rlutil.h"
 
-1732647305 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1732713074 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
@@ -77,7 +77,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732641204 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
@@ -134,14 +134,14 @@
 1732654541 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732640077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
+1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
 	<cstring>
 	<chrono>
 	<cstdio>
 	"rlutil.h"
 
-1732643192 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
 1732628661 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
