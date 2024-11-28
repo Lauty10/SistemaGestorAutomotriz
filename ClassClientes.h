@@ -739,11 +739,15 @@ system("cls");
 //VALIDACIONES
 //NOMBRE
 void nombre( char* nom){
-if(nom[0]=='\0'){
+while(nom[0]=='\0'){
+rlutil::locate(43,11);
 cout<<"Campo incompleto"<<endl;
-cout<<"Nombre: ";
+rlutil::locate(75,10);
 cin.ignore();
+rlutil::locate(75,10);
 cin.getline(nom,30,'\n');
+rlutil::locate(43,11);
+cout<<"                   "<<endl;
 }
 }
 
@@ -757,7 +761,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Clientes objC;
-if(dato[0]=='\0'){
+while(dato[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Correo: ";
 cin.ignore();
@@ -777,7 +781,7 @@ fclose(correo);
 
 //TELEFONO
 void telefono1( char* tel){
-if(tel[0]=='\0'){
+while(tel[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Telefono: ";
 cin.ignore();
@@ -795,7 +799,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Clientes objd;
-if(d==0){
+while(d==0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Dni: ";
 cin>>d;

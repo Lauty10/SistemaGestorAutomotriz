@@ -210,7 +210,7 @@ fclose(baja);
 //VALIDACIONES
 //ASUNTO
 void ticketV(char* asunto){
-if(asunto[0]=='\0'){
+while(asunto[0]=='\0'){
 cout<<"Es necesario completar este campo"<<endl;
 cout<<"Asunto: ";
 cin.ignore();
@@ -220,7 +220,7 @@ cin.getline(asunto,35,'\n');
 
 //FECHA
 void fechaV(char* f){
-if(f[0]=='\0'){
+while(f[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Fecha";
 cin.ignore();

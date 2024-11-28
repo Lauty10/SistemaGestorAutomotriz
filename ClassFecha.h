@@ -32,6 +32,7 @@ public:
     }
 
     void cargarFecha(){
+
     cout<<"Ingrese el dia de la fecha:";
     cin>>dia;
     fechaV(dia);
@@ -55,7 +56,7 @@ public:
 
 //VALIDACION
 void fechaV(int f){
-if(f==0){
+while(f==0){
 cout<<"Campo inclompleto"<<endl;
 cin>>f;
 }

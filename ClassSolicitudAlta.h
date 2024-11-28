@@ -185,7 +185,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Solicitud obj;
-if(c[0]==0){
+while(c[0]==0){
 cout<<"Campo incompleto"<<endl;
 cin.ignore();
 cin.getline(c,30,'\n');
@@ -203,7 +203,7 @@ fclose(correo);
 
 //NOMBRE
 void validarN(char* n){
-if(n[0]==0){
+while(n[0]==0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Nombre: ";
 cin.ignore();
@@ -213,7 +213,7 @@ cin.getline(n,30,'\n');
 
 //DNI
 void validarD(int d){
-if(d==0){
+while(d==0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Dni: ";
 cin>>d;
