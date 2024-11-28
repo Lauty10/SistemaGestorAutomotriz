@@ -77,18 +77,27 @@ public:
     }
 
 //Funciones
-    void cargarVendedor(){
+void cargarVendedor(){
     Vendedores objVal;
-    cout << "Ingrese el nombre del vendedor: ";
-    cin.ignore();
+    objVal.estiloV();
+    rlutil::locate(40,13);
+    cout << "INGRESE EL NOMBRE DEL NUEVO VENDEDOR: ";
     cin.getline(nombre, 30,'\n');
     objVal.nombreV(nombre);
     setNombre(nombre);
-    cout << "Ingrese el correo: ";
+    system("cls");
+
+    objVal.estiloV();
+    rlutil::locate(40,13);
+    cout << "INGRESE EL CORREO DEL NUEVO VENDEDOR: ";
     cin.getline(correo, 35,'\n');
     objVal.correoV(correo);
     setCorreo(correo);
-    cout << "Ingrese la clave:";
+    system("cls");
+
+    objVal.estiloV();
+     rlutil::locate(40,13);
+    cout << "INGRESE LA CLAVE DEL NUEVO VENDEDOR: ";
     char ch;
     int index = 0;
     while (true) {
@@ -107,20 +116,24 @@ public:
         }
     }
     setClave(clave);
+    system("cls");
     cout << endl;
-    cout << "Ingrese el DNI:";
+
+    objVal.estiloV();
+    rlutil::locate(40,13);
+    cout << "INGRESE EL DNI DEL NUEVO VENDEDOR: ";
     cin >> dni;
     objVal.dniV(dni);
     setDni(dni);
+    system("cls");
+
     idVendedor=generarIdVendedor();
-    cout<<"------------------------------------------------------------"<<endl;
-    cout<<"Vendedor registrado correctamente"<<endl;
-    cout<<"Nombre:"<<getNombre()<<endl;
-    cout<<"Correo:"<<getCorreo()<<endl;
-    cout<<"Dni:"<<getDni()<<endl;
-    cout<<"Estado:"<<getEstado()<<endl;
-    cout<<"ID:"<<getIdVendedor()<<endl;
-    cout<<"------------------------------------------------------------"<<endl;
+    estiloV();
+    rlutil::locate(50,15);
+    cout<<" EL ID DEL NUEVO VENDEDOR ES:"<<getIdVendedor()<<endl;
+    rlutil::locate(30,17);
+    cout<<"----------------------------------------------------------------------------------";
+
 }
 
  int generarIdVendedor() {
@@ -147,8 +160,10 @@ if(registro==NULL){
     cout<<"Error al registrar vendedor"<<endl;
 }
 fwrite(&obj,sizeof(Vendedores),1,registro);
+ rlutil::locate(45,15);
 cout<<"Vendedor registrado correctamente..."<<endl;
 fclose(registro);
+ rlutil::locate(45,19);
 system("pause");
 system("cls");
 }
@@ -221,22 +236,7 @@ void funcionalidadesVendedor(int id){
 Vendedores obj;
 int opcion;
 while(true){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,25);
-    cout<<char(205);
-     }
-     for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-      }
+estiloV();
 rlutil::locate(45,7);
 cout<<"MENU DE VENDEDORES"<<endl;
 rlutil::locate(38,8);
@@ -305,22 +305,7 @@ system("cls");
 
 
 void listarVendedores(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,27);
-cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
+estiloV();
 FILE *listaV;
 listaV=fopen("Vendedores.dat","rb");
 if(listaV==NULL){
@@ -356,22 +341,7 @@ system("cls");
 }
 
 void buscarVendedor(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,27);
-cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
+estiloV();
 FILE *buscarV;
 buscarV=fopen("Vendedores.dat","rb");
 if(buscarV==NULL){
@@ -606,11 +576,14 @@ system("cls");
 //NOMBRE
 void nombreV(char* nV){
 while(nV[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Nombre: ";
+rlutil::locate(40,15);
+cout<<"EL CAMPO INGRESADO SE ENCUENTRA INCOMPLETO"<<endl;
+rlutil::locate(40,17);
+cout<<"INGRESE EL NUEVO NOMBRE: ";
 cin.ignore();
 cin.getline(nV,30,'\n');
 }
+system("cls");
 }
 
 //DNI
@@ -623,14 +596,18 @@ return;
 }
 Vendedores objd;
 while(d==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Dni: ";
+ rlutil::locate(40,15);
+cout<<"EL CAMPO INGRESADO SE ENCUENTRA INCOMPLETO"<<endl;
+ rlutil::locate(40,17);
+cout<<"INGRESE EL NUEVO DNI: ";
 cin>>d;
 }
 while(fread(&objd,sizeof(Vendedores),1,dV)!=0){
 if(objd.getDni()==d){
-cout<<"Este dni ya esta registrado"<<endl;
-cout<<"Dni: ";
+ rlutil::locate(40,15);
+cout<<"ESTE DNI YA SE ENCUENTRA REGISTRADO"<<endl;
+ rlutil::locate(40,17);
+cout<<"INGRESE EL DNI: ";
 cin>>d;
 }
 }
@@ -641,22 +618,26 @@ fclose(dV);
 //CORREO
 void correoV( char* cV){
 FILE *correo;
-correo=fopen("Vendedore.dat","rb");
+correo=fopen("Vendedores.dat","rb");
 if(correo==NULL){
 cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Vendedores objC;
 while(cV[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Correo: ";
+rlutil::locate(40,15);
+cout<<"EL CAMPO SE ENCUENTRA INCOMPLETO"<<endl;
+rlutil::locate(40,17);
+cout<<"INGRESE EL CORREO:";
 cin.ignore();
 cin.getline(cV,30,'\n');
 }
 while(fread(&objC,sizeof(Vendedores),1,correo)!=0){
 if(strcmp(objC.getCorreo(),cV)==0){
-cout<<"Este correo ya esta registrado"<<endl;
-cout<<"Correo: ";
+rlutil::locate(40,15);
+cout<<"ESTE CORREO SE ENCUENTRA REGISTRADO"<<endl;
+rlutil::locate(40,17);
+cout<<"INGRESE EL CORREO: ";
 cin.ignore();
 cin.getline(cV,30,'\n');
 }
@@ -674,7 +655,7 @@ rlutil::locate(39,13);
 cin.ignore();
 rlutil::locate(39,13);
 cin.getline(c,30,'\n');
-rlutil::locate(38,15);
+rlutil::locate(38,17);
 cout<<"                   "<<endl;
 }
 }
@@ -692,6 +673,31 @@ cin.getline(c,30,'\n');
 cout<<"                   "<<endl;
 }
 }
+
+void estiloV(){
+for(int j=1;j<121;j++){
+rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+
+}
+
 };
 
 #endif // CLASSVENDEDOR_H_INCLUDED

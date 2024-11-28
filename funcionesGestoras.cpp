@@ -85,7 +85,6 @@ case 1:
        rlutil::setBackgroundColor(rlutil::BLACK);
        system("cls");
        rlutil::setBackgroundColor(rlutil::BLACK);
-       rlutil::setColor(10);
        Dibujar_Cuadro_Login();
        logeoAdmin=objA.logeoDeUsuariosAdministradores();
        if(logeoAdmin==true){
@@ -476,7 +475,7 @@ for(int j=1;j<121;j++){
 for(int j=1;j<121;j++){
 rlutil::locate(j,27);
 cout<<char(205);
-     }
+}
 for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
@@ -551,6 +550,9 @@ Vendedores objV;
 Administrador objA;
 TicketAdmin objT;
 Solicitud objS;
+int y=0;
+bool control_menu_soporte=true;
+do{
 for(int j=1;j<121;j++){
     rlutil::locate(j,1);
     cout<<char(176);
@@ -559,23 +561,16 @@ for(int j=1;j<121;j++){
     rlutil::locate(j,30);
     cout<<char(176);
 }
-int y=0;
-bool control_menu_soporte=true;
-do{
-rlutil::setBackgroundColor(rlutil::BLACK);
-rlutil::setColor(rlutil::BLACK);
-rlutil::locate(2,2);
-cout<<"BIENVENIDO AL MENU DE SOPORTE...";
 rlutil::hidecursor();
-GraficarOpiciones("Dar de alta vendedores ",45,5,y==0,10,0);
-GraficarOpiciones("Dar de baja vendedores ",45,7,y==1,10,0);
-GraficarOpiciones("Editar vendedores ",45,9,y==2,10,0);
-GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,11,y==3,10,0);
-GraficarOpiciones("Mostrar solicitudes de alta ",45,13,y==4,10,0);
-GraficarOpiciones("Aprobar solicitudes de alta ",45,15,y==5,10,0);
-GraficarOpiciones("Dar de baja ticket ",45,17,y==6,10,0);
-GraficarOpiciones("Listar vendedores",45,19,y==7,10,0);
-GraficarOpiciones("Salir ",45,21,y==8,10,0);
+GraficarOpiciones("Dar de alta vendedores ",45,7,y==0,10,0);
+GraficarOpiciones("Dar de baja vendedores ",45,9,y==1,10,0);
+GraficarOpiciones("Editar vendedores ",45,11,y==2,10,0);
+GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,13,y==3,10,0);
+GraficarOpiciones("Mostrar solicitudes de alta ",45,15,y==4,10,0);
+GraficarOpiciones("Aprobar solicitudes de alta ",45,17,y==5,10,0);
+GraficarOpiciones("Dar de baja ticket ",45,19,y==6,10,0);
+GraficarOpiciones("Listar vendedores",45,21,y==7,10,0);
+GraficarOpiciones("Salir ",45,23,y==8,10,0);
 switch(rlutil::getkey()){
 case 14:
     y--;
@@ -822,5 +817,7 @@ cout<<"INICIO DE SESION";
 GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
 GraficarCeldas(38,80,18,"CONTRASENIA");
 }
+
+
 
 
