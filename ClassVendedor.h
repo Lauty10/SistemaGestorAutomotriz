@@ -181,6 +181,7 @@ int iniciarSesion() {
     char correoLogin[35];
     char claveLogin[20];
     bool inicio = false;
+    bool orden=false;
 
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
@@ -204,10 +205,13 @@ int iniciarSesion() {
     }
    cout << endl;
     if(correoLogin[0]=='\0'||claveLogin[0]=='\0'){
-
+    rlutil::locate(38,22);
     cout<<"Los campos no fueron cargados correctamente"<<endl;
-
     fclose(logeo);
+    rlutil::locate(38,23);
+    system("pause");
+    system("cls");
+    orden=true;
     }
 
     while (fread(&obj, sizeof(Vendedores), 1, logeo) != 0) {
@@ -219,10 +223,11 @@ int iniciarSesion() {
             return idLogeado;
         }
     }
-    if (!inicio) {
-
-    cout << "Los datos no coinciden..." << endl;
+    if (inicio==false && orden==false) {
+    rlutil::locate(38,22);
+    cout << "Los datos son erroneos..." << endl;
     fclose(logeo);
+    rlutil::locate(38,23);
     system("pause");
     system("cls");
     return false;

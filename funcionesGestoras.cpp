@@ -212,21 +212,21 @@ cout<<char(205);
 }
     rlutil::locate(40,3);
     bienvenidoUsuario(id);
-    rlutil::locate(45,9);
+    rlutil::locate(50,9);
     cout<<"1-)Clientes"<<endl;
-     rlutil::locate(45,11);
+     rlutil::locate(50,11);
     cout<<"2-)Vendedores"<<endl;
-     rlutil::locate(45,13);
+     rlutil::locate(50,13);
     cout<<"3-)Autos"<<endl;
-     rlutil::locate(45,15);
+     rlutil::locate(50,15);
     cout<<"4-)Recaudaciones"<<endl;
-     rlutil::locate(45,17);
+     rlutil::locate(50,17);
     cout<<"5-)Realizar Venta"<<endl;
-     rlutil::locate(45,19);
+     rlutil::locate(50,19);
     cout<<"6-)Generar Ticket para soporte"<<endl;
-     rlutil::locate(45,21);
+     rlutil::locate(50,21);
     cout<<"0-)Salir..."<<endl;
-     rlutil::locate(45,23);
+     rlutil::locate(50,23);
     cout<<"Ingrese la opcion que desee:";
     cin>>opcion;
     cin.ignore();
@@ -631,6 +631,22 @@ break;
 }
 
 void estadoDeMiSolicitud(){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
 FILE *buscarMiSolicitud;
 buscarMiSolicitud=fopen("Solicitud.dat","rb+");
 if(buscarMiSolicitud==NULL){
@@ -640,6 +656,9 @@ if(buscarMiSolicitud==NULL){
 Solicitud objS;
 Vendedores objV;
 int idS;
+rlutil::locate(35,10);
+cout<<"Bienvenido aqui podra verificar el estado de su solicutud"<<endl;
+rlutil::locate(45,12);
 cout<<"Ingrese el ID de su solicitud:";
 cin>>idS;
 validarId(idS);
@@ -648,6 +667,7 @@ char correo[35];
 int dni;
 char clave[20];
 char clave2[20];
+int i = 0;
 int id;
 while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
     if(idS==objS.getId()){
@@ -659,21 +679,21 @@ while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
         objS.setAprobado(false);
         fseek(buscarMiSolicitud, posicion, SEEK_SET);
         fwrite(&objS,sizeof(Solicitud),1,buscarMiSolicitud);
+        rlutil::locate(45,14);
         cout<<"Solicitud aprobada..."<<endl;
+        rlutil::locate(45,16);
         system("pause");
-        system("cls");
         break;
         }else{
+        rlutil::locate(30,14);
         cout<<"La solicitud ya fue aprobada o no se encontro en nuestro sistema..."<<endl;
+        rlutil::locate(45,16);
         system("pause");
         system("cls");
         return;
         }
         }
         }
-system("pause");
-system("cls");
-
 FILE *Nuevoalta;
 Nuevoalta=fopen("Vendedores.dat","ab");
 if(Nuevoalta==NULL){
@@ -681,13 +701,62 @@ if(Nuevoalta==NULL){
     fclose(Nuevoalta);
     return;
 }
-cout<<"Ingrese su clave para terminar su alta:";
-cin.ignore();
-cin.getline(clave,20,'\n');
-
-cout<<"Vuelva a ingresar su clave:";
-cin.getline(clave2,20,'\n');
-
+system("cls");
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+rlutil::locate(35,10);
+cout<<"Feliciades, su solicitud fue aprobada solo falta un paso"<<endl;
+rlutil::locate(45,12);
+ cout << "Ingrese su clave para su alta: ";
+    while (true) {
+        char ch = getch();
+        if (ch == 13) {
+            clave[i] = '\0';
+            break;
+        } else if (ch == 8) {
+            if (i > 0) {
+                i--;
+                cout << "\b \b";
+            }
+        } else {
+            clave[i] = ch;
+            cout << "*";
+            i++;
+        }
+    }
+    i = 0;
+    rlutil::locate(45,14);
+    cout << "Vuelva a ingresar su clave: ";
+    while (true) {
+    char ch = getch();
+    if (ch == 13) {
+    clave2[i] = '\0';
+    break;
+    }else if (ch == 8) {
+    if (i > 0) {
+    i--;
+    cout << "\b \b";
+    }
+    } else {
+    clave2[i] = ch;
+    cout << "*";
+    i++;
+    }
+    }
 if(strcmp(clave,clave2)==0){
  id=generarId();
  objV.setNombre(nombre);
@@ -696,10 +765,12 @@ if(strcmp(clave,clave2)==0){
  objV.setClave(clave);
  objV.setDni(dni);
  fwrite(&objV,sizeof(Vendedores),1,Nuevoalta);
+ rlutil::locate(30,16);
  cout<<"Proceso finalizado. Fue dado de alta en el sistema correctamente"<<endl;
  fclose(Nuevoalta);
 }
 fclose(buscarMiSolicitud);
+rlutil::locate(50,18);
 system("pause");
 system("cls");
 }

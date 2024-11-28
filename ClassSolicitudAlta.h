@@ -70,19 +70,44 @@ void cargarSolicitud(){
     int nuevaSoli;
     nuevaSoli=generarIdSolicitud();
     setId(nuevaSoli);
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+    rlutil::locate(9,5);
     cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
-    cout << "-----------------------------------------------------------------------------------------------------------------------" << endl;
+    rlutil::locate(45,9);
     cout << "Ingrese su nombre:";
     cin.getline(nombre, 30, '\n');
     setNombre(nombre);
+    rlutil::locate(45,11);
     cout << "Ingrese su correo:";
     cin.getline(correo, 35, '\n');
     setCorreo(correo);
+    rlutil::locate(45,13);
     cout << "Ingrese su dni:";
     cin >> dni;
     cin.ignore();
     setDni(dni);
+    rlutil::locate(30,14);
     cout << "------------------------------------------------------------" << endl;
+    rlutil::locate(45,16);
     cout << "El número de solicitud es: " << getId() << endl;
 }
 
@@ -90,11 +115,15 @@ void nuevaSolicitud(Solicitud objS){
 FILE *soli;
 soli=fopen("Solicitud.dat","ab");
 if(soli==NULL){
+    rlutil::locate(45,18);
     cout<<"Error al crear una nueva solicitud..."<<endl;
+    return;
 }
 fwrite(&objS,sizeof(Solicitud),1,soli);
+   rlutil::locate(45,18);
 cout<<"Solicitud generada correcamente..."<<endl;
 fclose(soli);
+rlutil::locate(45,20);
 system("pause");
 system("cls");
 }
