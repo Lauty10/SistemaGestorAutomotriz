@@ -47,7 +47,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732730878 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732755200 source:c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
@@ -63,13 +63,13 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732731078 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732756887 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 	"rlutil.h"
 
-1732714264 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1732757878 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
@@ -77,7 +77,7 @@
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1732715372 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
@@ -118,7 +118,7 @@
 
 1732741056 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
-1732722273 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
+1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
 1732494040 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
@@ -141,7 +141,7 @@
 	<cstdio>
 	"rlutil.h"
 
-1732721595 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
 1732745513 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
@@ -238,7 +238,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1732726781 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1732749634 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732660157 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp

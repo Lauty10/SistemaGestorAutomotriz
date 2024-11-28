@@ -126,12 +126,28 @@ cout<<"-----------------------------------------------------"<<endl;
 rlutil::locate(45,6);
 cout<<"D.N.I: ";
 cin>>dni;
-validacion1(dni);
+while(dni==0){
+rlutil::locate(45,7);
+cout<<"Campo icompleto"<<endl;
+rlutil::locate(51,6);
+cin>>dni;
+}
+
 rlutil::locate(45,8);
 cout<<"Correo: ";
 cin.ignore();
 cin.getline(correo,30,'\n');
-validacion2(correo);
+while(correo[0]==0){
+rlutil::locate(45,9);
+cout<<"Campo incompleto"<<endl;
+rlutil::locate(53,8);
+cin.ignore();
+rlutil::locate(53,8);
+cin.getline(correo,30,'\n');
+rlutil::locate(45,9);
+cout<<"                    "<<endl;
+}
+
 
 while(fread(&objC, sizeof(Vendedores),1,clave)!=0){
 if(strcmp(objC.getCorreo(),correo)==0 && objC.getDni()==dni) {
@@ -139,7 +155,17 @@ rlutil::locate(45,10);
 cout<<"Ingrese su nueva Clave:";
 cin.ignore();
 cin.getline(nuevaClave,30,'\n');
-validacion3(nuevaClave);
+while(nuevaClave[0]==0){
+rlutil::locate(45,11);
+cout<<"Campo incompleto"<<endl;
+rlutil::locate(55,11);
+cin.ignore();
+rlutil::locate(55,11);
+cin.getline(nuevaClave,30,'\n');
+rlutil::locate(45,11);
+cout<<"                    "<<endl;
+}
+
 
 objC.setClave(nuevaClave);
 long pos=ftell(clave)-sizeof(Vendedores);
@@ -159,34 +185,7 @@ rlutil::locate(45,16);
 system("pause");
 system("cls");
 }
-//VALIDACIONES PARA LA FUNCION DE RECUPERAR CLAVE
-void validacion1(int d){
-if(d==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Dni: ";
-cin>>d;
-}
-}
 
-
-void validacion2(char* c){
-if(c[0]==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Correo: ";
-cin.ignore();
-cin.getline(c,30,'\n');
-}
-}
-
-
-void validacion3(char* clave){
-if(clave[0]==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Clave: ";
-cin.ignore();
-cin.getline(clave,30,'\n');
-}
-}
 
 //MENU DE VENDEDORES
 void menuDeVendedores(int id){
@@ -446,7 +445,7 @@ void realizarVenta(int idV) {
 }
 //VALIDACION PARA LA FUNCION DE VENTAS
 void validarId(int i){
-if(i==0){
+while(i==0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Id: ";
 cin>>i;
@@ -690,10 +689,10 @@ if(Nuevoalta==NULL){
 cout<<"Ingrese su clave para terminar su alta:";
 cin.ignore();
 cin.getline(clave,20,'\n');
-validacion3(clave);
+
 cout<<"Vuelva a ingresar su clave:";
 cin.getline(clave2,20,'\n');
-validacion3(clave2);
+
 if(strcmp(clave,clave2)==0){
  id=generarId();
  objV.setNombre(nombre);

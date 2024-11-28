@@ -520,7 +520,7 @@ fclose(buscarV);
 //VALIDACIONES
 //NOMBRE
 void NombreV(char* n){
-if(n[0]=='\0'){
+while(n[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Nombre: ";
 cin.ignore();
@@ -531,7 +531,7 @@ cin.getline(n,30,'\n');
 
 //Marca
 void marcaV(char* m){
-if(m[0]=='\0'){
+while(m[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Marca: ";
 cin.ignore();
@@ -542,7 +542,7 @@ cin.getline(m,20,'\n');
 
 //FECHA
 void fechaV(char* f){
-if(f[0]=='\0'){
+while(f[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Fecha";
 cin.ignore();
@@ -553,7 +553,7 @@ cin.getline(f,11,'\f');
 
 //PRECIO
 void precioV(float p){
-if(p==0.0){
+while(p==0.0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Precio: ";
 cin>>p;

@@ -166,11 +166,9 @@ int iniciarSesion() {
     char correoLogin[35];
     char claveLogin[20];
     bool inicio = false;
+
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
-    obj.c1(correoLogin);
-
-
     rlutil::locate(39,18);
     char ch;
     int index = 0;
@@ -178,7 +176,6 @@ int iniciarSesion() {
         ch = _getch();
         if (ch == 13) {
             claveLogin[index] = '\0';
-            c2(claveLogin);
             break;
         } else if (ch == 8) {
             if (index > 0) {
@@ -191,6 +188,13 @@ int iniciarSesion() {
         }
     }
    cout << endl;
+    if(correoLogin[0]=='\0'||claveLogin[0]=='\0'){
+
+    cout<<"Los campos no fueron cargados correctamente"<<endl;
+
+    fclose(logeo);
+    }
+
     while (fread(&obj, sizeof(Vendedores), 1, logeo) != 0) {
         if (strcmp(obj.getCorreo(), correoLogin) == 0 && strcmp(obj.getClave(), claveLogin) == 0) {
             inicio = true;
@@ -201,6 +205,7 @@ int iniciarSesion() {
         }
     }
     if (!inicio) {
+
     cout << "Los datos no coinciden..." << endl;
     fclose(logeo);
     system("pause");
@@ -600,7 +605,7 @@ system("cls");
 
 //NOMBRE
 void nombreV(char* nV){
-if(nV[0]=='\0'){
+while(nV[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Nombre: ";
 cin.ignore();
@@ -617,7 +622,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Vendedores objd;
-if(d==0){
+while(d==0){
 cout<<"Campo incompleto"<<endl;
 cout<<"Dni: ";
 cin>>d;
@@ -642,7 +647,7 @@ cout<<"NO SE PUDO ABRIR ESTE ARCHIVO"<<endl;
 return;
 }
 Vendedores objC;
-if(cV[0]=='\0'){
+while(cV[0]=='\0'){
 cout<<"Campo incompleto"<<endl;
 cout<<"Correo: ";
 cin.ignore();
@@ -662,22 +667,29 @@ fclose(correo);
 
 //CORREO
 void c1(char* c){
-if(c[0]=='\0'){
+while(c[0]=='\0'){
+rlutil::locate(38,15);
 cout<<"Campo incompleto"<<endl;
-cout<<"Correo: ";
+rlutil::locate(39,13);
 cin.ignore();
+rlutil::locate(39,13);
 cin.getline(c,30,'\n');
+rlutil::locate(38,15);
+cout<<"                   "<<endl;
 }
 }
 
 
 //CLAVE
 void c2(char* c){
-if(c[0]=='\0'){
+while(c[0]=='\0'){
+rlutil::locate(38,20);
 cout<<"Campo incompleto"<<endl;
-cout<<"Clave: ";
+rlutil::locate(38,18);
 cin.ignore();
+rlutil::locate(38,18);
 cin.getline(c,30,'\n');
+cout<<"                   "<<endl;
 }
 }
 };
