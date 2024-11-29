@@ -202,16 +202,11 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,30);
 cout<<char(176);
 }
-for(int j=1;j<121;j++){
-rlutil::locate(j,28);
-cout<<char(205);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,5);
-cout<<char(205);
-}
-    rlutil::locate(40,3);
+
+    rlutil::locate(40,5);
     bienvenidoUsuario(id);
+    rlutil::locate(30,6);
+    cout<<"---------------------------------------------------------------"<<endl;
     rlutil::locate(50,9);
     cout<<"1-)Clientes"<<endl;
      rlutil::locate(50,11);
@@ -561,16 +556,20 @@ for(int j=1;j<121;j++){
     rlutil::locate(j,30);
     cout<<char(176);
 }
+rlutil::locate(45,4);
+cout<<"Bienvenido al menu de soporte"<<endl;
+rlutil::locate(30,5);
+cout<<"----------------------------------------------------------"<<endl;
 rlutil::hidecursor();
-GraficarOpiciones("Dar de alta vendedores ",45,7,y==0,10,0);
-GraficarOpiciones("Dar de baja vendedores ",45,9,y==1,10,0);
-GraficarOpiciones("Editar vendedores ",45,11,y==2,10,0);
-GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,13,y==3,10,0);
-GraficarOpiciones("Mostrar solicitudes de alta ",45,15,y==4,10,0);
-GraficarOpiciones("Aprobar solicitudes de alta ",45,17,y==5,10,0);
-GraficarOpiciones("Dar de baja ticket ",45,19,y==6,10,0);
-GraficarOpiciones("Listar vendedores",45,21,y==7,10,0);
-GraficarOpiciones("Salir ",45,23,y==8,10,0);
+GraficarOpiciones("Dar de alta vendedores ",45,8,y==0,15,0);
+GraficarOpiciones("Dar de baja vendedores ",45,10,y==1,15,0);
+GraficarOpiciones("Editar vendedores ",45,12,y==2,15,0);
+GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,14,y==3,15,0);
+GraficarOpiciones("Mostrar solicitudes de alta ",45,16,y==4,15,0);
+GraficarOpiciones("Aprobar solicitudes de alta ",45,18,y==5,15,0);
+GraficarOpiciones("Dar de baja ticket ",45,20,y==6,15,0);
+GraficarOpiciones("Listar vendedores",45,22,y==7,15,0);
+GraficarOpiciones("Salir ",45,24,y==8,15,0);
 switch(rlutil::getkey()){
 case 14:
     y--;

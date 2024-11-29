@@ -77,32 +77,32 @@ public:
     cout<<char(176);
     }
     for(int j=1;j<121;j++){
-    rlutil::locate(j,25);
+    rlutil::locate(j,28);
     cout<<char(205);
      }
      for(int j=1;j<121;j++){
      rlutil::locate(j,3);
      cout<<char(205);
       }
-    rlutil::locate(42,5);
+    rlutil::locate(42,6);
     cout<<"GESTIONANDO A LOS CLIENTES"<<endl;
-    rlutil::locate(38,6);
+    rlutil::locate(38,7);
     cout<<"--------------------------------------------------------------"<<endl;
-    rlutil::locate(65,7);
+    rlutil::locate(65,9);
     cout<<"GROUP 51 CAR CENTER"<<endl;
-    rlutil::locate(45,9);
-    cout<<"1-)Dar de alta cliente"<<endl;
     rlutil::locate(45,11);
-    cout<<"2-)Dar de baja cliente"<<endl;
+    cout<<"1-)Dar de alta cliente"<<endl;
     rlutil::locate(45,13);
-    cout<<"3-)Modificar cliente"<<endl;
+    cout<<"2-)Dar de baja cliente"<<endl;
     rlutil::locate(45,15);
-    cout<<"4-)Listar clientes"<<endl;
+    cout<<"3-)Modificar cliente"<<endl;
     rlutil::locate(45,17);
-    cout<<"5-)Buscar un cliente"<<endl;
+    cout<<"4-)Listar clientes"<<endl;
     rlutil::locate(45,19);
-    cout<<"0-)Volver atras"<<endl;
+    cout<<"5-)Buscar un cliente"<<endl;
     rlutil::locate(45,21);
+    cout<<"0-)Volver atras"<<endl;
+    rlutil::locate(45,23);
     cout<<"Ingresa la opcion que desee:";
     cin>>opcion;
     switch(opcion){
