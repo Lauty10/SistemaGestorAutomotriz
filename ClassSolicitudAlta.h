@@ -90,24 +90,24 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
 }
-    rlutil::locate(9,5);
+    rlutil::locate(15,7);
     cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
-    rlutil::locate(45,9);
+    rlutil::locate(50,10);
     cout << "Ingrese su nombre:";
     cin.getline(nombre, 30, '\n');
     setNombre(nombre);
-    rlutil::locate(45,11);
+    rlutil::locate(50,12);
     cout << "Ingrese su correo:";
     cin.getline(correo, 35, '\n');
     setCorreo(correo);
-    rlutil::locate(45,13);
+    rlutil::locate(50,14);
     cout << "Ingrese su dni:";
     cin >> dni;
     cin.ignore();
     setDni(dni);
-    rlutil::locate(30,14);
+    rlutil::locate(50,16);
     cout << "------------------------------------------------------------" << endl;
-    rlutil::locate(45,16);
+    rlutil::locate(50,18);
     cout << "El número de solicitud es: " << getId() << endl;
 }
 

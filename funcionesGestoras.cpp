@@ -202,7 +202,6 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,30);
 cout<<char(176);
 }
-
     rlutil::locate(40,5);
     bienvenidoUsuario(id);
     rlutil::locate(30,6);
@@ -475,23 +474,23 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
 }
-rlutil::locate(42,5);
+rlutil::locate(42,6);
 cout<<"RECAUDACIONES DE LA CONSESCIONARIA"<<endl;
-rlutil::locate(38,6);
+rlutil::locate(38,7);
 cout<<"--------------------------------------------------------------"<<endl;
-rlutil::locate(65,7);
+rlutil::locate(65,8);
 cout<<"GROUP 51 CAR CENTER"<<endl;
-rlutil::locate(46,10);
-cout<<"1-)Recaudacion total"<<endl;
 rlutil::locate(46,12);
-cout<<"2-)Recaudacion por mes y anio"<<endl;
+cout<<"1-)Recaudacion total"<<endl;
 rlutil::locate(46,14);
-cout<<"3-)Recaudacion por anio"<<endl;
+cout<<"2-)Recaudacion por mes y anio"<<endl;
 rlutil::locate(46,16);
-cout<<"4-)Recaudacion por id de vendedor"<<endl;
+cout<<"3-)Recaudacion por anio"<<endl;
 rlutil::locate(46,18);
-cout<<"0-)Volver atras"<<endl;
+cout<<"4-)Recaudacion por id de vendedor"<<endl;
 rlutil::locate(46,20);
+cout<<"0-)Volver atras"<<endl;
+rlutil::locate(46,22);
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 Recaudacion obj;

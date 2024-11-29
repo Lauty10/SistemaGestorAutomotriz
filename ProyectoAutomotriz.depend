@@ -83,7 +83,7 @@
 1731986193 c:\users\lauty\onedrive\escritorio\proyectoautomotriz\classauto.h
 	<string.h>
 
-1732838027 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732907883 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
@@ -99,7 +99,7 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732828103 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1732908237 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
@@ -109,7 +109,7 @@
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
-1732761324 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1732908336 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1732494040 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\main.cpp
@@ -144,7 +144,7 @@
 1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732826650 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1732900994 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\rlutil.h

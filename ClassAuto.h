@@ -61,45 +61,29 @@ return estado;
 }
 
  //FUNCIONES
-
  void menuAutos(int id){
  int opcion;
  while(true){
- for(int j=1;j<121;j++){
-rlutil::locate(j,1);
-cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-rlutil::locate(j,30);
-cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-rlutil::locate(j,27);
-cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
-rlutil::locate(45,5);
+estiloAuto();
+rlutil::locate(45,7);
 cout<<"GESTIONANDO AUTOS"<<endl;
-rlutil::locate(45,6);
+rlutil::locate(45,8);
 cout<<"------------------------------------------------"<<endl;
-rlutil::locate(65,7);
+rlutil::locate(65,9);
 cout<<"GROUP 51 CAR CENTER"<<endl;
-rlutil::locate(45,10);
+rlutil::locate(45,11);
 cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
-rlutil::locate(45,12);
+rlutil::locate(45,13);
 cout<<"2-)Modificar vehiculo"<<endl;
-rlutil::locate(45,14);
+rlutil::locate(45,15);
 cout<<"3-)Dar de baja vehiculo"<<endl;
-rlutil::locate(45,16);
+rlutil::locate(45,17);
 cout<<"4-)Listar vehiculo"<<endl;
-rlutil::locate(45,18);
+rlutil::locate(45,19);
 cout<<"5-)Buscar vehiculo"<<endl;
-rlutil::locate(45,20);
+rlutil::locate(45,21);
 cout<<"0-)Volver atras"<<endl;
-rlutil::locate(45,22);
+rlutil::locate(45,23);
 cout<<"Ingrese la opcion que desee:";
 cin>>opcion;
 switch(opcion){
@@ -145,7 +129,7 @@ void altaAuto(){
         cout << "NO SE PUDO ABRIR ESTE ARCHIVO" << endl;
         return;
     }
-
+    estiloAuto();
     Auto obj;
     int idUnico;
     char nombreAuto[20];
@@ -155,19 +139,26 @@ void altaAuto(){
     bool estadoA = false;
     idUnico = generarIdAuto();
     obj.setIdAuto(idUnico);
+    rlutil::locate(45,10);
     cout << "Ingrese el nombre del auto: ";
     cin.ignore();
     cin.getline(nombreAuto, 20, '\n');
     obj.NombreV(nombreAuto);
     obj.setNombreAuto(nombreAuto);
+
+    rlutil::locate(45,12);
     cout << "Ingrese la marca del auto: ";
     cin.getline(marcaAuto, 20, '\n');
     obj.marcaV(marcaAuto);
     obj.setMarcaAuto(marcaAuto);
+
+    rlutil::locate(45,14);
     cout << "Ingrese la fecha de fabricacion del auto: ";
     cin.getline(anioVehiculo, 11, '\n');
     obj.fechaV(anioVehiculo);
     obj.setAnio(anioVehiculo);
+
+    rlutil::locate(45,16);
     cout << "Ingrese el precio del auto: ";
     cin >> precioAuto;
     obj.precioV(precioAuto);
@@ -175,7 +166,10 @@ void altaAuto(){
     estadoA = true;
     obj.setEstado(estadoA);
     fwrite(&obj, sizeof(Auto), 1, vehiculo);
+
+    rlutil::locate(45,18);
     cout << "Vehiculo cargado en el sistema" << endl;
+    rlutil::locate(45,20);
     system("pause");
     system("cls");
     fclose(vehiculo);
@@ -204,16 +198,24 @@ void altaAuto(){
 void modificarAutos(int id){
 int opcion;
 while(true){
+estiloAuto();
+rlutil::locate(36,6);
+cout<<"Aqui podra editar los datos de los vehiculos";
+rlutil::locate(35,7);
+cout<<"----------------------------------------------------------------"<<endl;
+rlutil::locate(65,8);
+cout<<"Group 51 call center"<<endl;
+rlutil::locate(50,12);
 cout<<"-1)Modificar nombre"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(50,14);
 cout<<"-2)Modificar marca"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(50,16);
 cout<<"-3)Modificar fecha de fabricacion"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(50,18);
 cout<<"-4)Modificar precio"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(50,20);
 cout<<"-0)Salir"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(50,22);
 cout<<"Eliga la opcion que desee:";
 cin>>opcion;
 switch(opcion){
@@ -244,6 +246,7 @@ menuAutos(id);
 //FUNCION PARA MODIFICAR NOMBRE
 
 void modificarNombre(){
+estiloAuto();
 FILE *nombre;
 nombre=fopen("Vehiculo.dat","rb+");
 
@@ -251,21 +254,23 @@ if(nombre==NULL){
 cout<<"Error al editar nombre..."<<endl;
 fclose(nombre);
 }
-
 Auto obj;
 bool encontrado=false;
 int idBuscado;
-
+rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
-
 while(fread(&obj,sizeof(Auto),1,nombre)!=0){
 if(idBuscado==obj.getId()){
-cout<<"Auto encontrado correctamente"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
+if(obj.getEstado()==true){
+rlutil::locate(45,14);
+cout<<"Auto encontrado correctamente"<<endl;
+rlutil::locate(3,6);
+cout<<"El nombre actual es:"<<obj.getNombreAuto();
 long longitud=ftell(nombre)-sizeof(Auto);
 char nuevoNombre[20];
+rlutil::locate(45,16);
 cout<<"Ingresa el nombre:";
 cin.ignore();
 cin.getline(nuevoNombre,20,'\n');
@@ -273,13 +278,23 @@ obj.NombreV(nuevoNombre);
 obj.setNombreAuto(nuevoNombre);
 fseek(nombre,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,nombre);
+rlutil::locate(45,18);
 cout<<"Nombre editado correctamente..."<<endl;
+rlutil::locate(45,20);
 system("pause");
 break;
+}else{
+rlutil::locate(45,14);
+cout<<"El vehiculo se encuentra dado de baja..."<<endl;
+rlutil::locate(45,16);
+system("pause");
+}
 }
 }
 if(!encontrado){
+rlutil::locate(45,14);
 cout<<"No se encontro el id correspondiente"<<endl;
+rlutil::locate(45,16);
 system("pause");
 }
 fclose(nombre);
@@ -290,10 +305,12 @@ system("cls");
 //MODIFICAR MARCA
 
 void modificarMarca(){
+estiloAuto();
 FILE *marca;
 marca=fopen("Vehiculo.dat","rb+");
 
 if(marca==NULL){
+rlutil::locate(45,12);
 cout<<"Error al editar marca..."<<endl;
 fclose(marca);
 }
@@ -301,18 +318,21 @@ fclose(marca);
 Auto obj;
 bool encontrado=false;
 int idBuscado;
-
+rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
 
 while(fread(&obj,sizeof(Auto),1,marca)!=0){
 if(idBuscado==obj.getId()){
-cout<<"Auto encontrado correctamente"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
-
+if(obj.getEstado()==true){
+rlutil::locate(45,14);
+cout<<"Auto encontrado correctamente"<<endl;
+rlutil::locate(3,6);
+cout<<"La marca actua es:"<<obj.getMarcaAuto()<<endl;
 long longitud=ftell(marca)-sizeof(Auto);
 char nuevaMarca[20];
+rlutil::locate(45,16);
 cout<<"Ingresa la marca:";
 cin.ignore();
 cin.getline(nuevaMarca,20,'\n');
@@ -320,13 +340,23 @@ obj.marcaV(nuevaMarca);
 obj.setMarcaAuto(nuevaMarca);
 fseek(marca,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,marca);
+rlutil::locate(45,18);
 cout<<"Marca editada correctamente..."<<endl;
+rlutil::locate(45,20);
 system("pause");
 break;
+}else{
+rlutil::locate(45,14);
+cout<<"El vehiculo se encuentra dado de baja..."<<endl;
+rlutil::locate(45,16);
+system("pause");
+}
 }
 }
 if(!encontrado){
+rlutil::locate(45,14);
 cout<<"No se encontro el id correspondiente"<<endl;
+rlutil::locate(45,16);
 system("pause");
 }
 fclose(marca);
@@ -380,42 +410,54 @@ system("cls");
 //MODIFICAR PRECIO
 
 void modificarPrecio(){
+estiloAuto();
 FILE *precio;
 precio=fopen("Vehiculo.dat","rb+");
-
 if(precio==NULL){
 cout<<"Error al editar el precio..."<<endl;
 fclose(precio);
 }
-
 Auto obj;
 bool encontrado=false;
 int idBuscado;
-
+rlutil::locate(45,12);
 cout<<"Ingrese el id del auto a modificar:";
 cin>>idBuscado;
 
 while(fread(&obj,sizeof(Auto),1,precio)!=0){
 if(idBuscado==obj.getId()){
-cout<<"Auto encontrado correctamente"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
 encontrado=true;
-
+if(obj.getEstado()==true){
+rlutil::locate(45,14);
+cout<<"Auto encontrado correctamente"<<endl;
+rlutil::locate(3,6);
+cout<<"El precio actual es:"<<obj.getPrecioAuto();
 long longitud=ftell(precio)-sizeof(Auto);
 int nuevoPrecio;
+rlutil::locate(45,16);
 cout<<"Ingresa el precio:";
 cin>>nuevoPrecio;
 obj.precioV(nuevoPrecio);
 obj.setPrecioAuto(nuevoPrecio);
 fseek(precio,longitud,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,precio);
+rlutil::locate(45,18);
 cout<<"Precio editado correctamente..."<<endl;
+rlutil::locate(45,20);
 system("pause");
 break;
+}else{
+rlutil::locate(45,14);
+cout<<"El vehiculo se encuentra dado de baja..."<<endl;
+rlutil::locate(45,16);
+system("pause");
+}
 }
 }
 if(!encontrado){
+rlutil::locate(45,14);
 cout<<"No se encontro el id correspondiente"<<endl;
+rlutil::locate(45,16);
 system("pause");
 }
 fclose(precio);
@@ -425,31 +467,47 @@ system("cls");
 
 //DAR DE BAJA VEHICULOS
 void darBaja(){
+estiloAuto();
 int baja;
+rlutil::locate(42,12);
 cout<<"Ingrese el ID del vehiculo a dar de baja:";
 cin>>baja;
 FILE *bajaV;
 bajaV=fopen("Vehiculo.dat","rb+");
 
 if(bajaV==NULL){
+rlutil::locate(42,14);
 cout<<"Error al dar de baja vehiculo"<<endl;
+rlutil::locate(42,16);
+system("pause");
 }
 Auto obj;
 bool encontrado=false;
 while(fread(&obj,sizeof(Auto),1,bajaV)!=0){
 if(baja==obj.getId()){
 encontrado=true;
+if(obj.getEstado()==true){
 long posicion=ftell(bajaV)-sizeof(Auto);
 obj.setEstado(false);
 fseek(bajaV,posicion,SEEK_SET);
 fwrite(&obj,sizeof(Auto),1,bajaV);
+rlutil::locate(42,14);
 cout<<"Vehiculo dado de baja correctamente..."<<endl;
+rlutil::locate(42,16);
 system("pause");
 break;
- }
+}else{
+rlutil::locate(42,14);
+cout<<"El vehiculo ya se encuentra dado de baja..."<<endl;
+rlutil::locate(42,16);
+system("pause");
+}
+}
 }
 if(!encontrado){
+rlutil::locate(45,16);
 cout<<"ID no encontrado..."<<endl;
+rlutil::locate(45,18);
 system("pause");
 }
 fclose(bajaV);
@@ -485,33 +543,57 @@ system("cls");
 
 //FUNCION PARA BUSCAR VEHICULO
 void buscarVehiculo(){
+estiloAuto();
 FILE *buscarV;
 buscarV=fopen("Vehiculo.dat","rb");
 
 if(buscarV==NULL){
+rlutil::locate(45,12);
 cout<<"Error al buscar vehiculo..."<<endl;
+rlutil::locate(45,14);
+system("pause");
 }
 
 Auto obj;
 int idBuscado;
+rlutil::locate(40,8);
 cout<<"Ingrese el id del vehiculo que esta buscando:";
 cin>>idBuscado;
 bool buscado=false;
 while(fread(&obj,sizeof(Auto),1,buscarV)!=0){
 if(idBuscado==obj.getId()){
 buscado=true;
-cout<<"Vehiculo encontrado :"<<endl;
-cout<<"Nombre :"<<obj.getNombreAuto()<<endl;
-cout<<"Marca :"<<obj.getMarcaAuto()<<endl;
-cout<<"La fecha de fabricacion :"<<obj.getAnioAuto()<<endl;
-cout<<"Precio: "<<obj.getPrecioAuto()<<endl;
+rlutil::locate(40,10);
+cout<<"Vehiculo encontrado...."<<endl;
+rlutil::locate(40,12);
+cout<<"Nombre:"<<obj.getNombreAuto()<<endl;
+rlutil::locate(40,14);
+cout<<"Marca:"<<obj.getMarcaAuto()<<endl;
+rlutil::locate(40,16);
+cout<<"La fecha de fabricacion:"<<obj.getAnioAuto()<<endl;
+rlutil::locate(40,18);
+cout<<"Precio:"<<obj.getPrecioAuto()<<endl;
+rlutil::locate(40,20);
 cout<<"ID:"<<obj.getId()<<endl;
+if(obj.getEstado()==true){
+    rlutil::locate(40,22);
+    cout<<"El estado del auto es:"<<"Activo"<<endl;
+}
+else{
+    rlutil::locate(40,22);
+    cout<<"El estado del auto es:"<<"Inactivo"<<endl;
+}
+rlutil::locate(30,24);
 cout<<"------------------------------------------------------------"<<endl;
+rlutil::locate(40,25);
 system("pause");
     }
 }
 if(!buscado){
+    rlutil::locate(40,10);
     cout<<"El id del vehiculo no pudo ser encontrado..."<<endl;
+    rlutil::locate(40,12);
+    system("pause");
 }
 system("cls");
 fclose(buscarV);
@@ -550,7 +632,6 @@ cin.getline(f,11,'\f');
 }
 }
 
-
 //PRECIO
 void precioV(float p){
 while(p==0.0){
@@ -559,6 +640,26 @@ cout<<"Precio: ";
 cin>>p;
 }
 }
+
+void estiloAuto(){
+for(int j=1;j<121;j++){
+rlutil::locate(j,1);
+cout<<char(176);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,30);
+cout<<char(176);
+    }
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+}
+
 };
 
 #endif // CLASSAUTO_H_INCLUDED

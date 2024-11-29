@@ -205,6 +205,7 @@ int iniciarSesion() {
     }
    cout << endl;
     if(correoLogin[0]=='\0'||claveLogin[0]=='\0'){
+    rlutil::setColor(rlutil::RED);
     rlutil::locate(38,22);
     cout<<"Los campos no fueron cargados correctamente"<<endl;
     fclose(logeo);
@@ -224,8 +225,9 @@ int iniciarSesion() {
         }
     }
     if (inicio==false && orden==false) {
+    rlutil::setColor(rlutil::RED);
     rlutil::locate(38,22);
-    cout << "Los datos son erroneos..." << endl;
+    cout << "Correo y/o clave incorrectos..." << endl;
     fclose(logeo);
     rlutil::locate(38,23);
     system("pause");
