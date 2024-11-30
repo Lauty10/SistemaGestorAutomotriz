@@ -109,6 +109,7 @@ cout<<char(205);
     cout << "------------------------------------------------------------" << endl;
     rlutil::locate(50,18);
     cout << "El número de solicitud es: " << getId() << endl;
+    cin.ignore();
 }
 
 void nuevaSolicitud(Solicitud objS){

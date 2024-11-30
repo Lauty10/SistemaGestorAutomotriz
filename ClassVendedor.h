@@ -182,11 +182,11 @@ int iniciarSesion() {
     char claveLogin[20];
     bool inicio = false;
     bool orden=false;
-
     rlutil::locate(39,13);
     cin.getline(correoLogin, 35, '\n');
     rlutil::locate(39,18);
     char ch;
+
     int index = 0;
     while (true) {
         ch = _getch();
