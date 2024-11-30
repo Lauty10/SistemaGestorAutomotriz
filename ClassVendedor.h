@@ -250,18 +250,16 @@ int y=0;
        rlutil::setBackgroundColor(rlutil::BLACK);
        rlutil::setColor(rlutil::WHITE);
        GraficarLineasHorizontales(1,121,2,false,176);
-       GraficarLineasHorizontales(1,121,4,false,205);
        GraficarLineasHorizontales(1,121,30,false,176);
-       GraficarLineasHorizontales(1,121,27,false,205);
        rlutil::locate(35,6);
-       cout<<" GROUP 51 CAR CENTER"<<endl;
-       rlutil::locate(35,5);
-       cout<<"--------------------------------------------------------------"<<endl;
-       rlutil::locate(54,8);
-       cout<<"MENU DE VENDEDORES "<<endl;
-       GraficarOpiciones("Listar vendedores ",45,10,y==0,15,0);
-       GraficarOpiciones("Buscar un vendedor ",45,12,y==1,15,0);
-       GraficarOpiciones("Volver atras ",45,14,y==2,15,0);
+        cout<<"INFORMACION DE LOS VENDEDORES"<<endl;
+        rlutil::locate(35,7);
+        cout<<"--------------------------------------------------------------"<<endl;
+        rlutil::locate(60,8);
+        cout<<"GROUP 51 CAR CENTER"<<endl;
+       GraficarOpiciones("Listar vendedores ",55,14,y==0,15,0);
+       GraficarOpiciones("Buscar un vendedor ",55,16,y==1,15,0);
+       GraficarOpiciones("Volver atras ",55,18,y==2,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;
@@ -340,10 +338,8 @@ if(listaV==NULL){
 }
 Vendedores objV;
 int fila=9;
-rlutil::locate(50,6);
-cout<<"Estos son los vendedores en nuestro sistema"<<endl;
-rlutil::locate(30,7);
-cout<<"--------------------------------------------------------------------------------"<<endl;
+rlutil::locate(45,6);
+cout<<"Vendedores registrados en el sistema"<<endl;
 while(fread(&objV,sizeof(Vendedores),1,listaV)!=0){
     if(objV.getEstado()==true){
     rlutil::locate(3, fila);

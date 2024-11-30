@@ -82,25 +82,20 @@ void generarTicket(int id) {
         cout << "Error al generar nuevo ticket" << endl;
         return;
     }
-
-
+    GraficarLineasHorizontales(1,121,2,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
     TicketAdmin objT;
     int idT;
-    rlutil::locate(1,1);
-    cout << "-------------------------------------------------------------------" << endl;
-    rlutil::locate(1,3);
-    cout << "Por favor complete los siguientes datos para generar un ticket:" << endl;
-    rlutil::locate(1,5);
-    cout << "-------------------------------------------------------------------" << endl;
-      rlutil::locate(1,6);
-    cout << "Ingrese el asunto del ticket: ";
-    cin.ignore();
-    cin.getline(infoTicket, 35);
+    rlutil::locate(33,10);
+    cout << "Por favor complete los siguientes datos para generar un ticket" << endl;
+    rlutil::locate(45,12);
+    cout << "Ingrese el asunto del ticket:";
+    cin.getline(infoTicket, 35,'\n');
     objT.ticketV(infoTicket);
     objT.setInfo(infoTicket);
-    rlutil::locate(1,9);
-    cout << "Ingrese la fecha del ticket (Ej: 01/01/1900): ";
-    cin.getline(fechaActual, 11);
+    rlutil::locate(45,14);
+    cout << "Ingrese la fecha del ticket,(Ej: 01/01/1900):";
+    cin.getline(fechaActual, 11,'\n');
     objT.fechaV(fechaActual);
     objT.setFecha(fechaActual);
     objT.setUsuario(usuario);
@@ -108,12 +103,12 @@ void generarTicket(int id) {
     objT.setIdT(idT);
     objT.setTicket(true);
     fwrite(&objT, sizeof(TicketAdmin), 1, nuevoT);
-    rlutil::locate(1,12);
+    rlutil::locate(45,16);
     cout << "Ticket generado correctamente..." << endl;
-    rlutil::locate(1,14);
+    rlutil::locate(45,18);
     cout << "El numero del ticket es: " << idT << endl;
     fclose(nuevoT);
-    rlutil::locate(1,18);
+    rlutil::locate(45,20);
     system("pause");
     system("cls");
 }
@@ -143,21 +138,17 @@ rlutil::locate(1,6);
 cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
 return;
 }
-rlutil::locate(1,3);
-cout<<"Estos son todos los tikets"<<endl;
+rlutil::locate(40,2);
+cout<<"Estos son todos los tikets generados en nuestro sistema..."<<endl;
 TicketAdmin obj;
 while(fread(&obj,sizeof(TicketAdmin),1,tickets)!=0){
 if(obj.getTicket()==true){
-
-cout<<"Fecha: "<<obj.getFecha()<<endl;
-
-cout<<"Id del ticket: "<<obj.getId()<<endl;
-
-cout<<"Usuario: "<<obj.getUsuario()<<endl;
-
-cout<<"Informacion del ticket: "<<obj.getInfoT()<<endl;
-
-cout<<"------------------------------------------------------------"<<endl;
+cout<<endl;
+cout<<"La fecha del ticket es: "<<obj.getFecha()<<endl;
+cout<<"El id del ticket es: "<<obj.getId()<<endl;
+cout<<"El usuario del ticket es: "<<obj.getUsuario()<<endl;
+cout<<"El asunto del del ticket es: "<<obj.getInfoT()<<endl;
+cout<<endl;
 }
 }
 fclose(tickets);

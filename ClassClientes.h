@@ -76,22 +76,20 @@ public:
        rlutil::hidecursor();
        rlutil::setBackgroundColor(rlutil::BLACK);
        rlutil::setColor(rlutil::WHITE);
-       GraficarLineasHorizontales(1,121,2,false,176);
-       GraficarLineasHorizontales(1,121,4,false,205);
+       GraficarLineasHorizontales(1,121,2,false,176);;
        GraficarLineasHorizontales(1,121,30,false,176);
-       GraficarLineasHorizontales(1,121,27,false,205);
-       rlutil::locate(35,6);
-       cout<<" GROUP 51 CAR CENTER"<<endl;
-       rlutil::locate(35,5);
-       cout<<"--------------------------------------------------------------"<<endl;
-       rlutil::locate(54,8);
-       cout<<"GESTIONANDO A LOS CLIENTES"<<endl;
-       GraficarOpiciones("Dar de alta cliente ",45,10,y==0,15,0);
-       GraficarOpiciones("Dar de baja cliente ",45,12,y==1,15,0);
-       GraficarOpiciones("Modificar cliente ",45,14,y==2,15,0);
-       GraficarOpiciones("Listar clientes ",45,16,y==3,15,0);
-       GraficarOpiciones("Buscar un cliente ",45,18,y==4,15,0);
-       GraficarOpiciones("Volver atras ",45,20,y==5,15,0);
+        rlutil::locate(35,6);
+        cout<<" GROUP 51 CAR CENTER"<<endl;
+        rlutil::locate(35,7);
+        cout<<"--------------------------------------------------------------"<<endl;
+        rlutil::locate(54,8);
+        cout<<"BIENVENIDO AQUI PODRA EDITAR LOS CLIENTES"<<endl;
+       GraficarOpiciones("Dar de alta cliente ",50,12,y==0,15,0);
+       GraficarOpiciones("Dar de baja cliente ",50,14,y==1,15,0);
+       GraficarOpiciones("Modificar cliente ",50,16,y==2,15,0);
+       GraficarOpiciones("Listar clientes ",50,18,y==3,15,0);
+       GraficarOpiciones("Buscar un cliente ",50,20,y==4,15,0);
+       GraficarOpiciones("Volver atras ",50,22,y==5,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;

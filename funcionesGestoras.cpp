@@ -81,7 +81,6 @@ case 1:
        system("cls");
        menuDeSoporte();
        }
-       else{cout<<"Credenciales incorrectas";}
     break;
    case 5:
        system("cls");
@@ -190,17 +189,17 @@ do{
    rlutil::setColor(rlutil::WHITE);
    GraficarLineasHorizontales(1,121,2,false,176);
    GraficarLineasHorizontales(1,121,30,false,176);
-   rlutil::locate(35,4);
+   rlutil::locate(40,6);
    bienvenidoUsuario(id);
-   rlutil::locate(30,5);
-   cout<<"----------------------------------------------------------"<<endl;
-   GraficarOpiciones("Clientes ",50,10,y==0,15,0);
-   GraficarOpiciones("Vendedores ",50,12,y==1,15,0);
-   GraficarOpiciones("Autos ",50,14,y==2,15,0);
-   GraficarOpiciones("Recaudaciones ",50,16,y==3,15,0);
-   GraficarOpiciones("Realizar Venta ",50,18,y==4,15,0);
-   GraficarOpiciones("Generar Ticket para soporte ",50,20,y==5,15,0);
-   GraficarOpiciones("Salir ",50,22,y==6,15,0);
+   rlutil::locate(30,7);
+   cout<<"-------------------------------------------------------------------"<<endl;
+   GraficarOpiciones("Menu de clientes ",50,10,y==0,15,0);
+   GraficarOpiciones("Menu de vendedores ",50,12,y==1,15,0);
+   GraficarOpiciones("Menu de Autos ",50,14,y==2,15,0);
+   GraficarOpiciones("Menu de Recaudaciones ",50,16,y==3,15,0);
+   GraficarOpiciones("Realizar venta de vehiculo",50,18,y==4,15,0);
+   GraficarOpiciones("Generar ticket para soporte ",50,20,y==5,15,0);
+   GraficarOpiciones("Cerrar sesion",50,22,y==6,15,0);
    switch(rlutil::getkey()){
    case 14:
            y--;
@@ -449,20 +448,19 @@ do{
    rlutil::setBackgroundColor(rlutil::BLACK);
    rlutil::setColor(rlutil::WHITE);
    GraficarLineasHorizontales(1,121,1,false,176);
-   GraficarLineasHorizontales(1,121,3,false,205);
    GraficarLineasHorizontales(1,121,30,false,176);
-   GraficarLineasHorizontales(1,121,27,false,205);
-   rlutil::locate(45,4);
-   cout<<"RECAUDACIONES DE LA CONSESCIONARIA"<<endl;
-   rlutil::locate(30,5);
-   cout<<"----------------------------------------------------------"<<endl;
-   rlutil::locate(54,6);
-   cout<<"GROUP 51 CAR CENTER"<<endl;
-   GraficarOpiciones("Recaudacion total ",45,8,y==0,15,0);
-   GraficarOpiciones("Recaudacion por mes y anio ",45,10,y==1,15,0);
-   GraficarOpiciones("Recaudacion por anio ",45,12,y==2,15,0);
-   GraficarOpiciones("Recaudacion por id de vendedor ",45,14,y==3,15,0);
-   GraficarOpiciones("Volver atras ",45,16,y==4,15,0);
+    rlutil::locate(35,6);
+    cout<<"BIENVENIDO AQUI PODRA EDITAR LOS VEHICULOS"<<endl;
+    rlutil::locate(35,7);
+    cout<<"--------------------------------------------------------------"<<endl;
+    rlutil::locate(70,8);
+    cout<<"GROUP 51 CAR CENTER"<<endl;
+   GraficarOpiciones("Recaudacion total ",50,12,y==0,15,0);
+   GraficarOpiciones("Recaudacion por mes y anio ",50,14,y==1,15,0);
+
+   GraficarOpiciones("Recaudacion por anio ",50,16,y==2,15,0);
+   GraficarOpiciones("Recaudacion por id de vendedor ",50,18,y==3,15,0);
+   GraficarOpiciones("Volver atras ",50,20,y==4,15,0);
    switch(rlutil::getkey()){
    case 14:
            y--;
@@ -865,8 +863,8 @@ GraficarLineasHorizontales(35,85,25,false,205);
 GraficarLineasVerticales(34,85,6,25,186);
 rlutil::locate(52,7);
 cout<<titulo;
-GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
-GraficarCeldas(38,80,18,"CONTRASENIA");
+GraficarCeldas(38,80,13,"INGRESAR CORREO ELECTRONICO");
+GraficarCeldas(38,80,18,"INGRESAR CLAVE");
 }
 
 

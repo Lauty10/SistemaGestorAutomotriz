@@ -55,21 +55,52 @@ public:
         admnis[3] = Administrador("francoAdmin19@gmail.com", "987654321", "admin", true);
         char correoAdmin[35];
         char claveAdmin[20];
+        int i = 0;
         rlutil::locate(39,13);
         rlutil::showcursor();
         cin.getline(correoAdmin, 35, '\n');
         rlutil::locate(39,18);
-        cin.getline(claveAdmin, 20, '\n');
+         while (i < 19) {
+        char ch = _getch();
+        if(ch == 13) {
+        break;
+        }else if (ch == 8) {
+        if (i > 0) {
+        i--;
+        cout << "\b \b";
+        }
+        }else {
+            claveAdmin[i] = ch;
+            i++;
+            cout << "*";
+        }
+        }
+    claveAdmin[i] = '\0';
         for (int j = 0; j < 4; j++) {
-            if (strcmp(admnis[j].getCorreo(), correoAdmin) == 0 && strcmp(admnis[j].getClave(), claveAdmin) == 0) {
+            if(strcmp(correoAdmin,"")!=0 && strcmp(claveAdmin,"")!=0){
+                if(strcmp(admnis[j].getCorreo(), correoAdmin) == 0 && strcmp(admnis[j].getClave(), claveAdmin) == 0) {
                 return true;
+            }else{
+           rlutil::locate(40, 22);
+           rlutil::setColor(rlutil::RED);
+           cout<<"Correo y/o clave incorrectos..."<<endl;
+           rlutil::resetColor();
+           rlutil::locate(40,23);
+           system("pause");
+           system("cls");
+           return false;
+            }
+            }else{
+            rlutil::locate(40, 22);
+           rlutil::setColor(rlutil::RED);
+           cout<<"Campos cargados incorrectamente..."<<endl;
+           rlutil::resetColor();
+           rlutil::locate(40,23);
+           system("pause");
+           system("cls");
+           return false;
             }
         }
-        system("cls");
-        cout<<"Error credenciales incorrectas..."<<endl;
-        system("pause");
-        system("cls");
-        return false;
     }
 };
 

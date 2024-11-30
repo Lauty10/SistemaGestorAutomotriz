@@ -69,21 +69,19 @@ return estado;
        rlutil::setBackgroundColor(rlutil::BLACK);
        rlutil::setColor(rlutil::WHITE);
        GraficarLineasHorizontales(1,121,2,false,176);
-       GraficarLineasHorizontales(1,121,4,false,205);
        GraficarLineasHorizontales(1,121,30,false,176);
-       GraficarLineasHorizontales(1,121,27,false,205);
-       rlutil::locate(35,6);
-       cout<<" GROUP 51 CAR CENTER"<<endl;
-       rlutil::locate(35,5);
-       cout<<"--------------------------------------------------------------"<<endl;
-       rlutil::locate(54,8);
-       cout<<"GESTIONANDO AUTOS"<<endl;
-       GraficarOpiciones("Dar de alta nuevo vehiculo ",45,10,y==0,15,0);
-       GraficarOpiciones("Modificar vehiculo ",45,12,y==1,15,0);
-       GraficarOpiciones("Dar de baja vehiculo ",45,14,y==2,15,0);
-       GraficarOpiciones("Listar vehiculos ",45,16,y==3,15,0);
-       GraficarOpiciones("Buscar vehiculo ",45,18,y==4,15,0);
-       GraficarOpiciones("Volver atras ",45,20,y==5,15,0);
+        rlutil::locate(35,6);
+        cout<<"BIENVENIDO AQUI PODRA EDITAR LOS VEHICULOS"<<endl;
+        rlutil::locate(35,7);
+        cout<<"--------------------------------------------------------------"<<endl;
+        rlutil::locate(70,8);
+        cout<<"GROUP 51 CAR CENTER"<<endl;
+       GraficarOpiciones("Dar de alta nuevo vehiculo ",50,12,y==0,15,0);
+       GraficarOpiciones("Modificar vehiculo ",50,14,y==1,15,0);
+       GraficarOpiciones("Dar de baja vehiculo ",50,16,y==2,15,0);
+       GraficarOpiciones("Listar vehiculos ",50,18,y==3,15,0);
+       GraficarOpiciones("Buscar vehiculo ",50,20,y==4,15,0);
+       GraficarOpiciones("Volver atras ",50,22,y==5,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;
@@ -551,19 +549,21 @@ if(listarA==NULL){
 cout<<"Error al intentar listar los vehiculos"<<endl;
  }
 
+rlutil::locate(40,2);
+cout<<"Estos son los vehiculos listados disponibles en nuestro sistema"<<endl;
 Auto obj;
 while(fread(&obj,sizeof(Auto),1,listarA)!=0){
 if(obj.getEstado()==true){
+cout<<endl;
 cout<<"EL ID DEL AUTO ES:"<<obj.getId()<<endl;
 cout<<"EL NOMBRE DEL AUTO ES:"<<obj.getNombreAuto()<<endl;
 cout<<"LA MARCA DEL AUTO ES:"<<obj.getMarcaAuto()<<endl;
 cout<<"EL ANIO DE FABRICACION ES:"<<obj.getAnioAuto()<<endl;
 cout<<"EL PRECIO DEL AUTO ES:"<<obj.getPrecioAuto()<<endl;
-cout<<"----------------------------------------------------------------------------------------"<<endl;
+cout<<endl;
 }
 }
 fclose(listarA);
-cout<<"Estos son los autos disponibles actualmente"<<endl;
 system("pause");
 system("cls");
 }
