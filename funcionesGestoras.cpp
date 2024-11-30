@@ -189,18 +189,18 @@ do{
    rlutil::setColor(rlutil::WHITE);
    GraficarLineasHorizontales(1,121,1,false,176);
    GraficarLineasHorizontales(1,121,30,false,176);
-   rlutil::locate(45,4);
+   rlutil::locate(35,4);
    bienvenidoUsuario(id);
    rlutil::locate(30,5);
    cout<<"----------------------------------------------------------"<<endl;
    rlutil::hidecursor();
-   GraficarOpiciones("Clientes ",45,8,y==0,15,0);
-   GraficarOpiciones("Vendedores ",45,10,y==1,15,0);
-   GraficarOpiciones("Autos ",45,12,y==2,15,0);
-   GraficarOpiciones("Recaudaciones ",45,14,y==3,15,0);
-   GraficarOpiciones("Realizar Venta ",45,16,y==4,15,0);
-   GraficarOpiciones("Generar Ticket para soporte ",45,18,y==5,15,0);
-   GraficarOpiciones("Salir ",45,20,y==6,15,0);
+   GraficarOpiciones("Clientes ",50,10,y==0,15,0);
+   GraficarOpiciones("Vendedores ",50,12,y==1,15,0);
+   GraficarOpiciones("Autos ",50,14,y==2,15,0);
+   GraficarOpiciones("Recaudaciones ",50,16,y==3,15,0);
+   GraficarOpiciones("Realizar Venta ",50,18,y==4,15,0);
+   GraficarOpiciones("Generar Ticket para soporte ",50,20,y==5,15,0);
+   GraficarOpiciones("Salir ",50,22,y==6,15,0);
    switch(rlutil::getkey()){
    case 14:
            y--;
