@@ -32,7 +32,7 @@ void GraficarCeldas(int,int,int,const char*);
 void GraficarLineasHorizontales(int,int,int,bool,int);
 void GraficarLineasVerticales(int,int,int,int,int);
 void Borrar(int,int,int,int);
-void Dibujar_Cuadro_Login();
+void Dibujar_Cuadro_Login(const char*);
 int Mover_Cursor_Teclas(int,int);
 
 

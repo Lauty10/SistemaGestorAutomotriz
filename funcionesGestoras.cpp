@@ -14,26 +14,16 @@ int opcion,logeo, y=0;
 bool logeoAdmin=false;;
 int idLogeado;
 bool control_del_menu=true;
-rlutil::setColor(15);
-rlutil::setBackgroundColor(rlutil::BLACK);
-rlutil::setColor(rlutil::WHITE);
-rlutil::cls();
 do{
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-rlutil::locate(40,6);
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,30,false,176);rlutil::locate(40,6);
+rlutil::locate(35,6);
 cout<<" GROUP 51 CAR CENTER"<<endl;
 rlutil::locate(35,7);
-cout<<"-------------------------------------------------------------"<<endl;
-rlutil::locate(55,8);
+cout<<"--------------------------------------------------------------"<<endl;
+rlutil::locate(54,8);
 cout<<"BIENVENIDO AL SISTEMA GESTOR"<<endl;
 rlutil::hidecursor();
 GraficarOpiciones(" INICIAR SESION ",45,11,y==0,15,0);
@@ -60,7 +50,7 @@ case 1:
    case 0:
         system("cls");
         rlutil::showcursor();
-        Dibujar_Cuadro_Login();
+        Dibujar_Cuadro_Login("LOGEO VENDEDOR");
         logeo=obj.iniciarSesion();
         if(logeo!=0){
         system("cls");
@@ -85,7 +75,7 @@ case 1:
        rlutil::setBackgroundColor(rlutil::BLACK);
        system("cls");
        rlutil::setBackgroundColor(rlutil::BLACK);
-       Dibujar_Cuadro_Login();
+       Dibujar_Cuadro_Login("LOGEO ADMIN");
        logeoAdmin=objA.logeoDeUsuariosAdministradores();
        if(logeoAdmin==true){
        system("cls");
@@ -192,72 +182,75 @@ Clientes objCliente;
 Vendedores objVendedores;
 Auto objAuto;
 TicketAdmin objT;
-int opcion;
-while(true){
-for(int j=1;j<121;j++){
-rlutil::locate(j,1);
-cout<<char(176);
+bool control_menu_vendedor=true;
+int y=0;
+do{
+   rlutil::setBackgroundColor(rlutil::BLACK);
+   rlutil::setColor(rlutil::WHITE);
+   GraficarLineasHorizontales(1,121,1,false,176);
+   GraficarLineasHorizontales(1,121,30,false,176);
+   rlutil::locate(45,4);
+   bienvenidoUsuario(id);
+   rlutil::locate(30,5);
+   cout<<"----------------------------------------------------------"<<endl;
+   rlutil::hidecursor();
+   GraficarOpiciones("Clientes ",45,8,y==0,15,0);
+   GraficarOpiciones("Vendedores ",45,10,y==1,15,0);
+   GraficarOpiciones("Autos ",45,12,y==2,15,0);
+   GraficarOpiciones("Recaudaciones ",45,14,y==3,15,0);
+   GraficarOpiciones("Realizar Venta ",45,16,y==4,15,0);
+   GraficarOpiciones("Generar Ticket para soporte ",45,18,y==5,15,0);
+   GraficarOpiciones("Salir ",45,20,y==6,15,0);
+   switch(rlutil::getkey()){
+   case 14:
+           y--;
+           if(y<0){
+           y=0;
+          }
+   break;
+   case 15:
+           y++;
+           if(y>6){
+           y=0;
+           }
+   break;
+         case 1:
+         switch(y){
+         case 0:
+                system("cls");
+                objCliente.menuClientes(id);
+         break;
+         case 1:
+                system("cls");
+                objVendedores.funcionalidadesVendedor(id);
+         break;
+         case 2:
+                system("cls");
+                objAuto.menuAutos(id);
+         break;
+         case 3:
+                system("cls");
+                recaudaciones(id);
+         break;
+         case 4:
+                system("cls");
+                realizarVenta(id);
+         break;
+         case 5:
+                system("cls");
+                objT.generarTicket(id);
+         break;
+         case 6:
+                rlutil::setBackgroundColor(rlutil::BLACK);
+                system("cls");
+                control_menu_vendedor=false;
+         break;
+           }
+    break;
 }
-for(int j=1;j<121;j++){
-rlutil::locate(j,30);
-cout<<char(176);
+}while(control_menu_vendedor);
 }
-    rlutil::locate(40,5);
-    bienvenidoUsuario(id);
-    rlutil::locate(30,6);
-    cout<<"---------------------------------------------------------------"<<endl;
-    rlutil::locate(50,9);
-    cout<<"1-)Clientes"<<endl;
-     rlutil::locate(50,11);
-    cout<<"2-)Vendedores"<<endl;
-     rlutil::locate(50,13);
-    cout<<"3-)Autos"<<endl;
-     rlutil::locate(50,15);
-    cout<<"4-)Recaudaciones"<<endl;
-     rlutil::locate(50,17);
-    cout<<"5-)Realizar Venta"<<endl;
-     rlutil::locate(50,19);
-    cout<<"6-)Generar Ticket para soporte"<<endl;
-     rlutil::locate(50,21);
-    cout<<"0-)Salir..."<<endl;
-     rlutil::locate(50,23);
-    cout<<"Ingrese la opcion que desee:";
-    cin>>opcion;
-    cin.ignore();
-    switch(opcion){
-    case 0:
-        system("cls");
-        menu();
-        break;
-    case 1:
-        system("cls");
-        objCliente.menuClientes(id);
-        break;
-    case 2:
-        system("cls");
-        objVendedores.funcionalidadesVendedor(id);
-        break;
-    case 3:
-        system("cls");
-        objAuto.menuAutos(id);
-        break;
-    case 4:
-        system("cls");
-        recaudaciones(id);
-        break;
-    case 5:
-        system("cls");
-        realizarVenta(id);
-        break;
-    case 6:
-        system("cls");
-        objT.generarTicket(id);
-        break;
-    default:
-        cout<<"Opcion incorrecta"<<endl;
-    }
-}
-}
+
 
 
 //FUNCION PARA REALIZAR VENTA
@@ -448,80 +441,72 @@ cin>>i;
 
 //FUNCION PARA RECAUDACIONES
 void recaudaciones(int id){
-int opcion;
-while(true){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,27);
-cout<<char(205);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
-rlutil::locate(42,6);
-cout<<"RECAUDACIONES DE LA CONSESCIONARIA"<<endl;
-rlutil::locate(38,7);
-cout<<"--------------------------------------------------------------"<<endl;
-rlutil::locate(65,8);
-cout<<"GROUP 51 CAR CENTER"<<endl;
-rlutil::locate(46,12);
-cout<<"1-)Recaudacion total"<<endl;
-rlutil::locate(46,14);
-cout<<"2-)Recaudacion por mes y anio"<<endl;
-rlutil::locate(46,16);
-cout<<"3-)Recaudacion por anio"<<endl;
-rlutil::locate(46,18);
-cout<<"4-)Recaudacion por id de vendedor"<<endl;
-rlutil::locate(46,20);
-cout<<"0-)Volver atras"<<endl;
-rlutil::locate(46,22);
-cout<<"Ingrese la opcion que desee:";
-cin>>opcion;
 Recaudacion obj;
-switch(opcion){
-case 0:
-    system("cls");
-    menuDeVendedores(id);
+bool control_menu_rec=true;
+int y=0;
+do{
+   rlutil::setBackgroundColor(rlutil::BLACK);
+   rlutil::setColor(rlutil::WHITE);
+   GraficarLineasHorizontales(1,121,1,false,176);
+   GraficarLineasHorizontales(1,121,3,false,205);
+   GraficarLineasHorizontales(1,121,30,false,176);
+   GraficarLineasHorizontales(1,121,27,false,205);
+   rlutil::locate(45,4);
+   cout<<"RECAUDACIONES DE LA CONSESCIONARIA"<<endl;
+   rlutil::locate(30,5);
+   cout<<"----------------------------------------------------------"<<endl;
+   rlutil::locate(54,6);
+   cout<<"GROUP 51 CAR CENTER"<<endl;
+   rlutil::hidecursor();
+   GraficarOpiciones("Recaudacion total ",45,8,y==0,15,0);
+   GraficarOpiciones("Recaudacion por mes y anio ",45,10,y==1,15,0);
+   GraficarOpiciones("Recaudacion por anio ",45,12,y==2,15,0);
+   GraficarOpiciones("Recaudacion por id de vendedor ",45,14,y==3,15,0);
+   GraficarOpiciones("Volver atras ",45,16,y==4,15,0);
+   switch(rlutil::getkey()){
+   case 14:
+           y--;
+           if(y<0){
+           y=0;
+          }
+   break;
+   case 15:
+           y++;
+           if(y>4){
+           y=0;
+           }
+   break;
+         case 1:
+         switch(y){
+         case 0:
+                system("cls");
+                obj.recaudacionTotal();
+         break;
+         case 1:
+                system("cls");
+                obj.recaudacionMesyAnio();
+         break;
+         case 2:
+                system("cls");
+                obj.recaudacionXanio();
+         break;
+         case 3:
+                system("cls");
+                obj.recaudacionPorId();
+                system("cls");
+         break;
+         case 4:
+                rlutil::setBackgroundColor(rlutil::BLACK);
+                system("cls");
+                control_menu_rec=false;
+         break;
+           }
     break;
-case 1:
-    system("cls");
-    obj.recaudacionTotal();
-    break;
-case 2:
-    system("cls");
-    obj.recaudacionMesyAnio();
-    break;
-case 3:
-    system("cls");
-    obj.recaudacionXanio();
-    break;
-case 4:
-    system("cls");
-    obj.recaudacionPorId();
-    system("cls");
-    break;
-default:
-    rlutil::locate(45,22);
-    cout<<"Esta opcion es incorrecta..."<<endl;
 }
+}while(control_menu_rec);
+
 }
-}
+
 
 int numeroDeVenta() {
     FILE *numeroDeFactura;
@@ -547,14 +532,10 @@ Solicitud objS;
 int y=0;
 bool control_menu_soporte=true;
 do{
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
+rlutil::setBackgroundColor(rlutil::BLACK);
+rlutil::setColor(rlutil::WHITE);
+GraficarLineasHorizontales(1,121,1,false,176);
+GraficarLineasHorizontales(1,121,30,false,176);
 rlutil::locate(45,4);
 cout<<"Bienvenido al menu de soporte"<<endl;
 rlutil::locate(30,5);
@@ -659,6 +640,7 @@ cout<<"Bienvenido aqui podra verificar el estado de su solicutud"<<endl;
 rlutil::locate(45,12);
 cout<<"Ingrese el ID de su solicitud:";
 cin>>idS;
+cin.ignore();
 validarId(idS);
 char nombre[30];
 char correo[35];
@@ -876,13 +858,13 @@ cout<<"                                                                         
 
 }
 
-void Dibujar_Cuadro_Login(){
+void Dibujar_Cuadro_Login(const char*titulo){
 GraficarLineasHorizontales(35,85,5,true,205);
 GraficarLineasHorizontales(35,85,9,false,205);
 GraficarLineasHorizontales(35,85,25,false,205);
 GraficarLineasVerticales(34,85,6,25,186);
 rlutil::locate(52,7);
-cout<<"INICIO DE SESION";
+cout<<titulo;
 GraficarCeldas(38,80,13,"CORREO ELECTRONICO");
 GraficarCeldas(38,80,18,"CONTRASENIA");
 }

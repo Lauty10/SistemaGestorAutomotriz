@@ -241,12 +241,12 @@
 1732749634 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
-1732660157 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
+1732926343 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesgestoras.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 	<conio.h>
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
+1732924240 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\funcionesdeclaraciones.h
 	"ClassVendedor.h"
 	"ClassClientes.h"
 	"ClassFecha.h"
@@ -257,7 +257,7 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classvendedor.h
+1732922817 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
@@ -277,15 +277,15 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classclientes.h
+1732922129 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
-1732570481 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classfecha.h
+1732922129 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classfecha.h
 
 1732570481 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classauto.h
+1732922129 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classadministrador.h
@@ -295,10 +295,10 @@
 	<cstdio>
 	"rlutil.h"
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classticket.h
+1732922129 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1732657815 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1732922580 c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732570481 source:c:\users\mcolombres\onedrive - frgp.utn.edu.ar\escritorio\sistemagestorautomotriz\main.cpp
