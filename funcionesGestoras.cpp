@@ -15,6 +15,7 @@ bool logeoAdmin=false;;
 int idLogeado;
 bool control_del_menu=true;
 do{
+rlutil::hidecursor();
 rlutil::setBackgroundColor(rlutil::BLACK);
 rlutil::setColor(rlutil::WHITE);
 GraficarLineasHorizontales(1,121,2,false,176);
@@ -25,7 +26,6 @@ rlutil::locate(35,7);
 cout<<"--------------------------------------------------------------"<<endl;
 rlutil::locate(54,8);
 cout<<"BIENVENIDO AL SISTEMA GESTOR"<<endl;
-rlutil::hidecursor();
 GraficarOpiciones(" INICIAR SESION ",45,11,y==0,15,0);
 GraficarOpiciones(" OLVIDE MI CLAVE ",45,13,y==1,15,0);
 GraficarOpiciones(" GENERAR SOLICITUD DE ALTA EN EL SISTEMA ",45,15,y==2,15,0);
@@ -185,15 +185,15 @@ TicketAdmin objT;
 bool control_menu_vendedor=true;
 int y=0;
 do{
+   rlutil::hidecursor();
    rlutil::setBackgroundColor(rlutil::BLACK);
    rlutil::setColor(rlutil::WHITE);
-   GraficarLineasHorizontales(1,121,1,false,176);
+   GraficarLineasHorizontales(1,121,2,false,176);
    GraficarLineasHorizontales(1,121,30,false,176);
    rlutil::locate(35,4);
    bienvenidoUsuario(id);
    rlutil::locate(30,5);
    cout<<"----------------------------------------------------------"<<endl;
-   rlutil::hidecursor();
    GraficarOpiciones("Clientes ",50,10,y==0,15,0);
    GraficarOpiciones("Vendedores ",50,12,y==1,15,0);
    GraficarOpiciones("Autos ",50,14,y==2,15,0);
@@ -445,6 +445,7 @@ Recaudacion obj;
 bool control_menu_rec=true;
 int y=0;
 do{
+   rlutil::hidecursor();
    rlutil::setBackgroundColor(rlutil::BLACK);
    rlutil::setColor(rlutil::WHITE);
    GraficarLineasHorizontales(1,121,1,false,176);
@@ -457,7 +458,6 @@ do{
    cout<<"----------------------------------------------------------"<<endl;
    rlutil::locate(54,6);
    cout<<"GROUP 51 CAR CENTER"<<endl;
-   rlutil::hidecursor();
    GraficarOpiciones("Recaudacion total ",45,8,y==0,15,0);
    GraficarOpiciones("Recaudacion por mes y anio ",45,10,y==1,15,0);
    GraficarOpiciones("Recaudacion por anio ",45,12,y==2,15,0);
@@ -532,77 +532,77 @@ Solicitud objS;
 int y=0;
 bool control_menu_soporte=true;
 do{
-rlutil::setBackgroundColor(rlutil::BLACK);
-rlutil::setColor(rlutil::WHITE);
-GraficarLineasHorizontales(1,121,1,false,176);
-GraficarLineasHorizontales(1,121,30,false,176);
-rlutil::locate(45,4);
-cout<<"Bienvenido al menu de soporte"<<endl;
-rlutil::locate(30,5);
-cout<<"----------------------------------------------------------"<<endl;
-rlutil::hidecursor();
-GraficarOpiciones("Dar de alta vendedores ",45,8,y==0,15,0);
-GraficarOpiciones("Dar de baja vendedores ",45,10,y==1,15,0);
-GraficarOpiciones("Editar vendedores ",45,12,y==2,15,0);
-GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,14,y==3,15,0);
-GraficarOpiciones("Mostrar solicitudes de alta ",45,16,y==4,15,0);
-GraficarOpiciones("Aprobar solicitudes de alta ",45,18,y==5,15,0);
-GraficarOpiciones("Dar de baja ticket ",45,20,y==6,15,0);
-GraficarOpiciones("Listar vendedores",45,22,y==7,15,0);
-GraficarOpiciones("Salir ",45,24,y==8,15,0);
-switch(rlutil::getkey()){
-case 14:
-    y--;
-    if(y<0){
-        y=0;
-    }
-    break;
-case 15:
-    y++;
-    if(y>8){
-        y=0;
-    }
-    break;
-case 1:
-       switch(y){
-   case 0:
-        system("cls");
-        objV.cargarVendedor();
-        objV.registrarVendedor(objV);
-    break;
+   rlutil::hidecursor();
+   rlutil::setBackgroundColor(rlutil::BLACK);
+   rlutil::setColor(rlutil::WHITE);
+   GraficarLineasHorizontales(1,121,1,false,176);
+   GraficarLineasHorizontales(1,121,30,false,176);
+   rlutil::locate(45,4);
+   cout<<"Bienvenido al menu de soporte"<<endl;
+   rlutil::locate(30,5);
+   cout<<"----------------------------------------------------------"<<endl;
+   GraficarOpiciones("Dar de alta vendedores ",45,8,y==0,15,0);
+   GraficarOpiciones("Dar de baja vendedores ",45,10,y==1,15,0);
+   GraficarOpiciones("Editar vendedores ",45,12,y==2,15,0);
+   GraficarOpiciones("Mostrar tickets generados en el sistema de soporte ",45,14,y==3,15,0);
+   GraficarOpiciones("Mostrar solicitudes de alta ",45,16,y==4,15,0);
+   GraficarOpiciones("Aprobar solicitudes de alta ",45,18,y==5,15,0);
+   GraficarOpiciones("Dar de baja ticket ",45,20,y==6,15,0);
+   GraficarOpiciones("Listar vendedores ",45,22,y==7,15,0);
+   GraficarOpiciones("Salir ",45,24,y==8,15,0);
+   switch(rlutil::getkey()){
+   case 14:
+           y--;
+           if(y<0){
+           y=0;
+           }
+   break;
+   case 15:
+           y++;
+           if(y>8){
+           y=0;
+           }
+   break;
    case 1:
-        system("cls");
-        objV.bajaVendedores();
-    break;
-   case 2:
-        system("cls");
-        objV.menuMiCuenta();
-    break;
-   case 3:
-       system("cls");
-       objT.mostrarTickets();
-    break;
-   case 4:
-       system("cls");
-       objS.listarSolicitudes();
-       break;
-   case 5:
-       system("cls");
-       objS.aprobarSolicitudDeAlta();
-    break;
-   case 6:
-       system("cls");
-       objT.darDeBajaTickets();
-    break;
-   case 7:
-       system("cls");
-       objV.listarVendedores();
-    break;
-   case 8:
-       rlutil::setBackgroundColor(rlutil::BLACK);
-       system("cls");
-       control_menu_soporte=false;
-    break;
+          switch(y){
+          case 0:
+                 system("cls");
+                 objV.cargarVendedor();
+                 objV.registrarVendedor(objV);
+          break;
+          case 1:
+                 system("cls");
+                 objV.bajaVendedores();
+          break;
+          case 2:
+                 system("cls");
+                 objV.menuMiCuenta();
+          break;
+          case 3:
+                 system("cls");
+                 objT.mostrarTickets();
+          break;
+          case 4:
+                 system("cls");
+                 objS.listarSolicitudes();
+          break;
+          case 5:
+                 system("cls");
+                 objS.aprobarSolicitudDeAlta();
+          break;
+          case 6:
+                 system("cls");
+                 objT.darDeBajaTickets();
+          break;
+          case 7:
+                 system("cls");
+                 objV.listarVendedores();
+          break;
+          case 8:
+                 rlutil::setBackgroundColor(rlutil::BLACK);
+                 system("cls");
+                 control_menu_soporte=false;
+          break;
    }
 break;
 }

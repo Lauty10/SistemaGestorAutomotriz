@@ -62,62 +62,74 @@ return estado;
 
  //FUNCIONES
  void menuAutos(int id){
- int opcion;
- while(true){
-estiloAuto();
-rlutil::locate(45,7);
-cout<<"GESTIONANDO AUTOS"<<endl;
-rlutil::locate(45,8);
-cout<<"------------------------------------------------"<<endl;
-rlutil::locate(65,9);
-cout<<"GROUP 51 CAR CENTER"<<endl;
-rlutil::locate(45,11);
-cout<<"1-)Dar de alta nuevo vehiculo"<<endl;
-rlutil::locate(45,13);
-cout<<"2-)Modificar vehiculo"<<endl;
-rlutil::locate(45,15);
-cout<<"3-)Dar de baja vehiculo"<<endl;
-rlutil::locate(45,17);
-cout<<"4-)Listar vehiculo"<<endl;
-rlutil::locate(45,19);
-cout<<"5-)Buscar vehiculo"<<endl;
-rlutil::locate(45,21);
-cout<<"0-)Volver atras"<<endl;
-rlutil::locate(45,23);
-cout<<"Ingrese la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 1:
-system("cls");
-altaAuto();
-    break;
+ bool control_menu_vehiculo=true;
+ int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,4,false,205);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       GraficarLineasHorizontales(1,121,27,false,205);
+       rlutil::locate(35,6);
+       cout<<" GROUP 51 CAR CENTER"<<endl;
+       rlutil::locate(35,5);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(54,8);
+       cout<<"GESTIONANDO AUTOS"<<endl;
+       GraficarOpiciones("Dar de alta nuevo vehiculo ",45,10,y==0,15,0);
+       GraficarOpiciones("Modificar vehiculo ",45,12,y==1,15,0);
+       GraficarOpiciones("Dar de baja vehiculo ",45,14,y==2,15,0);
+       GraficarOpiciones("Listar vehiculos ",45,16,y==3,15,0);
+       GraficarOpiciones("Buscar vehiculo ",45,18,y==4,15,0);
+       GraficarOpiciones("Volver atras ",45,20,y==5,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>5){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     altaAuto();
 
-case 2:
-system("cls");
-modificarAutos(id);
+              break;
+              case 1:
+                     system("cls");
+                     modificarAutos(id);
+              break;
+              case 2:
+                     system("cls");
+                     darBaja();
+              break;
+              case 3:
+                     system("cls");
+                     listarVehiculos();
+              break;
+              case 4:
+                     system("cls");
+                     buscarVehiculo();
+              break;
+              case 5:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_menu_vehiculo=false;
+                     //menuDeVendedores(id);
+              break;
+           }
     break;
-
-case 3:
-system("cls");
-darBaja();
-    break;
-
-case 4:
-system("cls");
-listarVehiculos();
-    break;
-
-case 5:
-system("cls");
-buscarVehiculo();
-    break;
-
-case 0:
-system("cls");
-menuDeVendedores(id);
-    break;
-}
-}
+  }
+  }while(control_menu_vehiculo);
 }
 
 
@@ -196,51 +208,67 @@ void altaAuto(){
 
 //MODIFICAR DATOS
 void modificarAutos(int id){
-int opcion;
-while(true){
-estiloAuto();
-rlutil::locate(36,6);
-cout<<"Aqui podra editar los datos de los vehiculos";
-rlutil::locate(35,7);
-cout<<"----------------------------------------------------------------"<<endl;
-rlutil::locate(65,8);
-cout<<"Group 51 call center"<<endl;
-rlutil::locate(50,12);
-cout<<"-1)Modificar nombre"<<endl;
-rlutil::locate(50,14);
-cout<<"-2)Modificar marca"<<endl;
-rlutil::locate(50,16);
-cout<<"-3)Modificar fecha de fabricacion"<<endl;
-rlutil::locate(50,18);
-cout<<"-4)Modificar precio"<<endl;
-rlutil::locate(50,20);
-cout<<"-0)Salir"<<endl;
-rlutil::locate(50,22);
-cout<<"Eliga la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 1:
-system("cls");
-modificarNombre();
+bool control_menu_vehiculo=true;
+int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,4,false,205);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       GraficarLineasHorizontales(1,121,27,false,205);
+       rlutil::locate(35,6);
+       cout<<" GROUP 51 CAR CENTER"<<endl;
+       rlutil::locate(35,5);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(54,8);
+       cout<<"MODIFICACI"<<char(224)<<"N DE VEHICULOS "<<endl;
+       GraficarOpiciones("Modificar nombre ",45,10,y==0,15,0);
+       GraficarOpiciones("Modificar marca ",45,12,y==1,15,0);
+       GraficarOpiciones("Modificar fecha de fabricacion ",45,14,y==2,15,0);
+       GraficarOpiciones("Modificar precio ",45,16,y==3,15,0);
+       GraficarOpiciones("Volver atras ",45,18,y==4,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>4){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     modificarNombre();
+              break;
+              case 1:
+                     system("cls");
+                     modificarMarca();
+              break;
+              case 2:
+                     system("cls");
+                     modificarAnio();
+              break;
+              case 3:
+                     system("cls");
+                     modificarPrecio();
+              break;
+              case 4:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_menu_vehiculo=false;
+              break;
+           }
     break;
-case 2:
-system("cls");
-modificarMarca();
-    break;
-case 3:
-system("cls");
-modificarAnio();
-    break;
-case 4:
-system ("cls");
-modificarPrecio();
-    break;
-case 0:
-system("cls");
-menuAutos(id);
-    break;
-}
-}
+  }
+  }while(control_menu_vehiculo);
 }
 
 //FUNCION PARA MODIFICAR NOMBRE

@@ -10,6 +10,8 @@ using namespace std;
 //Volver a los menus
 void menuDeVendedores(int id);
 void menu();
+void GraficarLineasHorizontales(int,int,int,bool,int);
+void GraficarOpiciones(const char*,int,int,bool,int,int);
 
 class Vendedores{
 private:
@@ -241,40 +243,58 @@ int iniciarSesion() {
 
 void funcionalidadesVendedor(int id){
 Vendedores obj;
-int opcion;
-while(true){
-estiloV();
-rlutil::locate(45,7);
-cout<<"MENU DE VENDEDORES"<<endl;
-rlutil::locate(38,8);
-cout<<"------------------------------------------------"<<endl;
-rlutil::locate(60,9);
-cout<<"GROUP 51 CAR CENTER"<<endl;
-rlutil::locate(46,12);
-cout<<"1-)Listar vendedores"<<endl;
-rlutil::locate(46,14);
-cout<<"2-)Buscar un vendedor"<<endl;
-rlutil::locate(46,16);
-cout<<"0-)Volver atras"<<endl;
-rlutil::locate(46,18);
-cout<<"Ingrese la opcion que desee:";
-cin>>opcion;
-switch(opcion){
-case 1:
-    system("cls");
-    obj.listarVendedores();
+bool control_menu_vendedores=true;
+int y=0;
+    do{
+       rlutil::hidecursor();
+       rlutil::setBackgroundColor(rlutil::BLACK);
+       rlutil::setColor(rlutil::WHITE);
+       GraficarLineasHorizontales(1,121,2,false,176);
+       GraficarLineasHorizontales(1,121,4,false,205);
+       GraficarLineasHorizontales(1,121,30,false,176);
+       GraficarLineasHorizontales(1,121,27,false,205);
+       rlutil::locate(35,6);
+       cout<<" GROUP 51 CAR CENTER"<<endl;
+       rlutil::locate(35,5);
+       cout<<"--------------------------------------------------------------"<<endl;
+       rlutil::locate(54,8);
+       cout<<"MENU DE VENDEDORES "<<endl;
+       GraficarOpiciones("Listar vendedores ",45,10,y==0,15,0);
+       GraficarOpiciones("Buscar un vendedor ",45,12,y==1,15,0);
+       GraficarOpiciones("Volver atras ",45,14,y==2,15,0);
+       switch(rlutil::getkey()){
+       case 14:
+               y--;
+               if(y<0){
+               y=0;
+               }
+       break;
+       case 15:
+               y++;
+               if(y>2){
+               y=0;
+               }
+       break;
+       case 1:
+              switch(y){
+              case 0:
+                     system("cls");
+                     obj.listarVendedores();
+              break;
+              case 1:
+                     system("cls");
+                     obj.buscarVendedor();
+              break;
+              case 2:
+                     rlutil::setBackgroundColor(rlutil::BLACK);
+                     system("cls");
+                     control_menu_vendedores=false;
+                     menuDeVendedores(id);
+              break;
+           }
     break;
-case 2:
-    system("cls");
-    obj.buscarVendedor();
-    break;
-case 0:
-    system("cls");
-    menuDeVendedores(id);
-default:
-    cout<<"Opcion incorrecta..."<<endl;
-}
-}
+  }
+  }while(control_menu_vendedores);
 }
 
 void bajaVendedores(){
