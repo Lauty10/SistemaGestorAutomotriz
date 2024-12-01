@@ -549,7 +549,7 @@ if(listarA==NULL){
 cout<<"Error al intentar listar los vehiculos"<<endl;
  }
 
-rlutil::locate(40,2);
+rlutil::locate(38,2);
 cout<<"Estos son los vehiculos listados disponibles en nuestro sistema"<<endl;
 Auto obj;
 while(fread(&obj,sizeof(Auto),1,listarA)!=0){

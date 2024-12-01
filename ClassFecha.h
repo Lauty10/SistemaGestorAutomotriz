@@ -32,35 +32,24 @@ public:
     }
 
     void cargarFecha(){
-
+    rlutil::locate(45,12);
     cout<<"Ingrese el dia de la fecha:";
     cin>>dia;
-    fechaV(dia);
     setDia(dia);
+    rlutil::locate(45,14);
     cout<<"Ingrese el mes de la fecha:";
     cin>>mes;
-    fechaV(mes);
     setMes(mes);
+    rlutil::locate(45,16);
     cout<<"Ingrese el anio de la fecha:";
     cin>>anio;
-    fechaV(anio);
     setAnio(anio);
-    cout<<"Fecha cargada correctamente..."<<endl;
-    system("pause");
-    system("cls");
     }
 
     void mostrarFecha(){
     cout<<this->dia<<"/"<<this->mes<<"/"<<this->anio<<endl;
     }
 
-//VALIDACION
-void fechaV(int f){
-while(f==0){
-cout<<"Campo inclompleto"<<endl;
-cin>>f;
-}
-}
 
 };
 

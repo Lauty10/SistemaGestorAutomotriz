@@ -255,25 +255,64 @@ do{
 //FUNCION PARA REALIZAR VENTA
 
 void realizarVenta(int idV) {
+   GraficarLineasHorizontales(1,121,1,false,176);
+   GraficarLineasHorizontales(1,121,30,false,176);
     int idC, idA;
+    rlutil::locate(45,12);
     cout << "Bienvenido al sector de ventas..." << endl;
-    cout << "-------------------------------------------------------" << endl;
+    rlutil::locate(45,14);
+    cout << "Group Car Center 51..." << endl;
+    rlutil::locate(45,16);
+    system("pause");
+    system("cls");
+
+    GraficarLineasHorizontales(1,121,1,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
+    rlutil::locate(45,12);
     cout << "Por favor ingrese el id del cliente: ";
     cin >> idC;
-    validarId(idC);
-    cout << "-------------------------------------------------------" << endl;
-    cout << "Por favor ingrese el id del vehiculo: ";
-    cin >> idA;
-    validarId(idA);
-    cout << "-------------------------------------------------------" << endl;
-    cout<<endl;
-    cout << "CARGANDO FECHA DE LA VENTA"<<endl;
-    cout << "---------------------------------------------------------------------------------------------------------------" << endl;
+    bool resultado=validarId(idC);
+    if(resultado==false){
+    system("cls");
+    return;
+    }
+    system("cls");
+
+
+    GraficarLineasHorizontales(1,121,1,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
+    rlutil::locate(45,12);
+    cout<< "Por favor ingrese el id del vehiculo: ";
+    cin >>idA;
+    bool resultado2= validarIdAuto(idA);
+    if(resultado2==false){
+    system("cls");
+    return;
+    }
+    system("cls");
+
+    GraficarLineasHorizontales(1,121,1,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
+    rlutil::locate(45,10);
+    cout << "Ingrese la fecha del dia vigente..."<<endl;
     Recaudacion objRecaudacion;
     Fecha objFecha;
+    rlutil::locate(45,12);
     objFecha.cargarFecha();
+    int fechaDia=objFecha.getDia();
     int fechaAnio=objFecha.getAnio();
     int fechaMes=objFecha.getMes();
+    bool resultado3=validarFecha(fechaDia,fechaMes,fechaAnio);
+    if(resultado3==false){
+    rlutil::locate(45,18);
+    cout<<"La fecha no se pudo validar correcamente..."<<endl;
+    rlutil::locate(45,20);
+    system("pause");
+    system("cls");
+    return;
+    }
+    system("cls");
+
     cout << "CABEZERA"<<endl;
     cout << "---------------------------------------------------------------------------------------------------------------" << endl;
     cout<<"La fecha de venta es:";
@@ -429,11 +468,94 @@ void realizarVenta(int idV) {
     fclose(buscarVendedor);
 }
 //VALIDACION PARA LA FUNCION DE VENTAS
-void validarId(int i){
-while(i==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Id: ";
+bool validarId(int i){
+FILE *buscarCliente;
+buscarCliente=fopen("Clientes","rb");
+Clientes obj;
+bool encontrado=false;
+while(fread(&obj,sizeof(Clientes),1,buscarCliente)!=0){
+    if(obj.getIdCliente()==i && obj.getEstado()==true){
+        encontrado=true;
+        rlutil::locate(45,14);
+        cout<<"Cliente encontrado correctamente..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        return true;
+    }
+}
+if(!encontrado){
+if(i==0){
+rlutil::locate(45,14);
+cout<<"Campo Cargado incorrectamente..."<<endl;
+rlutil::locate(45,16);
+cout<<"Ingrese el id: ";
 cin>>i;
+return true;
+}else{
+    rlutil::locate(30,14);
+    cout<<"El vendedor se encuentra dado de baja o no se encuentra en nuestro sistema..."<<endl;
+    rlutil::locate(45,16);
+    system("pause");
+    fclose(buscarCliente);
+    return false;
+}
+}
+fclose(buscarCliente);
+}
+
+bool validarIdAuto(int i){
+FILE *buscarAuto;
+buscarAuto=fopen("Vehiculo.dat","rb");
+Auto obj;
+bool encontrado=false;
+while(fread(&obj,sizeof(Auto),1,buscarAuto)!=0){
+    if(obj.getId()==i && obj.getEstado()==true){
+        encontrado=true;
+        rlutil::locate(45,14);
+        cout<<"Vehiculo encontrado correctamente..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        return true;
+    }
+}
+if(!encontrado){
+if(i==0){
+rlutil::locate(45,14);
+cout<<"Campo Cargado incorrectamente..."<<endl;
+rlutil::locate(45,16);
+cout<<"Ingrese el id: ";
+cin>>i;
+return true;
+}else{
+    rlutil::locate(30,14);
+    cout<<"El Vehiculo se encuentra dado de baja o no se encuentra en nuestro sistema..."<<endl;
+    rlutil::locate(45,16);
+    system("pause");
+    fclose(buscarAuto);
+    return false;
+}
+}
+fclose(buscarAuto);
+}
+
+
+bool validarFecha(int dia, int mes, int anio){
+if(anio>=2024){
+if(mes>0&&mes<=12 && mes!=2){
+if(dia>0&&dia<=31){
+    return true;
+}else{
+return false;
+}
+}else if(mes==2){
+if(dia>0 && dia<=29){
+    return true;
+}
+}else{
+return false;
+}
+}else{
+return false;
 }
 }
 
