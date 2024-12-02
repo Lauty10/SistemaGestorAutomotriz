@@ -96,80 +96,110 @@ break;
 
 //FUNCION PARA RECUPERAR CLAVE
 void recuperarClave(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,30,false,176);
 FILE *clave;
 clave=fopen("Vendedores.dat","rb+");
 if(clave==nullptr){
 rlutil::locate(1,3);
 cout<<"ERROR AL INTENTAR ABRIR EL ARCHIVO DE REGISTROS"<<endl;
-return; }
+return;
+}
 Vendedores objC;
 int dni;
 char correo[30];
 char nuevaClave[30];
 bool encontrado=false;
-rlutil::locate(45,3);
-cout<<"Ingrese los siguientes datos para recuperar su clave: "<<endl;
-rlutil::locate(45,4);
-cout<<"-----------------------------------------------------"<<endl;
-rlutil::locate(45,6);
-cout<<"D.N.I: ";
+rlutil::locate(35,12);
+cout<<"Por favor ingrese su dni de identidad para recuperar su clave"<<endl;
+rlutil::locate(48,14);
+cout<<"Por favor ingrese su dni:";
 cin>>dni;
 while(dni==0){
-rlutil::locate(45,7);
-cout<<"Campo icompleto"<<endl;
-rlutil::locate(51,6);
+rlutil::locate(48,14);
+cout<<"Vuelva a ingresar su dni:"<<endl;
 cin>>dni;
 }
 
-rlutil::locate(45,8);
-cout<<"Correo: ";
+system("cls");
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,30,false,176);
+rlutil::locate(40,12);
+cout<<"Ingrese su correo para poder recuperar su clave"<<endl;
+rlutil::locate(40,14);
+cout<<"Ingrese su correo: ";
 cin.ignore();
 cin.getline(correo,30,'\n');
 while(correo[0]==0){
-rlutil::locate(45,9);
-cout<<"Campo incompleto"<<endl;
-rlutil::locate(53,8);
+rlutil::locate(38,16);
+cout<<"El campo esta incompleto, vuelva a ingresar su correo"<<endl;
+rlutil::locate(55,18);
+cout<<"Ingrese su correo:";
 cin.ignore();
-rlutil::locate(53,8);
 cin.getline(correo,30,'\n');
-rlutil::locate(45,9);
-cout<<"                    "<<endl;
 }
 
-
+system("cls");
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,30,false,176);
 while(fread(&objC, sizeof(Vendedores),1,clave)!=0){
 if(strcmp(objC.getCorreo(),correo)==0 && objC.getDni()==dni) {
-rlutil::locate(45,10);
-cout<<"Ingrese su nueva Clave:";
-cin.ignore();
-cin.getline(nuevaClave,30,'\n');
+ char nuevaClave[30];
+    int i = 0;
+    rlutil::locate(40, 12);
+    cout << "Datos validados correctamente en nuestro sistema..." << endl;
+    rlutil::locate(50, 14);
+    cout << "Ingrese su nueva Clave:";
+    while (true) {
+        char ch = _getch();
+        if (ch == '\r') {
+            nuevaClave[i] = '\0';
+            break;
+        } else if (ch == '\b' && i > 0) {
+            cout << "\b \b";
+            i--;
+        } else if (ch != '\b') {
+            nuevaClave[i] = ch;
+            cout << "*";
+            i++;
+        }
+    }
 while(nuevaClave[0]==0){
-rlutil::locate(45,11);
-cout<<"Campo incompleto"<<endl;
-rlutil::locate(55,11);
-cin.ignore();
-rlutil::locate(55,11);
-cin.getline(nuevaClave,30,'\n');
-rlutil::locate(45,11);
-cout<<"                    "<<endl;
+    int j = 0;
+    rlutil::locate(38, 14);
+    cout << "El campo esta incompleto, vuelva a ingresar su clave" << endl;
+    rlutil::locate(55, 16);
+    cout << "Ingrese su clave:";
+    while (true) {
+        char ch = _getch();
+        if (ch == '\r') {
+            nuevaClave[j] = '\0';
+            break;
+        } else if (ch == '\b' && i > 0) {
+            cout << "\b \b";
+            i--;
+        } else if (ch != '\b') {
+            nuevaClave[j] = ch;
+            cout << "*";
+            i++;
+        }
 }
-
-
+}
 objC.setClave(nuevaClave);
 long pos=ftell(clave)-sizeof(Vendedores);
 fseek(clave,pos,SEEK_CUR);
 fwrite(&objC, sizeof(Vendedores), 1, clave);
-rlutil::locate(45,12);
+rlutil::locate(45,16);
 cout << "Su nueva clave fue guardada con exito" << endl;
 encontrado=true;
 break; }
 }
 if(!encontrado){
-rlutil::locate(45,12);
+rlutil::locate(40,12);
 cout<<"LOS DATOS INGRESADOS NO ESTAN EN LA BASE DE DATOS"<<endl;
  }
 fclose(clave);
-rlutil::locate(45,16);
+rlutil::locate(45,14);
 system("pause");
 system("cls");
 }

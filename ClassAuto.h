@@ -218,15 +218,15 @@ int y=0;
        GraficarLineasHorizontales(1,121,27,false,205);
        rlutil::locate(35,6);
        cout<<" GROUP 51 CAR CENTER"<<endl;
-       rlutil::locate(35,5);
+       rlutil::locate(35,7);
        cout<<"--------------------------------------------------------------"<<endl;
        rlutil::locate(54,8);
        cout<<"MODIFICACI"<<char(224)<<"N DE VEHICULOS "<<endl;
-       GraficarOpiciones("Modificar nombre ",45,10,y==0,15,0);
-       GraficarOpiciones("Modificar marca ",45,12,y==1,15,0);
-       GraficarOpiciones("Modificar fecha de fabricacion ",45,14,y==2,15,0);
-       GraficarOpiciones("Modificar precio ",45,16,y==3,15,0);
-       GraficarOpiciones("Volver atras ",45,18,y==4,15,0);
+       GraficarOpiciones("Modificar nombre ",50,12,y==0,15,0);
+       GraficarOpiciones("Modificar marca ",50,14,y==1,15,0);
+       GraficarOpiciones("Modificar fecha de fabricacion ",50,16,y==2,15,0);
+       GraficarOpiciones("Modificar precio ",50,18,y==3,15,0);
+       GraficarOpiciones("Volver atras ",50,20,y==4,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;
