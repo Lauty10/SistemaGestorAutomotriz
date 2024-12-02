@@ -108,7 +108,7 @@ cout<<char(205);
     rlutil::locate(50,16);
     cout << "------------------------------------------------------------" << endl;
     rlutil::locate(50,18);
-    cout << "El número de solicitud es: " << getId() << endl;
+    cout << "El numero de solicitud es: " << getId() << endl;
     cin.ignore();
 }
 
@@ -152,15 +152,16 @@ if(soli==NULL){
     cout<<"Error al listar solicitud..."<<endl;
 }
 Solicitud obj;
-cout<<"Bienvenido estos son los vendedores que estan esperando la aprobacion en el sistema..."<<endl;
-cout<<"-----------------------------------------------------------------------------------------------------------------------"<<endl;
+rlutil::locate(38,2);
+cout<<"Vendedores que estan esperando la aprobacion en el sistema..."<<endl;
 while(fread(&obj,sizeof(Solicitud),1,soli)!=0){
     if(obj.getEstado()==false){
+        cout<<endl;
         cout<<"Nombre del usuario a dar de alta:"<<obj.getNombre()<<endl;
         cout<<"Correo del usuario a dar de alta:"<<obj.getCorreo()<<endl;
         cout<<"Dni del usuario a dar de alta:"<<obj.getDni()<<endl;
         cout<<"El id de la solicitud es:"<<obj.getId()<<endl;
-        cout<<"------------------------------------------------------------"<<endl;
+        cout<<"-------------------------------------------------------------------------"<<endl;
     }
 }
 system("pause");
@@ -169,6 +170,10 @@ fclose(soli);
 }
 
 void aprobarSolicitudDeAlta(){
+GraficarLineasHorizontales(1,121,1,false,176);
+GraficarLineasHorizontales(1,121,3,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,28,false,205);
     FILE *aprobarS;
     aprobarS = fopen("Solicitud.dat", "rb+");
     if(aprobarS == NULL){
@@ -178,6 +183,7 @@ void aprobarSolicitudDeAlta(){
     Solicitud objS;
     int id;
     bool encontrado = false;
+    rlutil::locate(40,12);
     cout << "Ingrese el id de la solicitud que desea aprobar: ";
     cin >> id;
     while(fread(&objS, sizeof(Solicitud), 1, aprobarS) != 0){
@@ -187,14 +193,18 @@ void aprobarSolicitudDeAlta(){
             objS.setEstado(true);
             fseek(aprobarS, posicion, SEEK_SET);
             fwrite(&objS, sizeof(Solicitud), 1, aprobarS);
+             rlutil::locate(45,14);
             cout << "Solicitud aprobada correctamente..." << endl;
+            rlutil::locate(45,16);
             system("pause");
             encontrado = true;
             break;
         }
     }
     if(!encontrado){
-        cout << "Error al buscar la solicitud" << endl;
+        rlutil::locate(35,14);
+        cout << "La solicitud ya fue aprobada o no fue encontrada en el sistema..." << endl;
+        rlutil::locate(45,16);
         system("pause");
         system("cls");
     }

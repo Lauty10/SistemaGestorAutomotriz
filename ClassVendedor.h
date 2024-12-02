@@ -298,6 +298,10 @@ int y=0;
 }
 
 void bajaVendedores(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,4,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,27,false,205);
 FILE *baja;
 baja=fopen("Vendedores.dat","rb+");
 if(baja==NULL){
@@ -306,29 +310,43 @@ if(baja==NULL){
 bool encontrado=false;
 int id;
 Vendedores objV;
+rlutil::locate(40,12);
 cout<<"Ingrese el id del vendedor que desea dar de baja:";
 cin>>id;
 while(fread(&objV,sizeof(Vendedores),1,baja)!=0){
-    if(objV.getEstado()==true){
-        if(objV.getIdVendedor()==id){
+    if(objV.getIdVendedor()==id){
+        encontrado=true;
+        if(objV.getEstado()==true){
             encontrado=true;
             long posicion=ftell(baja)-sizeof(Vendedores);
             objV.setEstado(false);
             fseek(baja,posicion,SEEK_SET);
             fwrite(&objV,sizeof(Vendedores),1,baja);
+            rlutil::locate(45,14);
             cout<<"Vendedor dado de baja correctamente..."<<endl;
-             system("pause");
+            rlutil::locate(45,16);
+            system("pause");
             break;
-        }
     }else{
+    rlutil::locate(40,14);
     cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+    rlutil::locate(45,16);
     system("pause");
     break;
     }
+    }
+    }
+if(!encontrado){
+    rlutil::locate(45,14);
+    cout<<"El id del vendedor no fue encontrado..."<<endl;
+    rlutil::locate(45,16);
+    system("pause");
 }
 fclose(baja);
 system("cls");
 }
+
+
 
 
 void listarVendedores(){
@@ -425,11 +443,11 @@ int y=0;
        cout<<"--------------------------------------------------------------"<<endl;
        rlutil::locate(35,8);
        cout<<"Bienvenido, aqui podras editar los datos de los vendedores"<<endl;
-       GraficarOpiciones("Editar nombre ",55,10,y==0,15,0);
-       GraficarOpiciones("Editar correo ",55,12,y==1,15,0);
-       GraficarOpiciones("Editar clave ",55,14,y==2,15,0);
-       GraficarOpiciones("Editar DNI ",55,16,y==3,15,0);
-       GraficarOpiciones("Volver atras ",55,18,y==4,15,0);
+       GraficarOpiciones("Editar nombre de vendedor",50,12,y==0,15,0);
+       GraficarOpiciones("Editar correo de vendedor ",50,14,y==1,15,0);
+       GraficarOpiciones("Editar clave de vendedor",50,16,y==2,15,0);
+       GraficarOpiciones("Editar DNI de vendedor ",50,18,y==3,15,0);
+       GraficarOpiciones("Volver atras ",50,20,y==4,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;
@@ -476,6 +494,10 @@ int y=0;
 
 
 void editarMiNombre(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,4,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,27,false,205);
 FILE *nombrePersonal;
 nombrePersonal=fopen("Vendedores.dat","rb+");
 if(nombrePersonal==NULL){
@@ -485,12 +507,15 @@ Vendedores obj;
 bool encontrado=false;
 char nuevoNombre[30];
 int id;
+rlutil::locate(45,12);
 cout<<"Ingrese el id del usuario a modificar:";
 cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
     if(id==obj.getIdVendedor()){
-        encontrado=true;
+         encontrado=true;
+        if(obj.getEstado()==true){
         long posicion=ftell(nombrePersonal)-sizeof(Vendedores);
+        rlutil::locate(45,14);
         cout<<"Ingresa el nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
@@ -498,13 +523,24 @@ while(fread(&obj,sizeof(Vendedores),1,nombrePersonal)!=0){
         obj.setNombre(nuevoNombre);
         fseek(nombrePersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,nombrePersonal);
+        rlutil::locate(45,14);
         cout<<"Nombre actualizado correctamente..."<<endl;
+        rlutil::locate(45,16);
         system("pause");
         break;
+        }else{
+             rlutil::locate(45,14);
+             cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+             rlutil::locate(45,16);
+             system("pause");
+             break;
+        }
     }
 }
 if(!encontrado){
+    rlutil::locate(45,14);
     cout<<"Error al encontrar usuario con ese ID"<<endl;
+    rlutil::locate(45,16);
     system("pause");
 }
 fclose(nombrePersonal);
@@ -512,6 +548,10 @@ system("cls");
 }
 
 void editarMiCorreo(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,4,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,27,false,205);
 FILE *correoPersonal;
 correoPersonal=fopen("Vendedores.dat","rb+");
 if(correoPersonal==NULL){
@@ -521,12 +561,15 @@ Vendedores obj;
 bool encontrado=false;
 char nuevoCorreo[35];
 int id;
+rlutil::locate(45,12);
 cout<<"Ingrese el id del usuario a modificar:";
 cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
+        if(obj.getEstado()==true){
         long posicion=ftell(correoPersonal)-sizeof(Vendedores);
+        rlutil::locate(45,14);
         cout<<"Ingresa el correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,35,'\n');
@@ -534,13 +577,24 @@ while(fread(&obj,sizeof(Vendedores),1,correoPersonal)!=0){
         obj.setCorreo(nuevoCorreo);
         fseek(correoPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,correoPersonal);
+        rlutil::locate(45,16);
         cout<<"Correo actualizado correctamente..."<<endl;
+        rlutil::locate(45,18);
         system("pause");
         break;
+        }else{
+        rlutil::locate(45,14);
+        cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        break;
+        }
     }
 }
 if(!encontrado){
+     rlutil::locate(45,14);
     cout<<"Error al encontrar usuario con ese ID"<<endl;
+    rlutil::locate(45,16);
     system("pause");
 }
 fclose(correoPersonal);
@@ -548,6 +602,10 @@ system("cls");
 }
 
 void editarMiClave(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,4,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,27,false,205);
 FILE *clavePersonal;
 clavePersonal=fopen("Vendedores.dat","rb+");
 if(clavePersonal==NULL){
@@ -557,25 +615,39 @@ Vendedores obj;
 bool encontrado=false;
 char nuevaCLave[20];
 int id;
+ rlutil::locate(45,12);
 cout<<"Ingrese el id del usuario a modificar:";
 cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,clavePersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
+        if(obj.getEstado()==true){
         long posicion=ftell(clavePersonal)-sizeof(Vendedores);
+        rlutil::locate(45,14);
         cout<<"Ingresa la clave:";
         cin.ignore();
         cin.getline(nuevaCLave,20,'\n');
         obj.setClave(nuevaCLave);
         fseek(clavePersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,clavePersonal);
+         rlutil::locate(45,16);
         cout<<"Clave actualizada correctamente..."<<endl;
+        rlutil::locate(45,18);
         system("pause");
         break;
+        }else{
+         rlutil::locate(45,14);
+         cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+         rlutil::locate(45,16);
+         system("pause");
+         break;
+        }
     }
 }
 if(!encontrado){
+    rlutil::locate(45,14);
     cout<<"Error al encontrar usuario con ese ID"<<endl;
+    rlutil::locate(45,16);
     system("pause");
 }
 fclose(clavePersonal);
@@ -583,6 +655,10 @@ system("cls");
 }
 
 void editarDni(){
+GraficarLineasHorizontales(1,121,2,false,176);
+GraficarLineasHorizontales(1,121,4,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,27,false,205);
 FILE *dniPersonal;
 dniPersonal=fopen("Vendedores.dat","rb+");
 if(dniPersonal==NULL){
@@ -592,25 +668,39 @@ Vendedores obj;
 bool encontrado=false;
 int nuevoDni;
 int id;
+rlutil::locate(45,12);
 cout<<"Ingrese el id del usuario a modificar:";
 cin>>id;
 while(fread(&obj,sizeof(Vendedores),1,dniPersonal)!=0){
     if(id==obj.getIdVendedor()){
         encontrado=true;
+        if(obj.getEstado()==true){
         long posicion=ftell(dniPersonal)-sizeof(Vendedores);
+        rlutil::locate(45,14);
         cout<<"Ingresa el dni:";
         cin>>nuevoDni;
         obj.dniV(nuevoDni);
         obj.setDni(nuevoDni);
         fseek(dniPersonal,posicion,SEEK_SET);
         fwrite(&obj,sizeof(Vendedores),1,dniPersonal);
+        rlutil::locate(45,16);
         cout<<"Dni actualizado correctamente..."<<endl;
+        rlutil::locate(45,18);
         system("pause");
         break;
+        }else{
+         rlutil::locate(45,14);
+         cout<<"El vendedor ya se encuentra dado de baja..."<<endl;
+         rlutil::locate(45,16);
+         system("pause");
+         break;
+        }
     }
 }
 if(!encontrado){
+    rlutil::locate(45,14);
     cout<<"Error al encontrar usuario con ese ID"<<endl;
+    rlutil::locate(45,16);
     system("pause");
 }
 fclose(dniPersonal);

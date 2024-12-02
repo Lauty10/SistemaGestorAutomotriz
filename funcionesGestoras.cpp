@@ -686,11 +686,11 @@ do{
    rlutil::setColor(rlutil::WHITE);
    GraficarLineasHorizontales(1,121,2,false,176);
    GraficarLineasHorizontales(1,121,30,false,176);
-   rlutil::locate(35,6);
+   rlutil::locate(35,5);
    cout<<"GROUP 51 CAR CENTER - MENU DE SOPORTE"<<endl;
-   rlutil::locate(35,7);
+   rlutil::locate(35,6);
    cout<<"--------------------------------------------------------------"<<endl;
-   rlutil::locate(35,8);
+   rlutil::locate(35,7);
    cout<<"Bienvenido al men"<<char(163)<<" de soporte. "<<char(168)<<"Qu"<<char(130)<<" deseas hacer hoy"<<char(63);
    GraficarOpiciones("Dar de alta vendedores ",45,10,y==0,15,0);
    GraficarOpiciones("Dar de baja vendedores ",45,12,y==1,15,0);
@@ -760,6 +760,7 @@ break;
 }while(control_menu_soporte);
 }
 
+
 void estadoDeMiSolicitud(){
 for(int j=1;j<121;j++){
     rlutil::locate(j,1);
@@ -792,7 +793,6 @@ rlutil::locate(45,12);
 cout<<"Ingrese el ID de su solicitud:";
 cin>>idS;
 cin.ignore();
-validarId(idS);
 char nombre[30];
 char correo[35];
 int dni;
@@ -800,8 +800,10 @@ char clave[20];
 char clave2[20];
 int i = 0;
 int id;
+bool encontrado=false;
 while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
     if(idS==objS.getId()){
+        encontrado=true;
         if(objS.getAprobado()==true){
         strcpy(nombre,objS.getNombre());
         strcpy(correo,objS.getCorreo());
@@ -811,20 +813,30 @@ while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
         fseek(buscarMiSolicitud, posicion, SEEK_SET);
         fwrite(&objS,sizeof(Solicitud),1,buscarMiSolicitud);
         rlutil::locate(45,14);
-        cout<<"Solicitud aprobada..."<<endl;
+        cout<<"Su solicitud fue aprobada, complete los siguientes pasos..."<<endl;
         rlutil::locate(45,16);
         system("pause");
         break;
         }else{
-        rlutil::locate(30,14);
-        cout<<"La solicitud ya fue aprobada o no se encontro en nuestro sistema..."<<endl;
+        rlutil::locate(40,14);
+        cout<<"Solicitud aprobada, o en espera de aprobacion..."<<endl;
         rlutil::locate(45,16);
         system("pause");
         system("cls");
+        fclose(buscarMiSolicitud);
         return;
-        }
-        }
-        }
+}
+}
+}
+if(!encontrado){
+    rlutil::locate(38,14);
+    cout<<"El id de la solicitud no fue encontrado en nuestro sistema..."<<endl;
+    rlutil::locate(45,16);
+    system("pause");
+    system("cls");
+    fclose(buscarMiSolicitud);
+    return;
+}
 FILE *Nuevoalta;
 Nuevoalta=fopen("Vendedores.dat","ab");
 if(Nuevoalta==NULL){
@@ -849,8 +861,8 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
 }
-rlutil::locate(35,10);
-cout<<"Feliciades, su solicitud fue aprobada solo falta un paso"<<endl;
+rlutil::locate(30,10);
+cout<<"Felicidades, su solicitud fue aprobada solo falta un paso"<<endl;
 rlutil::locate(45,12);
  cout << "Ingrese su clave para su alta: ";
     while (true) {

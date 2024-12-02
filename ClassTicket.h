@@ -138,7 +138,7 @@ rlutil::locate(1,6);
 cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
 return;
 }
-rlutil::locate(40,2);
+rlutil::locate(40,3);
 cout<<"Estos son todos los tikets generados en nuestro sistema..."<<endl;
 TicketAdmin obj;
 while(fread(&obj,sizeof(TicketAdmin),1,tickets)!=0){
@@ -148,7 +148,7 @@ cout<<"La fecha del ticket es: "<<obj.getFecha()<<endl;
 cout<<"El id del ticket es: "<<obj.getId()<<endl;
 cout<<"El usuario del ticket es: "<<obj.getUsuario()<<endl;
 cout<<"El asunto del del ticket es: "<<obj.getInfoT()<<endl;
-cout<<endl;
+cout<<"-------------------------------------------------------------"<<endl;
 }
 }
 fclose(tickets);
@@ -159,6 +159,10 @@ system("cls");
 
 
 void darDeBajaTickets(){
+GraficarLineasHorizontales(1,121,1,false,176);
+GraficarLineasHorizontales(1,121,3,false,205);
+GraficarLineasHorizontales(1,121,30,false,176);
+GraficarLineasHorizontales(1,121,28,false,205);
 FILE *baja;
 baja=fopen("Ticket.dat","rb+");
 if(baja==NULL){
@@ -168,7 +172,7 @@ return;
 TicketAdmin objA;
 int i;
 bool encontrado=false;
-rlutil::locate(1,2);
+rlutil::locate(40,12);
 cout<<"Ingrese el id del ticket a dar de baja: ";
 cin>>i;
 
@@ -179,17 +183,17 @@ encontrado=true;
 long posicion=ftell(baja)-sizeof(TicketAdmin);
 fseek(baja,posicion,SEEK_SET);
 fwrite(&objA,sizeof(TicketAdmin),1,baja);
-rlutil::locate(1,4);
+rlutil::locate(42,14);
 cout<<"Ticket dado de baja correctamente"<<endl;
-rlutil::locate(1,8);
+rlutil::locate(40,16);
 system("pause");
 break;
 }
 }
 if(!encontrado){
-rlutil::locate(1,4);
-cout<<"NO SE ENCONTRO EL ID INGRESADO"<<endl;
-rlutil::locate(1,8);
+rlutil::locate(34,14);
+cout<<"El ticket ya fue dado de baja o no se encontro en el sistema..."<<endl;
+rlutil::locate(40,16);
 system("pause");
 system("cls");
 return;
