@@ -432,11 +432,11 @@ int y=0;
        cout<<"--------------------------------------------------------------"<<endl;
        rlutil::locate(45,8);
        cout<<"AQUI PODRA EDITAR LA INFORMACION DE LOS CLIENTES"<<endl;
-       GraficarOpiciones("Editar nombre ",55,14,y==0,15,0);
-       GraficarOpiciones("Editar correo ",55,16,y==1,15,0);
-       GraficarOpiciones("Editar telefono ",55,18,y==2,15,0);
-       GraficarOpiciones("Editar DNI ",55,20,y==3,15,0);
-       GraficarOpiciones("Volver atras ",55,22,y==4,15,0);
+       GraficarOpiciones("Editar nombre del cliente",50,14,y==0,15,0);
+       GraficarOpiciones("Editar correo del cliente",50,16,y==1,15,0);
+       GraficarOpiciones("Editar telefono del cliente",50,18,y==2,15,0);
+       GraficarOpiciones("Editar DNI del cliente",50,20,y==3,15,0);
+       GraficarOpiciones("Volver atras ",50,22,y==4,15,0);
        switch(rlutil::getkey()){
        case 14:
                y--;
@@ -483,22 +483,7 @@ int y=0;
 
 
 void editarNombre(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-}
+estilo();
 FILE *editar;
 editar=fopen("Clientes","rb+");
 if(editar==NULL){
@@ -509,64 +494,59 @@ if(editar==NULL){
 Clientes nombreObj;
 bool encontrado=false;
 int idBuscado;
-rlutil::locate(45,12);
+rlutil::locate(45,10);
 cout<<"Ingrese el id del cliente a editar:";
 cin>>idBuscado;
-rlutil::locate(36,13);
-cout<<"-----------------------------------------------------------------"<<endl;
 while(fread(&nombreObj,sizeof(Clientes),1,editar)!=0){
     if(idBuscado==nombreObj.getIdCliente()){
-        rlutil::locate(45,15);
+        encontrado=true;
+        if(nombreObj.getEstado()==true){
+        rlutil::locate(45,12);
         cout<<"Cliente encontrado correctamente"<<endl;
         rlutil::locate(3,8);
         cout<<"El nombre actual es: "<<nombreObj.getNombreCliente()<<endl;
-        encontrado=true;
         long longitud=ftell(editar)-sizeof(Clientes);
         char nuevoNombre[30];
-        rlutil::locate(45,17);
+        rlutil::locate(45,14);
         cout<<"Ingresa el nuevo nombre:";
         cin.ignore();
         cin.getline(nuevoNombre,30,'\n');
-        rlutil::locate(45,18);
         nombreObj.nombre(nuevoNombre);
         nombreObj.setNombreCliente(nuevoNombre);
+
+        system("cls");
+        estilo();
         fseek(editar,longitud,SEEK_SET);
         fwrite(&nombreObj,sizeof(Clientes),1,editar);
-        rlutil::locate(45,19);
+        rlutil::locate(45,14);
         cout<<"Nombre editado correctamente..."<<endl;
-        rlutil::locate(45,21);
+        rlutil::locate(45,16);
         system("pause");
         break;
+        }else{
+        system("cls");
+        estilo();
+        rlutil::locate(45,14);
+        cout<<"El cliente ya se encuentra dado de baja..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        }
     }
 }
 if(!encontrado){
-rlutil::locate(45,15);
+system("cls");
+estilo();
+rlutil::locate(45,16);
 cout<<"No se encontro el id correspondiente"<<endl;
-rlutil::locate(45,17);
+rlutil::locate(45,18);
 system("pause");
 }
 fclose(editar);
-rlutil::locate(1,17);
 system("cls");
 }
 
 void editarCorreo(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-}
+estilo();
 FILE *editar;
 editar=fopen("Clientes","rb+");
 if(editar==NULL){
@@ -577,36 +557,105 @@ if(editar==NULL){
 Clientes correoObj;
 bool encontrado=false;
 int idBuscado;
-rlutil::locate(55,9);
-cout<<"Editar correo"<<endl;
-rlutil::locate(30,10);
-cout<<"-----------------------------------------------------------------------"<<endl;
-rlutil::locate(45,12);
+rlutil::locate(45,10);
 cout<<"Ingrese el id del cliente buscado:";
 cin>>idBuscado;
 while(fread(&correoObj,sizeof(Clientes),1,editar)!=0){
     if(idBuscado==correoObj.getIdCliente()){
-        rlutil::locate(45,14);
+        encontrado=true;
+        if(correoObj.getEstado()==true){
+        rlutil::locate(45,12);
         cout<<"Cliente encontrado correctamente"<<endl;
         rlutil::locate(3,6);
         cout<<"El correo actual es : "<<correoObj.getCorreoCliente()<<endl;
-        encontrado=true;
         long longitud=ftell(editar)-sizeof(Clientes);
         char nuevoCorreo[30];
-        rlutil::locate(45,16);
+        rlutil::locate(45,14);
         cout<<"Ingresa el nuevo correo:";
         cin.ignore();
         cin.getline(nuevoCorreo,30,'\n');
         rlutil::locate(45,17);
         correoObj.correo(nuevoCorreo);
         correoObj.setCorreoCliente(nuevoCorreo);
+        system("cls");
+        estilo();
         fseek(editar,longitud,SEEK_SET);
         fwrite(&correoObj,sizeof(Clientes),1,editar);
-        rlutil::locate(45,18);
+        rlutil::locate(45,14);
         cout<<"Correo editado correctamente..."<<endl;
-        rlutil::locate(45,20);
+        rlutil::locate(45,16);
         system("pause");
         break;
+    }else{
+        system("cls");
+        estilo();
+        rlutil::locate(45,14);
+        cout<<"El cliente ya se encuentra dado de baja..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        }
+    }
+}
+if(!encontrado){
+system("cls");
+estilo();
+rlutil::locate(45,14);
+cout<<"No se encontro el id correspondiente"<<endl;
+rlutil::locate(45,16);
+system("pause");
+}
+fclose(editar);
+system("cls");
+}
+
+
+void editarTelefono(){
+estilo();
+FILE *editar;
+editar=fopen("Clientes","rb+");
+if(editar==NULL){
+    cout<<"Error al editar telefono..."<<endl;
+     fclose(editar);
+}
+Clientes TelefonObj;
+bool encontrado=false;
+int idBuscado;
+rlutil::locate(45,10);
+cout<<"Ingrese el id del cliente buscado:";
+cin>>idBuscado;
+while(fread(&TelefonObj,sizeof(Clientes),1,editar)!=0){
+    if(idBuscado==TelefonObj.getIdCliente()){
+        encontrado=true;
+        if(TelefonObj.getEstado()==true){
+        rlutil::locate(45,12);
+        cout<<"Cliente encontrado correctamente"<<endl;
+        rlutil::locate(1,5);
+        cout<<"El telefono actual es: "<<TelefonObj.getTelefono()<<endl;
+        long longitud=ftell(editar)-sizeof(Clientes);
+        char nuevoTel[30];
+        rlutil::locate(45,14);
+        cout<<"Ingresa el telefono:";
+        cin.ignore();
+        cin.getline(nuevoTel,30,'\n');
+        TelefonObj.telefono1(nuevoTel);
+        TelefonObj.setTelefono(nuevoTel);
+        system("cls");
+        estilo();
+        fseek(editar,longitud,SEEK_SET);
+        fwrite(&TelefonObj,sizeof(Clientes),1,editar);
+        rlutil::locate(45,14);
+        cout<<"Telefono editado correctamente..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        break;
+        }else{
+        system("cls");
+        estilo();
+        rlutil::locate(45,14);
+        cout<<"El cliente ya se encuentra dado de baja..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        }
     }
 }
 if(!encontrado){
@@ -620,94 +669,8 @@ system("cls");
 }
 
 
-
-
-void editarTelefono(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-}
-FILE *editar;
-editar=fopen("Clientes","rb+");
-if(editar==NULL){
-    cout<<"Error al editar telefono..."<<endl;
-     fclose(editar);
-}
-Clientes TelefonObj;
-bool encontrado=false;
-int idBuscado;
-rlutil::locate(55,10);
-cout<<"Editar numero telefonico"<<endl;
-rlutil::locate(30,11);
-cout<<"-----------------------------------------------------------------------"<<endl;
-rlutil::locate(45,13);
-cout<<"Ingrese el id del cliente buscado:";
-cin>>idBuscado;
-while(fread(&TelefonObj,sizeof(Clientes),1,editar)!=0){
-    if(idBuscado==TelefonObj.getIdCliente()){
-        rlutil::locate(45,15);
-        cout<<"Cliente encontrado correctamente"<<endl;
-        rlutil::locate(1,5);
-        cout<<"El telefono actual es: "<<TelefonObj.getTelefono()<<endl;
-        encontrado=true;
-        long longitud=ftell(editar)-sizeof(Clientes);
-        char nuevoTel[30];
-        rlutil::locate(45,17);
-        cout<<"Ingresa el telefono:";
-        cin.ignore();
-        cin.getline(nuevoTel,30,'\n');
-        rlutil::locate(45,18);
-        TelefonObj.telefono1(nuevoTel);
-        TelefonObj.setTelefono(nuevoTel);
-        fseek(editar,longitud,SEEK_SET);
-        fwrite(&TelefonObj,sizeof(Clientes),1,editar);
-        rlutil::locate(45,19);
-        cout<<"Telefono editado correctamente..."<<endl;
-        rlutil::locate(45,21);
-        system("pause");
-        break;
-    }
-}
-if(!encontrado){
-rlutil::locate(45,15);
-cout<<"No se encontro el id correspondiente"<<endl;
-rlutil::locate(45,17);
-system("pause");
-}
-fclose(editar);
-system("cls");
-}
-
-
 void editarDni(){
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-     }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-    }
-for(int j=1;j<121;j++){
-    rlutil::locate(j,28);
-    cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-     rlutil::locate(j,3);
-     cout<<char(205);
-}
+estilo();
 FILE *editar;
 editar=fopen("Clientes","rb+");
 if(editar==NULL){
@@ -717,42 +680,50 @@ if(editar==NULL){
 Clientes DniObj;
 bool encontrado=false;
 int idBuscado;
-rlutil::locate(55,10);
-cout<<"Editar numero de dni"<<endl;
-rlutil::locate(30,11);
-cout<<"-----------------------------------------------------------------------"<<endl;
-rlutil::locate(45,13);
+rlutil::locate(45,10);
 cout<<"Ingrese el id del cliente buscado:";
 cin>>idBuscado;
 while(fread(&DniObj,sizeof(Clientes),1,editar)!=0){
     if(idBuscado==DniObj.getIdCliente()){
-        rlutil::locate(45,15);
+        if(DniObj.getEstado()==true){
+        rlutil::locate(45,12);
         cout<<"Cliente encontrado correctamente"<<endl;
         rlutil::locate(1,5);
         cout<<"El dni actual es:"<<DniObj.getDni()<<endl;
         encontrado=true;
         long longitud=ftell(editar)-sizeof(Clientes);
         int dniNuevo;
-        rlutil::locate(45,17);
+        rlutil::locate(45,14);
         cout<<"Ingresa el dni:";
         cin.ignore();
         cin>>dniNuevo;
-        rlutil::locate(45,18);
         DniObj.dni1(dniNuevo);
         DniObj.setDni(dniNuevo);
+        system("cls");
+        estilo();
         fseek(editar,longitud,SEEK_SET);
         fwrite(&DniObj,sizeof(Clientes),1,editar);
-        rlutil::locate(45,19);
+        rlutil::locate(45,14);
         cout<<"Dni editado correctamente..."<<endl;
-        rlutil::locate(45,21);
+        rlutil::locate(45,16);
         system("pause");
         break;
+        }else{
+        system("cls");
+        estilo();
+        rlutil::locate(45,14);
+        cout<<"El cliente ya se encuentra dado de baja..."<<endl;
+        rlutil::locate(45,16);
+        system("pause");
+        }
     }
 }
 if(!encontrado){
-rlutil::locate(55,15);
+system("cls");
+estilo();
+rlutil::locate(55,14);
 cout<<"No se encontro el id correspondiente"<<endl;
-rlutil::locate(55,17);
+rlutil::locate(55,16);
 system("pause");
 }
 fclose(editar);

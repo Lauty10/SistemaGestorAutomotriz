@@ -86,29 +86,37 @@ void generarTicket(int id) {
     GraficarLineasHorizontales(1,121,30,false,176);
     TicketAdmin objT;
     int idT;
-    rlutil::locate(33,10);
+    rlutil::locate(30,10);
     cout << "Por favor complete los siguientes datos para generar un ticket" << endl;
     rlutil::locate(45,12);
     cout << "Ingrese el asunto del ticket:";
     cin.getline(infoTicket, 35,'\n');
     objT.ticketV(infoTicket);
     objT.setInfo(infoTicket);
-    rlutil::locate(45,14);
-    cout << "Ingrese la fecha del ticket,(Ej: 01/01/1900):";
+    system("cls");
+
+    GraficarLineasHorizontales(1,121,2,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
+    rlutil::locate(45,12);
+    cout << "Ingrese la fecha del ticket,(Ej:1/1/1900):";
     cin.getline(fechaActual, 11,'\n');
     objT.fechaV(fechaActual);
     objT.setFecha(fechaActual);
+    system("cls");
+
     objT.setUsuario(usuario);
     idT = generarIdTicket();
     objT.setIdT(idT);
     objT.setTicket(true);
     fwrite(&objT, sizeof(TicketAdmin), 1, nuevoT);
-    rlutil::locate(45,16);
+    GraficarLineasHorizontales(1,121,2,false,176);
+    GraficarLineasHorizontales(1,121,30,false,176);
+    rlutil::locate(45,14);
     cout << "Ticket generado correctamente..." << endl;
-    rlutil::locate(45,18);
-    cout << "El numero del ticket es: " << idT << endl;
+    rlutil::locate(45,16);
+    cout << "El numero del ticket es:"<<idT<<endl;
     fclose(nuevoT);
-    rlutil::locate(45,20);
+    rlutil::locate(45,18);
     system("pause");
     system("cls");
 }
@@ -185,13 +193,13 @@ fseek(baja,posicion,SEEK_SET);
 fwrite(&objA,sizeof(TicketAdmin),1,baja);
 rlutil::locate(42,14);
 cout<<"Ticket dado de baja correctamente"<<endl;
-rlutil::locate(40,16);
+rlutil::locate(42,16);
 system("pause");
 break;
 }
 }
 if(!encontrado){
-rlutil::locate(34,14);
+rlutil::locate(40,14);
 cout<<"El ticket ya fue dado de baja o no se encontro en el sistema..."<<endl;
 rlutil::locate(40,16);
 system("pause");
@@ -206,8 +214,10 @@ fclose(baja);
 //ASUNTO
 void ticketV(char* asunto){
 while(asunto[0]=='\0'){
+ rlutil::locate(45,14);
 cout<<"Es necesario completar este campo"<<endl;
-cout<<"Asunto: ";
+rlutil::locate(45,16);
+cout<<"Ingres el asunto del ticket: ";
 cin.ignore();
 cin.getline(asunto,35,'\n');
 }
@@ -216,8 +226,10 @@ cin.getline(asunto,35,'\n');
 //FECHA
 void fechaV(char* f){
 while(f[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Fecha";
+rlutil::locate(45,14);
+cout<<"Es necesario completar este campo"<<endl;
+rlutil::locate(45,16);
+cout<<"Ingrese la fecha del ticket:";
 cin.ignore();
 cin.getline(f,11,'\f');
 }

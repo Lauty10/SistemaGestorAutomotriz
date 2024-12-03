@@ -189,10 +189,8 @@ void altaAuto(){
     obj.precioV(precioAuto);
     obj.setPrecioAuto(precioAuto);
     system("cls");
-
     estadoA = true;
     obj.setEstado(estadoA);
-    if(precioAuto>0){
     estiloAuto();
     fwrite(&obj, sizeof(Auto), 1, vehiculo);
     rlutil::locate(45,14);
@@ -201,7 +199,6 @@ void altaAuto(){
     system("pause");
     system("cls");
     fclose(vehiculo);
-    }
     }
 
 
