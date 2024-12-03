@@ -140,66 +140,82 @@ public:
 void cargarCliente(){
 idCliente=generarIdCliente();
 rlutil::locate(1,1);
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,27);
-cout<<char(205);
-     }
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
-
+estilo();
 Clientes obj;
-rlutil::locate(43,6);
-cout<<"CARGA LA INFORMCION DEL CLIENTE EN EL SISTEMA"<<endl;
-rlutil::locate(36,7);
-cout<<"--------------------------------------------------------------"<<endl;
-rlutil::locate(43,10);
+rlutil::locate(30,10);
+cout<<"POR FAVOR INGRESE EL NOMBRE DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
+
+rlutil::locate(45,14);
 cout<<"Ingrese el nombre del cliente:";
-cin.ignore();
 cin.getline(nombreCliente,30,'\n');
-rlutil::locate(43,11);
 obj.nombre(nombreCliente);
-rlutil::locate(43,12);
+setNombreCliente(nombreCliente);
+system("cls");
+
+estilo();
+rlutil::locate(30,10);
+cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
+rlutil::locate(45,14);
 cout<<"Ingrese el correo del cliente:";
 cin.getline(correoCliente, 35,'\n');
-rlutil::locate(43,12);
 obj.correo(correoCliente);
-rlutil::locate(43,14);
+setCorreoCliente(correoCliente);
+system("cls");
+
+estilo();
+rlutil::locate(30,10);
+cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
+rlutil::locate(45,14);
 cout<<"Ingrese el telefono del cliente:";
 cin.getline(telefono, 14,'\n');
-rlutil::locate(43,15);
 obj.telefono1(telefono);
-rlutil::locate(43,16);
+setTelefono(telefono);
+system("cls");
+
+estilo();
+rlutil::locate(30,10);
+cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
+rlutil::locate(45,14);
 cout<<"Ingrese el dni del cliente:";
 cin>>dni;
-rlutil::locate(43,17);
 obj.dni1(dni);
-rlutil::locate(43,18);
-cout<<"Cliente registrado correctamente..."<<endl;
-rlutil::locate(43,20);
-cout<<"ID:"<<getIdCliente()<<endl;
+setDni(dni);
+system("cls");
 }
 
 void darDeAltaCliente(Clientes objCliente){
 FILE *clienteCargado;
+clienteCargado=fopen("Clientes","rb");
+if(clienteCargado==NULL){
+    rlutil::locate(1,31);
+    cout<<"Error al leer el alta del nuevo cliente..."<<endl;
+}
+Clientes objC;
+while(fread(&objC,sizeof(Clientes),1,clienteCargado)!=0){
+    if(strcmp(objC.getCorreoCliente(),objCliente.getCorreoCliente())==0 || objC.getDni()==objCliente.getDni()){
+          estilo();
+           rlutil::locate(40,12);
+            cout<<"No se puede completar el alta del nuevo cliente..."<<endl;
+            rlutil::locate(40,14);
+            cout<<"Datos repetidos o invalidos."<<endl;
+            rlutil::locate(40,16);
+            system("pause");
+            system("cls");
+            fclose(clienteCargado);
+            return;
+    }
+}
+fclose(clienteCargado);
 clienteCargado=fopen("Clientes","ab");
 if(clienteCargado==NULL){
     rlutil::locate(1,31);
     cout<<"Error al dar de alta nuevo cliente..."<<endl;
 }
+estilo();
 fwrite(&objCliente,sizeof(Clientes),1,clienteCargado);
-rlutil::locate(43,22);
+rlutil::locate(40,12);
 cout<<"Cliente cargado correctamente en el sistema..."<<endl;
-rlutil::locate(43,24);
+rlutil::locate(40,14);
 system("pause");
 system("cls");
 fclose(clienteCargado);
@@ -747,20 +763,17 @@ system("cls");
 //NOMBRE
 void nombre( char* nom){
 while(nom[0]=='\0'){
-rlutil::locate(43,11);
-cout<<"Campo incompleto"<<endl;
-rlutil::locate(75,10);
-cin.ignore();
-rlutil::locate(75,10);
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el nombre:";
 cin.getline(nom,30,'\n');
-rlutil::locate(43,11);
-cout<<"                   "<<endl;
 }
 }
 
 
 //CORREO
-void correo( char* dato){
+void correo(char* dato){
 FILE *correo;
 correo=fopen("Clientes","rb");
 if(correo==NULL){
@@ -769,16 +782,18 @@ return;
 }
 Clientes objC;
 while(dato[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Correo: ";
-cin.ignore();
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el Correo: ";
 cin.getline(dato,30,'\n');
 }
 while(fread(&objC,sizeof(Clientes),1,correo)!=0){
 if(strcmp(objC.getCorreoCliente(),dato)==0){
+rlutil::locate(45,16);
 cout<<"Este correo ya esta registrado"<<endl;
-cout<<"Correo: ";
-cin.ignore();
+rlutil::locate(45,18);
+cout<<"Ingrese el correo: ";
 cin.getline(dato,30,'\n');
 }
 }
@@ -789,9 +804,10 @@ fclose(correo);
 //TELEFONO
 void telefono1( char* tel){
 while(tel[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Telefono: ";
-cin.ignore();
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el telefono: ";
 cin.getline(tel,30,'\n');
 }
 }
@@ -807,19 +823,43 @@ return;
 }
 Clientes objd;
 while(d==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Dni: ";
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el dni: ";
 cin>>d;
 }
 while(fread(&objd,sizeof(Clientes),1,dni)!=0){
 if(objd.getDni()==d){
+rlutil::locate(45,16);
 cout<<"Este dni ya esta registrado"<<endl;
-cout<<"Dni: ";
+rlutil::locate(45,18);
+cout<<"Ingrese el dni: ";
 cin>>d;
 }
 }
 fclose(dni);
 }
+
+void estilo(){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,27);
+cout<<char(205);
+     }
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
+}
+
 };
 
 

@@ -139,7 +139,6 @@ void altaAuto(){
         cout << "NO SE PUDO ABRIR ESTE ARCHIVO" << endl;
         return;
     }
-    estiloAuto();
     Auto obj;
     int idUnico;
     char nombreAuto[20];
@@ -149,41 +148,62 @@ void altaAuto(){
     bool estadoA = false;
     idUnico = generarIdAuto();
     obj.setIdAuto(idUnico);
-    rlutil::locate(45,10);
+
+    estiloAuto();
+    rlutil::locate(25,10);
+    cout << "Por favor, ingrese el nombre del nuevo auto para darlo de alta en el sistema..." << endl;
+    rlutil::locate(45,14);
     cout << "Ingrese el nombre del auto: ";
     cin.ignore();
     cin.getline(nombreAuto, 20, '\n');
     obj.NombreV(nombreAuto);
     obj.setNombreAuto(nombreAuto);
+    system("cls");
 
-    rlutil::locate(45,12);
+    estiloAuto();
+    rlutil::locate(25,10);
+    cout << "Por favor, ingrese la marca del nuevo auto para darlo de alta en el sistema..." << endl;
+    rlutil::locate(45,14);
     cout << "Ingrese la marca del auto: ";
     cin.getline(marcaAuto, 20, '\n');
     obj.marcaV(marcaAuto);
     obj.setMarcaAuto(marcaAuto);
+    system("cls");
 
-    rlutil::locate(45,14);
+    estiloAuto();
+    rlutil::locate(25,10);
+    cout << "Por favor, ingrese la fecha del nuevo auto para darlo de alta en el sistema..." << endl;
+    rlutil::locate(40,14);
     cout << "Ingrese la fecha de fabricacion del auto: ";
     cin.getline(anioVehiculo, 11, '\n');
     obj.fechaV(anioVehiculo);
     obj.setAnio(anioVehiculo);
+    system("cls");
 
-    rlutil::locate(45,16);
+    estiloAuto();
+    rlutil::locate(25,10);
+    cout << "Por favor, ingrese el nombre del nuevo auto para darlo de alta en el sistema..." << endl;
+    rlutil::locate(45,14);
     cout << "Ingrese el precio del auto: ";
     cin >> precioAuto;
     obj.precioV(precioAuto);
     obj.setPrecioAuto(precioAuto);
+    system("cls");
+
     estadoA = true;
     obj.setEstado(estadoA);
+    if(precioAuto>0){
+    estiloAuto();
     fwrite(&obj, sizeof(Auto), 1, vehiculo);
-
-    rlutil::locate(45,18);
+    rlutil::locate(45,14);
     cout << "Vehiculo cargado en el sistema" << endl;
-    rlutil::locate(45,20);
+    rlutil::locate(45,16);
     system("pause");
     system("cls");
     fclose(vehiculo);
-}
+    }
+    }
+
 
 
 //GENERADOR DE ID PARA NUEVOS AUTOS
@@ -631,9 +651,10 @@ fclose(buscarV);
 //NOMBRE
 void NombreV(char* n){
 while(n[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Nombre: ";
-cin.ignore();
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el nombre: ";
 cin.getline(n,30,'\n');
 }
 }
@@ -642,9 +663,10 @@ cin.getline(n,30,'\n');
 //Marca
 void marcaV(char* m){
 while(m[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Marca: ";
-cin.ignore();
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese la marca: ";
 cin.getline(m,20,'\n');
 }
 }
@@ -653,18 +675,21 @@ cin.getline(m,20,'\n');
 //FECHA
 void fechaV(char* f){
 while(f[0]=='\0'){
-cout<<"Campo incompleto"<<endl;
-cout<<"Fecha";
-cin.ignore();
+rlutil::locate(45,16);
+cout<<"El campo ingresado se encuentra incompleto"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese la fecha,(EJ:01/01/1900):";
 cin.getline(f,11,'\f');
 }
 }
 
 //PRECIO
 void precioV(float p){
-while(p==0.0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Precio: ";
+while(p==0.0 || p<=0){
+rlutil::locate(45,16);
+cout<<"Campo incompleto o precio invalido"<<endl;
+rlutil::locate(45,18);
+cout<<"Ingrese el precio: ";
 cin>>p;
 }
 }

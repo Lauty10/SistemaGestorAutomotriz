@@ -70,63 +70,69 @@ void cargarSolicitud(){
     int nuevaSoli;
     nuevaSoli=generarIdSolicitud();
     setId(nuevaSoli);
-for(int j=1;j<121;j++){
-    rlutil::locate(j,1);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-    rlutil::locate(j,30);
-    cout<<char(176);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,28);
-cout<<char(205);
-}
-for(int j=1;j<121;j++){
-rlutil::locate(j,3);
-cout<<char(205);
-}
+    estiloV();
     rlutil::locate(15,7);
     cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
-    rlutil::locate(50,10);
-    cout << "Ingrese su nombre:";
+    rlutil::locate(45,10);
+    cout << "Ingrese su nombre para su alta:";
     cin.getline(nombre, 30, '\n');
     setNombre(nombre);
-    rlutil::locate(50,12);
-    cout << "Ingrese su correo:";
+    rlutil::locate(45,12);
+    cout << "Ingrese su correo para su alta:";
     cin.getline(correo, 35, '\n');
     setCorreo(correo);
-    rlutil::locate(50,14);
-    cout << "Ingrese su dni:";
+    rlutil::locate(45,14);
+    cout << "Ingrese su dni para su alta:";
     cin >> dni;
     cin.ignore();
     setDni(dni);
-    rlutil::locate(50,16);
-    cout << "------------------------------------------------------------" << endl;
-    rlutil::locate(50,18);
+    rlutil::locate(45,18);
     cout << "El numero de solicitud es: " << getId() << endl;
-    cin.ignore();
+    rlutil::locate(45,20);
+    system("pause");
 }
 
 void nuevaSolicitud(Solicitud objS){
 FILE *soli;
+soli=fopen("Solicitud.dat","rb");
+if(soli==NULL){
+    rlutil::locate(40,12);
+    cout<<"Error al leer una nueva solicitud..."<<endl;
+    return;
+}
+Solicitud objV;
+while(fread(&objV,sizeof(Solicitud),1,soli)!=0){
+    if(strcmp(objV.getCorreo(),objS.getCorreo())==0 || objV.getDni()==objS.getDni()){
+            system("cls");
+            estiloV();
+            rlutil::locate(40,12);
+            cout<<"No se puede completar solicitud de alta..."<<endl;
+            rlutil::locate(40,14);
+            cout<<"Datos repetidos o invalidos."<<endl;
+            rlutil::locate(40,16);
+            system("pause");
+            system("cls");
+            fclose(soli);
+            return;
+    }
+}
+fclose(soli);
 soli=fopen("Solicitud.dat","ab");
 if(soli==NULL){
     rlutil::locate(45,18);
     cout<<"Error al crear una nueva solicitud..."<<endl;
     return;
 }
+system("cls");
+estiloV();
 fwrite(&objS,sizeof(Solicitud),1,soli);
-   rlutil::locate(45,18);
-cout<<"Solicitud generada correcamente..."<<endl;
+rlutil::locate(40,12);
+cout<<"Solicitud generada correcamente en el sistema..."<<endl;
 fclose(soli);
-rlutil::locate(45,20);
+rlutil::locate(40,14);
 system("pause");
 system("cls");
+fclose(soli);
 }
 
  int generarIdSolicitud(){
@@ -274,6 +280,26 @@ cin>>d;
 }
 }
 fclose(dni);
+}
+
+void estiloV(){
+for(int j=1;j<121;j++){
+    rlutil::locate(j,1);
+    cout<<char(176);
+}
+for(int j=1;j<121;j++){
+    rlutil::locate(j,30);
+    cout<<char(176);
+}
+
+for(int j=1;j<121;j++){
+rlutil::locate(j,28);
+cout<<char(205);
+}
+for(int j=1;j<121;j++){
+rlutil::locate(j,3);
+cout<<char(205);
+}
 }
 
 };
