@@ -46,6 +46,18 @@ public:
     setAnio(anio);
     }
 
+    void cargarFechaAuto(){
+    cout<<"Ingrese el dia de la fecha:";
+    cin>>dia;
+    setDia(dia);
+    cout<<"Ingrese el mes de la fecha:";
+    cin>>mes;
+    setMes(mes);
+    cout<<"Ingrese el anio de la fecha:";
+    cin>>anio;
+    setAnio(anio);
+    }
+
     void mostrarFecha(){
     cout<<this->dia<<"/"<<this->mes<<"/"<<this->anio<<endl;
     }

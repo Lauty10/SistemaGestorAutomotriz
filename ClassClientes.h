@@ -157,7 +157,7 @@ rlutil::locate(30,10);
 cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
 rlutil::locate(45,14);
 cout<<"Ingrese el correo del cliente:";
-cin.getline(correoCliente, 35,'\n');
+cin.getline(correoCliente,35);
 obj.correo(correoCliente);
 setCorreoCliente(correoCliente);
 system("cls");
@@ -167,7 +167,7 @@ rlutil::locate(30,10);
 cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<endl;
 rlutil::locate(45,14);
 cout<<"Ingrese el telefono del cliente:";
-cin.getline(telefono, 14,'\n');
+cin.getline(telefono, 14);
 obj.telefono1(telefono);
 setTelefono(telefono);
 system("cls");
@@ -178,6 +178,7 @@ cout<<"POR FAVOR INGRESE EL CORREO DEL CLIENTE PARA CARGARLO EN EL SISTEMA"<<end
 rlutil::locate(45,14);
 cout<<"Ingrese el dni del cliente:";
 cin>>dni;
+cin.ignore();
 obj.dni1(dni);
 setDni(dni);
 system("cls");
@@ -738,7 +739,7 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el nombre:";
-cin.getline(nom,30,'\n');
+cin.getline(nom,30);
 }
 }
 
@@ -757,7 +758,7 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el Correo: ";
-cin.getline(dato,30,'\n');
+cin.getline(dato,30);
 }
 while(fread(&objC,sizeof(Clientes),1,correo)!=0){
 if(strcmp(objC.getCorreoCliente(),dato)==0){
@@ -765,7 +766,7 @@ rlutil::locate(45,16);
 cout<<"Este correo ya esta registrado"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el correo: ";
-cin.getline(dato,30,'\n');
+cin.getline(dato,30);
 }
 }
 fclose(correo);
@@ -779,7 +780,7 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el telefono: ";
-cin.getline(tel,30,'\n');
+cin.getline(tel,30);
 }
 }
 
@@ -806,6 +807,7 @@ rlutil::locate(45,16);
 cout<<"Este dni ya esta registrado"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el dni: ";
+cin.ignore();
 cin>>d;
 }
 }

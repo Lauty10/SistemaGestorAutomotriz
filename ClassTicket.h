@@ -90,16 +90,16 @@ void generarTicket(int id) {
     cout << "Por favor complete los siguientes datos para generar un ticket" << endl;
     rlutil::locate(45,12);
     cout << "Ingrese el asunto del ticket:";
-    cin.getline(infoTicket, 35,'\n');
+    cin.getline(infoTicket, 35);
     objT.ticketV(infoTicket);
     objT.setInfo(infoTicket);
     system("cls");
 
     GraficarLineasHorizontales(1,121,2,false,176);
     GraficarLineasHorizontales(1,121,30,false,176);
-    rlutil::locate(45,12);
+    rlutil::locate(40,14);
     cout << "Ingrese la fecha del ticket,(Ej:1/1/1900):";
-    cin.getline(fechaActual, 11,'\n');
+    cin.getline(fechaActual, 11);
     objT.fechaV(fechaActual);
     objT.setFecha(fechaActual);
     system("cls");
@@ -134,7 +134,7 @@ void generarTicket(int id) {
             dato++;
         }
         fclose(generar);
-        return dato + 1;
+        return dato+1;
     }
 
 //MOSTRAR TICKETS
@@ -218,8 +218,7 @@ while(asunto[0]=='\0'){
 cout<<"Es necesario completar este campo"<<endl;
 rlutil::locate(45,16);
 cout<<"Ingres el asunto del ticket: ";
-cin.ignore();
-cin.getline(asunto,35,'\n');
+cin.getline(asunto,35);
 }
 }
 
@@ -230,8 +229,7 @@ rlutil::locate(45,14);
 cout<<"Es necesario completar este campo"<<endl;
 rlutil::locate(45,16);
 cout<<"Ingrese la fecha del ticket:";
-cin.ignore();
-cin.getline(f,11,'\f');
+cin.getline(f,11);
 }
 }
 };

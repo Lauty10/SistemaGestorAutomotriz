@@ -86,10 +86,11 @@ void cargarSolicitud(){
     cin >> dni;
     cin.ignore();
     setDni(dni);
-    rlutil::locate(45,18);
+    rlutil::locate(45,16);
     cout << "El numero de solicitud es: " << getId() << endl;
-    rlutil::locate(45,20);
+    rlutil::locate(45,18);
     system("pause");
+    system("cls");
 }
 
 void nuevaSolicitud(Solicitud objS){

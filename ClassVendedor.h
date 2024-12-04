@@ -130,13 +130,6 @@ void cargarVendedor(){
     setDni(dni);
     system("cls");
     idVendedor=generarIdVendedor();
-    estiloV();
-    rlutil::locate(45,15);
-    cout<<" EL ID DEL NUEVO VENDEDOR ES:"<<getIdVendedor()<<endl;
-    rlutil::locate(45,17);
-    system("pause");
-    system("cls");
-
 }
 
  int generarIdVendedor() {
@@ -168,11 +161,11 @@ void registrarVendedor(Vendedores obj){
         if(strcmp(objC.getCorreo(), obj.getCorreo()) == 0 || objC.getDni()==obj.getDni()){
             system("cls");
             estiloV();
-            rlutil::locate(45,15);
+            rlutil::locate(45,14);
             cout<<"No se puede completar el registro."<<endl;
-            rlutil::locate(45,17);
+            rlutil::locate(45,16);
             cout<<"Datos repetidos o invalidos."<<endl;
-            rlutil::locate(45,19);
+            rlutil::locate(45,18);
             system("pause");
             system("cls");
             fclose(registro);
@@ -187,9 +180,11 @@ void registrarVendedor(Vendedores obj){
     }
     estiloV();
     fwrite(&obj, sizeof(Vendedores), 1, registro2);
-    rlutil::locate(45, 15);
+    rlutil::locate(45, 14);
     cout << "Vendedor registrado correctamente..." << endl;
-    rlutil::locate(45, 19);
+    rlutil::locate(45, 16);
+    cout<<"El id del vendedor es:"<<obj.getIdVendedor()<<endl;
+    rlutil::locate(45, 18);
     system("pause");
     system("cls");
     fclose(registro2);

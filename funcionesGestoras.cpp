@@ -423,7 +423,6 @@ void realizarVenta(int idV) {
             cout << "Nombre del auto: " << objAuto.getNombreAuto() << endl;
             cout << "Marca del auto: " << objAuto.getMarcaAuto() << endl;
             cout << "Precio del auto: " << objAuto.getPrecioAuto() << endl;
-            cout << "Fecha de fabricacion del auto: " << objAuto.getAnioAuto() << endl;
             cout<<endl;
             cout << "---------------------------------------------------------------------------------------------------------------" << endl;
             int guardarValor=objAuto.getPrecioAuto();
@@ -812,7 +811,7 @@ while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
         objS.setAprobado(false);
         fseek(buscarMiSolicitud, posicion, SEEK_SET);
         fwrite(&objS,sizeof(Solicitud),1,buscarMiSolicitud);
-        rlutil::locate(45,14);
+        rlutil::locate(35,14);
         cout<<"Su solicitud fue aprobada, complete los siguientes pasos..."<<endl;
         rlutil::locate(45,16);
         system("pause");
@@ -861,7 +860,7 @@ for(int j=1;j<121;j++){
 rlutil::locate(j,3);
 cout<<char(205);
 }
-rlutil::locate(30,10);
+rlutil::locate(35,10);
 cout<<"Felicidades, su solicitud fue aprobada solo falta un paso"<<endl;
 rlutil::locate(45,12);
  cout << "Ingrese su clave para su alta: ";
@@ -913,7 +912,7 @@ if(strcmp(clave,clave2)==0){
  fclose(Nuevoalta);
 }
 fclose(buscarMiSolicitud);
-rlutil::locate(50,18);
+rlutil::locate(45,18);
 system("pause");
 system("cls");
 }

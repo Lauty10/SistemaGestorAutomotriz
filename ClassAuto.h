@@ -9,16 +9,14 @@ private:
 int idDelAuto;
 char nombreAuto[20];
 char marcaAuto[20];
-char anioAuto[10];
 float precioAuto;
 bool estado;
 
 public:
-Auto(int id=0, const char* nombreA="XXX", const char* marcaA="XXX", const char* anioA="19/07/2000", float precioA=0.0, bool estado=true){
+Auto(int id=0, const char* nombreA="XXX", const char* marcaA="XXX", float precioA=0.0, bool estado=true){
 this->idDelAuto=id;
 strcpy(this->nombreAuto,nombreA);
 strcpy(this->marcaAuto,marcaA);
-strcpy(this->anioAuto,anioA);
 this->precioAuto=precioA;
 this-> estado=estado;
  }
@@ -31,9 +29,6 @@ strcpy(this->nombreAuto,nombreA);
 
 void setMarcaAuto(char marcaA[20]){
 strcpy(this->marcaAuto,marcaA);
- }
-void setAnio(char anioA[10]){
-strcpy(this->anioAuto,anioA);
  }
 void setPrecioAuto(float precioA){
 this->precioAuto=precioA;
@@ -49,9 +44,6 @@ return nombreAuto;
  }
 const char* getMarcaAuto(){
 return marcaAuto;
- }
-const char* getAnioAuto(){
-return anioAuto;
  }
 float getPrecioAuto(){
 return precioAuto;
@@ -100,7 +92,6 @@ return estado;
               case 0:
                      system("cls");
                      altaAuto();
-
               break;
               case 1:
                      system("cls");
@@ -143,7 +134,6 @@ void altaAuto(){
     int idUnico;
     char nombreAuto[20];
     char marcaAuto[20];
-    char anioVehiculo[11];
     float precioAuto;
     bool estadoA = false;
     idUnico = generarIdAuto();
@@ -154,8 +144,7 @@ void altaAuto(){
     cout << "Por favor, ingrese el nombre del nuevo auto para darlo de alta en el sistema..." << endl;
     rlutil::locate(45,14);
     cout << "Ingrese el nombre del auto: ";
-    cin.ignore();
-    cin.getline(nombreAuto, 20, '\n');
+    cin.getline(nombreAuto, 20);
     obj.NombreV(nombreAuto);
     obj.setNombreAuto(nombreAuto);
     system("cls");
@@ -165,19 +154,9 @@ void altaAuto(){
     cout << "Por favor, ingrese la marca del nuevo auto para darlo de alta en el sistema..." << endl;
     rlutil::locate(45,14);
     cout << "Ingrese la marca del auto: ";
-    cin.getline(marcaAuto, 20, '\n');
+    cin.getline(marcaAuto, 20);
     obj.marcaV(marcaAuto);
     obj.setMarcaAuto(marcaAuto);
-    system("cls");
-
-    estiloAuto();
-    rlutil::locate(25,10);
-    cout << "Por favor, ingrese la fecha del nuevo auto para darlo de alta en el sistema..." << endl;
-    rlutil::locate(40,14);
-    cout << "Ingrese la fecha de fabricacion del auto: ";
-    cin.getline(anioVehiculo, 11, '\n');
-    obj.fechaV(anioVehiculo);
-    obj.setAnio(anioVehiculo);
     system("cls");
 
     estiloAuto();
@@ -189,6 +168,8 @@ void altaAuto(){
     obj.precioV(precioAuto);
     obj.setPrecioAuto(precioAuto);
     system("cls");
+
+    cin.ignore();
     estadoA = true;
     obj.setEstado(estadoA);
     estiloAuto();
@@ -222,68 +203,65 @@ void altaAuto(){
 
 
 //MODIFICAR DATOS
-void modificarAutos(int id){
-bool control_menu_vehiculo=true;
-int y=0;
-    do{
-       rlutil::hidecursor();
-       rlutil::setBackgroundColor(rlutil::BLACK);
-       rlutil::setColor(rlutil::WHITE);
-       GraficarLineasHorizontales(1,121,2,false,176);
-       GraficarLineasHorizontales(1,121,4,false,205);
-       GraficarLineasHorizontales(1,121,30,false,176);
-       GraficarLineasHorizontales(1,121,27,false,205);
-       rlutil::locate(35,6);
-       cout<<" GROUP 51 CAR CENTER"<<endl;
-       rlutil::locate(35,7);
-       cout<<"--------------------------------------------------------------"<<endl;
-       rlutil::locate(54,8);
-       cout<<"MODIFICACI"<<char(224)<<"N DE VEHICULOS "<<endl;
-       GraficarOpiciones("Modificar nombre ",50,12,y==0,15,0);
-       GraficarOpiciones("Modificar marca ",50,14,y==1,15,0);
-       GraficarOpiciones("Modificar fecha de fabricacion ",50,16,y==2,15,0);
-       GraficarOpiciones("Modificar precio ",50,18,y==3,15,0);
-       GraficarOpiciones("Volver atras ",50,20,y==4,15,0);
-       switch(rlutil::getkey()){
-       case 14:
-               y--;
-               if(y<0){
-               y=0;
-               }
-       break;
-       case 15:
-               y++;
-               if(y>4){
-               y=0;
-               }
-       break;
-       case 1:
-              switch(y){
-              case 0:
-                     system("cls");
-                     modificarNombre();
-              break;
-              case 1:
-                     system("cls");
-                     modificarMarca();
-              break;
-              case 2:
-                     system("cls");
-                     modificarAnio();
-              break;
-              case 3:
-                     system("cls");
-                     modificarPrecio();
-              break;
-              case 4:
-                     rlutil::setBackgroundColor(rlutil::BLACK);
-                     system("cls");
-                     control_menu_vehiculo=false;
-              break;
-           }
-    break;
-  }
-  }while(control_menu_vehiculo);
+void modificarAutos(int id) {
+    bool control_menu_vehiculo = true;
+    int y = 0;
+
+    do {
+        rlutil::hidecursor();
+        rlutil::setBackgroundColor(rlutil::BLACK);
+        rlutil::setColor(rlutil::WHITE);
+        GraficarLineasHorizontales(1, 121, 2, false, 176);
+        GraficarLineasHorizontales(1, 121, 4, false, 205);
+        GraficarLineasHorizontales(1, 121, 30, false, 176);
+        GraficarLineasHorizontales(1, 121, 27, false, 205);
+        rlutil::locate(35, 6);
+        cout << " GROUP 51 CAR CENTER" << endl;
+        rlutil::locate(35, 7);
+        cout << "--------------------------------------------------------------" << endl;
+        rlutil::locate(54, 8);
+        cout << "MODIFICACI" << char(224) << "N DE VEHICULOS " << endl;
+        GraficarOpiciones("Modificar nombre del auto", 50, 12, y == 0, 15, 0);
+        GraficarOpiciones("Modificar marca del auto", 50, 14, y == 1, 15, 0);
+        GraficarOpiciones("Modificar precio del auto", 50, 16, y == 2, 15, 0);
+        GraficarOpiciones("Volver atras...", 50, 18, y == 3, 15, 0);
+        switch (rlutil::getkey()) {
+            case 14:
+                y--;
+                if (y < 0) {
+                    y = 0;
+                }
+                break;
+            case 15:
+                y++;
+                if (y > 3) {
+                    y = 0;
+                }
+                break;
+            case 1:
+                switch (y) {
+                    case 0:
+                        system("cls");
+                        modificarNombre();
+                        break;
+                    case 1:
+                        system("cls");
+                        modificarMarca();
+                        break;
+                    case 2:
+                        system("cls");
+                        modificarPrecio();
+                        break;
+                    case 3:
+                        rlutil::setBackgroundColor(rlutil::BLACK);
+                        system("cls");
+                        control_menu_vehiculo = false;
+                        break;
+                }
+                break;
+        }
+
+    } while (control_menu_vehiculo);
 }
 
 //FUNCION PARA MODIFICAR NOMBRE
@@ -407,51 +385,7 @@ system("cls");
 }
 
 
-//MODIFICAR ANIO
-void modificarAnio(){
-FILE *anio;
-anio=fopen("Vehiculo.dat","rb+");
-
-if(anio==NULL){
-cout<<"Error al editar el anio..."<<endl;
-fclose(anio);
-}
-
-Auto obj;
-bool encontrado=false;
-int idBuscado;
-
-cout<<"Ingrese el id del auto a modificar:";
-cin>>idBuscado;
-
-while(fread(&obj,sizeof(Auto),1,anio)!=0){
-if(idBuscado==obj.getId()){
-cout<<"Auto encontrado correctamente"<<endl;
-cout<<"------------------------------------------------------------"<<endl;
-encontrado=true;
-long longitud=ftell(anio)-sizeof(Auto);
-char nuevoAnio[10];
-cout<<"Ingresa la fecha de fabricacion:";
-cin.getline(nuevoAnio,10,'\n');
-obj.fechaV(nuevoAnio);
-obj.setAnio(nuevoAnio);
-fseek(anio,longitud,SEEK_SET);
-fwrite(&obj,sizeof(Auto),1,anio);
-cout<<"anio editado correctamente..."<<endl;
-system("pause");
-break;
-}
-}
-if(!encontrado){
-cout<<"No se encontro el id correspondiente"<<endl;
-system("pause");
-}
-fclose(anio);
-system("cls");
-}
-
 //MODIFICAR PRECIO
-
 void modificarPrecio(){
 estiloAuto();
 FILE *precio;
@@ -476,7 +410,7 @@ cout<<"Auto encontrado correctamente"<<endl;
 rlutil::locate(3,6);
 cout<<"El precio actual es:"<<obj.getPrecioAuto();
 long longitud=ftell(precio)-sizeof(Auto);
-int nuevoPrecio;
+float nuevoPrecio;
 rlutil::locate(45,16);
 cout<<"Ingresa el precio:";
 cin>>nuevoPrecio;
@@ -566,7 +500,7 @@ if(listarA==NULL){
 cout<<"Error al intentar listar los vehiculos"<<endl;
  }
 
-rlutil::locate(38,2);
+rlutil::locate(38,3);
 cout<<"Estos son los vehiculos listados disponibles en nuestro sistema"<<endl;
 Auto obj;
 while(fread(&obj,sizeof(Auto),1,listarA)!=0){
@@ -575,9 +509,8 @@ cout<<endl;
 cout<<"EL ID DEL AUTO ES:"<<obj.getId()<<endl;
 cout<<"EL NOMBRE DEL AUTO ES:"<<obj.getNombreAuto()<<endl;
 cout<<"LA MARCA DEL AUTO ES:"<<obj.getMarcaAuto()<<endl;
-cout<<"EL ANIO DE FABRICACION ES:"<<obj.getAnioAuto()<<endl;
 cout<<"EL PRECIO DEL AUTO ES:"<<obj.getPrecioAuto()<<endl;
-cout<<endl;
+cout<<"-------------------------------------------------------------------"<<endl;
 }
 }
 fclose(listarA);
@@ -615,10 +548,8 @@ cout<<"Nombre:"<<obj.getNombreAuto()<<endl;
 rlutil::locate(40,14);
 cout<<"Marca:"<<obj.getMarcaAuto()<<endl;
 rlutil::locate(40,16);
-cout<<"La fecha de fabricacion:"<<obj.getAnioAuto()<<endl;
-rlutil::locate(40,18);
 cout<<"Precio:"<<obj.getPrecioAuto()<<endl;
-rlutil::locate(40,20);
+rlutil::locate(40,18);
 cout<<"ID:"<<obj.getId()<<endl;
 if(obj.getEstado()==true){
     rlutil::locate(40,22);
@@ -652,7 +583,7 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese el nombre: ";
-cin.getline(n,30,'\n');
+cin.getline(n,30);
 }
 }
 
@@ -664,7 +595,7 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese la marca: ";
-cin.getline(m,20,'\n');
+cin.getline(m,20);
 }
 }
 
@@ -676,12 +607,12 @@ rlutil::locate(45,16);
 cout<<"El campo ingresado se encuentra incompleto"<<endl;
 rlutil::locate(45,18);
 cout<<"Ingrese la fecha,(EJ:01/01/1900):";
-cin.getline(f,11,'\f');
+cin.getline(f,11);
 }
 }
 
 //PRECIO
-void precioV(float p){
+void precioV(float&p){
 while(p==0.0 || p<=0){
 rlutil::locate(45,16);
 cout<<"Campo incompleto o precio invalido"<<endl;
