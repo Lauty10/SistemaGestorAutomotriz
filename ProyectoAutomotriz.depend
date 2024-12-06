@@ -99,40 +99,40 @@
 	"ClassSolicitudAlta.h"
 	"rlutil.h"
 
-1733265985 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
+1733440170 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classvendedor.h
 	<cstring>
 	<string.h>
 	<conio.h>
 	"rlutil.h"
 
-1733263758 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
+1733442823 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classclientes.h
 	<string.h>
 	"FuncionesDeclaraciones.h"
 
-1733270113 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
+1733443571 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classauto.h
 	<string.h>
 
 1732494040 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\main.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
 
-1733268152 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
+1733442030 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
 1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classfecha.h
 
-1733270234 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
+1733441589 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
 1732640077 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classrecaudaciones.h
 
-1733270412 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
+1733439435 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
 	<cstring>
 	<chrono>
 	<cstdio>
 	"rlutil.h"
 
-1733269040 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
-	"ClassVendedor.h"
+1733440446 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+	<string.h>
 
 1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
 	<iostream>
@@ -144,7 +144,7 @@
 1732749424 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	"ClassVendedor.h"
 
-1733267267 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
+1733441012 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classsolicitudalta.h
 	<string.h>
 
 1732627374 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\rlutil.h
@@ -368,4 +368,47 @@
 1732626201 source:c:\users\sol\desktop\lastima\sistemagestorautomotriz\main.cpp
 	<iostream>
 	"FuncionesDeclaraciones.h"
+
+1733438682 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\administradores.cpp
+	<iostream>
+	"ClassAdministrador.h"
+	<cstring>
+	<chrono>
+	<cstdio>
+	"rlutil.h"
+
+1733440170 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\vendedores.cpp
+	<iostream>
+	"ClassVendedor.h"
+	<cstring>
+	<string.h>
+	<conio.h>
+	"rlutil.h"
+
+1733440371 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\ticket.cpp
+	<iostream>
+	"ClassTicket.h"
+	"ClassVendedor.h"
+
+1733441092 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\solicitud.cpp
+	<iostream>
+	<string.h>
+	"rlutil.h"
+	"ClassSolicitudAlta.h"
+
+1733441626 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\recaudaciones.cpp
+	<iostream>
+	"ClassRecaudaciones.h"
+	"rlutil.h"
+
+1733442008 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\fecha.cpp
+	<iostream>
+	"ClassFecha.h"
+	"rlutil.h"
+
+1733442850 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\clientes.cpp
+	<iostream>
+	<string.h>
+	"FuncionesDeclaraciones.h"
+	"ClassClientes.h"
 
