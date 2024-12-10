@@ -794,7 +794,7 @@ cin>>idS;
 cin.ignore();
 char nombre[30];
 char correo[35];
-int dni;
+char dni[9];
 char clave[20];
 char clave2[20];
 int i = 0;
@@ -806,7 +806,7 @@ while(fread(&objS,sizeof(Solicitud),1,buscarMiSolicitud)!=0){
         if(objS.getAprobado()==true){
         strcpy(nombre,objS.getNombre());
         strcpy(correo,objS.getCorreo());
-        dni=objS.getDni();
+       // dni=objS.getDni();
         long posicion = ftell(buscarMiSolicitud) - sizeof(Solicitud);
         objS.setAprobado(false);
         fseek(buscarMiSolicitud, posicion, SEEK_SET);
@@ -905,7 +905,7 @@ if(strcmp(clave,clave2)==0){
  objV.setId(id);
  objV.setCorreo(correo);
  objV.setClave(clave);
- objV.setDni(dni);
+// objV.setDni(dni);
  fwrite(&objV,sizeof(Vendedores),1,Nuevoalta);
  rlutil::locate(30,16);
  cout<<"Proceso finalizado. Fue dado de alta en el sistema correctamente"<<endl;
