@@ -1,3 +1,4 @@
+#include <cctype>
 #include <iostream>
 #include <string.h>
 #include "rlutil.h"
@@ -16,8 +17,8 @@ strcpy(this->correo,c);
 void Solicitud::setClave(char cl[20]){
 strcpy(this->clave,cl);
 }
-void Solicitud::setDni(int d){
-this->dni=d;
+void Solicitud::setDni(char dni[9]){
+strcpy(this->dni,dni);
 }
 void Solicitud::setEstado(bool e){
 this->estado=e;
@@ -34,7 +35,7 @@ return correo;
 const char* Solicitud::getClave(){
 return clave;
 }
-int Solicitud::getDni(){
+const char* Solicitud::getDni(){
 return dni;
 }
 bool Solicitud::getEstado(){
@@ -53,17 +54,38 @@ return id;
 
 void Solicitud::cargarSolicitud(){
     int nuevaSoli;
+    bool control=true;
     nuevaSoli=generarIdSolicitud();
     setId(nuevaSoli);
     estiloV();
     rlutil::locate(15,7);
     cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
-    rlutil::locate(45,10);
-    cout << "Ingrese su nombre para su alta:";
-    cin.getline(nombre, 30, '\n');
+    do{
+     rlutil::showcursor();
+     rlutil::locate(15,11);
+     cout << "-> Ingrese su nombre para su alta:";
+     rlutil::locate(50,11);
+     cin.getline(nombre, 30);
+     if(validarNombre(nombre)){control=false;}
+     else{
+          rlutil::setColor(rlutil::LIGHTRED);
+          rlutil::locate(50,11);
+          cout << "                               ";
+          rlutil::locate(15,14);
+          cout << "Nombre invalido, asegurese que el nombre ingresado no contenga numeros o simbolos especiales.";
+          rlutil::locate(15,16);
+          cout << "Intentelo de nuevo. ";
+          rlutil::setColor(rlutil::WHITE);}
+    }while(control);
     setNombre(nombre);
-    rlutil::locate(45,12);
-    cout << "Ingrese su correo para su alta:";
+    rlutil::locate(50,11);
+    cout << "                               ";
+    rlutil::locate(15,14);
+    cout << "                                                                                              ";
+    rlutil::locate(15,16);
+    cout << "                     ";
+    rlutil::locate(15,11);
+    cout << "-> Ingrese su correo para su alta:";
     cin.getline(correo, 35, '\n');
     setCorreo(correo);
     rlutil::locate(45,14);
@@ -234,38 +256,32 @@ fclose(correo);
 }
 
 //NOMBRE
-void Solicitud::validarN(char* n){
-while(n[0]==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Nombre: ";
-cin.ignore();
-cin.getline(n,30,'\n');
+bool Solicitud::validarNombre(char* n){
+for(int x=0;n[x]!='\0';x++){
+    if(!isalpha(n[x])){
+        return false;
+        }
 }
+return true;
 }
 
 //DNI
-void Solicitud::validarD(int d){
-while(d==0){
-cout<<"Campo incompleto"<<endl;
-cout<<"Dni: ";
-cin>>d;
+bool Solicitud::validarD(char* d){
+int digitos=0;
+for(int y=0;d[y]!='\0';y++){
+    if(!isdigit(d[y])){
+        return false;
+    }
+    digitos++;
+}
+if(digitos<7||digitos>8){
+    return false;
 }
 
-FILE *dni;
-dni=fopen("Solicitud.dat","rb");
-if(dni==NULL){
-cout<<"NO SE PUDO ABRIR EL ARCHIVO"<<endl;
-return;
+if(d[0]=='0'){
+    return true;
+
 }
-Solicitud obj;
-while(fread(&obj,sizeof(Solicitud),1,dni)!=0){
-if(obj.getDni()==d){
-cout<<"Este dni ya fue dado de alta, ingrese otro"<<endl;
-cout<<"Dni: ";
-cin>>d;
-}
-}
-fclose(dni);
 }
 
 void Solicitud::estiloV(){
