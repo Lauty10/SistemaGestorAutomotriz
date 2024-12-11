@@ -58,7 +58,7 @@ void TicketAdmin::generarTicket(int id) {
     }
     fclose(infoId);
     FILE *nuevoT;
-    nuevoT = fopen("Ticket.dat", "ab");
+    nuevoT = fopen("Ticket.dat", "wb");
     if (nuevoT == NULL) {
         cout << "Error al generar nuevo ticket" << endl;
         return;
