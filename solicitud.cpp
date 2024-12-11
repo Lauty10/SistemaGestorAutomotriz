@@ -70,24 +70,12 @@ void Solicitud::cargarSolicitud(){
     estiloV();
     rlutil::locate(15,7);
     cout << "Bienvenido, complete los datos solicitados para generar una solicitud de alta en el sistema..." << endl;
-    do{
      rlutil::showcursor();
      rlutil::locate(15,11);
      cout << "-> Ingrese su nombre para su alta:";
      rlutil::locate(50,11);
      cin.getline(nombre, 30,'\n');
-     if(validarNombre(nombre)){control=false;}
-     else{
-          rlutil::setColor(rlutil::LIGHTRED);
-          rlutil::locate(50,11);
-          cout << "                               ";
-          rlutil::locate(15,14);
-          cout << "Nombre invalido, asegurese que el nombre ingresado no contenga numeros o simbolos especiales.";
-          rlutil::locate(15,16);
-          cout << "Intentelo de nuevo. ";
-          rlutil::setColor(rlutil::WHITE);}
-    }while(control);
-    //setNombre(nombre);
+
     rlutil::locate(50,11);
     cout << "                               ";
     rlutil::locate(15,14);
@@ -575,14 +563,14 @@ return 0;
 }
 
 //NOMBRE
-bool Solicitud::validarNombre(char* n){
-for(int x=0;n[x]!='\0';x++){
-    if(!isalpha(n[x])){
-        return false;
-        }
-}
-return true;
-}
+//bool Solicitud::validarNombre(char* n){
+//for(int x=0;n[x]!='\0';x++){
+  //  if(!isalpha(n[x]&&n[x]!=' ')){
+    //    return false;
+      //  }
+//}
+//return true;
+//}
 
 //DNI
 //1 negativo, 2 letra,3,limiite,4 cero, 0 valido

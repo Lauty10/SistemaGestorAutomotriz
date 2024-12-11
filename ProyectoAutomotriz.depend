@@ -131,7 +131,7 @@
 	<cstdio>
 	"rlutil.h"
 
-1733873006 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
+1733918021 c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\classticket.h
 	<string.h>
 
 1732708320 c:\users\estudiante\onedrive\escritorio\sistemagestorautomotriz\classadministrador.h
@@ -390,7 +390,7 @@
 	"ClassTicket.h"
 	"ClassVendedor.h"
 
-1733900567 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\solicitud.cpp
+1733917834 source:c:\users\lauty\onedrive\escritorio\sistemagestorautomotriz\solicitud.cpp
 	<cctype>
 	<iostream>
 	<string.h>

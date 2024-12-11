@@ -9,9 +9,6 @@ using namespace std;
    void TicketAdmin::setIdT(int id) {
         this->idT = id;
     }
-    void TicketAdmin::setFecha(const char f[11]) {
-        strcpy(this->fechaActual, f);
-    }
     void TicketAdmin::setInfo(const char it[35]) {
         strcpy(this->infoTicket, it);
     }
@@ -23,9 +20,6 @@ using namespace std;
     }
     int TicketAdmin::getId(){
         return idT;
-    }
-    const char* TicketAdmin::getFecha(){
-        return fechaActual;
     }
     const char* TicketAdmin::getInfoT(){
         return infoTicket;
@@ -82,15 +76,6 @@ void TicketAdmin::generarTicket(int id) {
     objT.setInfo(infoTicket);
     system("cls");
 
-    GraficarLineasHorizontales(1,121,2,false,176);
-    GraficarLineasHorizontales(1,121,30,false,176);
-    rlutil::locate(40,14);
-    cout << "Ingrese la fecha del ticket,(Ej:1/1/1900):";
-    cin.getline(fechaActual, 11);
-    objT.fechaV(fechaActual);
-    objT.setFecha(fechaActual);
-    system("cls");
-
     objT.setUsuario(usuario);
     idT = generarIdTicket();
     objT.setIdT(idT);
@@ -139,7 +124,6 @@ TicketAdmin obj;
 while(fread(&obj,sizeof(TicketAdmin),1,tickets)!=0){
 if(obj.getTicket()==true){
 cout<<endl;
-cout<<"La fecha del ticket es: "<<obj.getFecha()<<endl;
 cout<<"El id del ticket es: "<<obj.getId()<<endl;
 cout<<"El usuario del ticket es: "<<obj.getUsuario()<<endl;
 cout<<"El asunto del del ticket es: "<<obj.getInfoT()<<endl;
