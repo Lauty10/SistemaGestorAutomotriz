@@ -40,9 +40,18 @@
 		<Unit filename="ClassSolicitudAlta.h" />
 		<Unit filename="ClassTicket.h" />
 		<Unit filename="ClassVendedor.h" />
+		<Unit filename="FuncionesDeVendedor.cpp" />
 		<Unit filename="FuncionesDeclaraciones.h" />
+		<Unit filename="administradores.cpp" />
+		<Unit filename="auto.cpp" />
+		<Unit filename="clientes.cpp" />
+		<Unit filename="fecha.cpp" />
 		<Unit filename="funcionesGestoras.cpp" />
 		<Unit filename="main.cpp" />
+		<Unit filename="recaudaciones.cpp" />
+		<Unit filename="solicitud.cpp" />
+		<Unit filename="ticket.cpp" />
+		<Unit filename="vendedores.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

@@ -7,7 +7,7 @@ private:
     char nombre[30];
     char correo[35];
     char clave[20];
-    char dni[9];
+    char dni[10];
     bool estado;
     bool aprobado;
     int id;
@@ -35,13 +35,15 @@ bool getEstado();
 bool getAprobado();
 void setId(int idN);
 int getId();
+bool abrir_crear_arch_solicitud();
+
 void cargarSolicitud();
 void nuevaSolicitud(Solicitud objS);
 int generarIdSolicitud();
 void aprobarSolicitudDeAlta();
-void validarC(char* c);
+int validarC(char* c);
 bool validarNombre(char* n);
-bool validarD(char* d);
+int validarD(char* d);
 void listarSolicitudes();
 void estiloV();
 

@@ -63,8 +63,11 @@ case 1:
     break;
    case 2:
         system("cls");
+        if(objSolicitud.abrir_crear_arch_solicitud()){
         objSolicitud.cargarSolicitud();
         objSolicitud.nuevaSolicitud(objSolicitud);
+        }else{cout<<"ERROR";}
+
     break;
    case 3:
        system("cls");
